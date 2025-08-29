@@ -1,3 +1,6 @@
+<?php
+require_once "controlPelicula.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,23 +13,38 @@
 
 <div class="container mt-4">
   <?php if ($_POST): ?>
-    <div class="alert alert-success">
-      <h1 class="alert-heading text-primary">La película introducida es</h1>
-      <br>
-      <p>
-        <strong>Título:</strong> <?= htmlspecialchars($_POST['titulo']) ?><br>
-        <strong>Actores:</strong> <?= htmlspecialchars($_POST['actores']) ?><br>
-        <strong>Director:</strong> <?= htmlspecialchars($_POST['director']) ?><br>
-        <strong>Guión:</strong> <?= htmlspecialchars($_POST['guion']) ?><br>
-        <strong>Producción:</strong> <?= htmlspecialchars($_POST['produccion']) ?><br>
-        <strong>Año:</strong> <?= htmlspecialchars($_POST['anio']) ?><br>
-        <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad1']) ?><br>
-        <strong>Género:</strong> <?= htmlspecialchars($_POST['genero'] ?? 'No especificado') ?><br>
-        <strong>Duración:</strong> <?= htmlspecialchars($_POST['duracion']) ?><br>
-        <strong>Restricciones de edad:</strong> <?= htmlspecialchars($_POST['restriccion']) ?><br>
-        <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?>
-      </p>
-    </div>
+    <?php
+      $errores = validarPelicula($_POST);
+
+      if (!empty($errores)):
+    ?>
+      <div class="alert alert-danger">
+        <h4>Errores en el formulario:</h4>
+        <ul>
+          <?php foreach ($errores as $error): ?>
+            <li><?= htmlspecialchars($error) ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php else: ?>
+      <div class="alert alert-success">
+        <h1 class="alert-heading text-primary">La película introducida es</h1>
+        <br>
+        <p>
+          <strong>Título:</strong> <?= htmlspecialchars($_POST['titulo']) ?><br>
+          <strong>Actores:</strong> <?= htmlspecialchars($_POST['actores']) ?><br>
+          <strong>Director:</strong> <?= htmlspecialchars($_POST['director']) ?><br>
+          <strong>Guión:</strong> <?= htmlspecialchars($_POST['guion']) ?><br>
+          <strong>Producción:</strong> <?= htmlspecialchars($_POST['produccion']) ?><br>
+          <strong>Año:</strong> <?= htmlspecialchars($_POST['anio']) ?><br>
+          <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad1']) ?><br>
+          <strong>Género:</strong> <?= htmlspecialchars($_POST['genero'] ?? 'No especificado') ?><br>
+          <strong>Duración:</strong> <?= htmlspecialchars($_POST['duracion']) ?><br>
+          <strong>Restricciones de edad:</strong> <?= htmlspecialchars($_POST['restriccion']) ?><br>
+          <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?>
+        </p>
+      </div>
+    <?php endif; ?>
   <?php else: ?>
     <div class="alert alert-danger">No se recibieron datos del formulario.</div>
   <?php endif; ?>
