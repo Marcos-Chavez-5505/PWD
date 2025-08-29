@@ -19,7 +19,7 @@ class ControlEJ1 {
                     $mensaje = "El archivo es demasiado grande";
                 }else{
                     move_uploaded_file($tmp, __DIR__ . "/../../vista/TP/tp3/archivos/$nombre");
-                    $mensaje = "Archivo subido con éxito <a href='vista/TP/tp3/archivos/$nombre' target='_blank'>Ver archivo</a>";
+                    $mensaje = "Archivo subido con éxito <a href='/PWD-TRABAJOS/PWD/vista/TP/tp3/archivos/$nombre' target='_blank'>Ver archivo</a>";
 
                 }
             }
