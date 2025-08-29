@@ -26,13 +26,4 @@ class ControlEJ1 {
         return $mensaje;
     }
 }
-
-
-// if(empty($_FILES['archivo']) || $_FILES['archivo']['error']) {
-//     echo "No se ha seleccionado ningun archivo";
-// }else{
-//     if($_FILES['archivo']['type'] == )
-// }
-
-
 ?>
