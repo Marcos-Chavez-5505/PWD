@@ -5,7 +5,6 @@ class ControlEJ1 {
     public function veryfyFile(){
 
         $mensaje = "No se ha seleccionado ningun archivo";
-        var_dump($_FILES);
         if ($_FILES['archivo']['error'] === 0) {
             $nombre = $_FILES['archivo']['name'];
             $tmp = $_FILES['archivo']['tmp_name'];
