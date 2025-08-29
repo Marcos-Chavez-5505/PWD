@@ -8,7 +8,10 @@
     </label>
 </form>
 
-
 <?php
+$control = new ControlEJ1();
+$mensaje = $control->veryfyFile();
+
+echo $mensaje;
 //include_once footer
 ?>
