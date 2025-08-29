@@ -5,20 +5,22 @@ class ControlEJ1 {
     public function veryfyFile(){
 
         $mensaje = "No se ha seleccionado ningun archivo";
+        var_dump($_FILES);
         if ($_FILES['archivo']['error'] === 0) {
             $nombre = $_FILES['archivo']['name'];
             $tmp = $_FILES['archivo']['tmp_name'];
             $size = $_FILES['archivo']['size'];
-            $ext = pathinfo($nombre, PATHINFO_EXTENSION);
+            $extension = pathinfo($nombre, PATHINFO_EXTENSION);
 
-            if ($ext !== 'pdf' && $ext !== 'doc') {
+            if ($extension !== 'pdf' && $extension !== 'doc') {
                 $mensaje = "El archivo no es un .pdf o .doc";
             }else{
                 if($size > 2 * 1024 * 1024){
                     $mensaje = "El archivo es demasiado grande";
                 }else{
-                    move_uploaded_file($tmp, "../../vista/TP/tp3/ej1/archivos/$nombre");
-                    $mensaje = "Archivo subido con exito <a href='../../vista/TP/tp3/ej1/archivos/$nombre' target='_blank'>Ver archivo</a>";
+                    move_uploaded_file($tmp, __DIR__ . "/../../vista/tp3/archivos/$nombre");
+                    $mensaje = "Archivo subido con éxito <a href='vista/tp3/archivos/$nombre' target='_blank'>Ver archivo</a>";
+
                 }
             }
         }

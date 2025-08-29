@@ -2,10 +2,11 @@
 //include_once encabezado
 ?>
 
-<form action="control/3/ej1" method="post">
+<form action="mostrar.php" method="post" enctype="multipart/form-data">
     <label for="archivo">
         Ingrese un archivo .pdf o .doc <input type="file" name="archivo" id="archivo">
     </label>
+    <button type="submit">Enviar</button>
 </form>
 
 <?php
