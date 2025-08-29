@@ -18,8 +18,8 @@ class ControlEJ1 {
                 if($size > 2 * 1024 * 1024){
                     $mensaje = "El archivo es demasiado grande";
                 }else{
-                    move_uploaded_file($tmp, __DIR__ . "/../../vista/tp3/archivos/$nombre");
-                    $mensaje = "Archivo subido con éxito <a href='vista/tp3/archivos/$nombre' target='_blank'>Ver archivo</a>";
+                    move_uploaded_file($tmp, __DIR__ . "/../../vista/TP/tp3/archivos/$nombre");
+                    $mensaje = "Archivo subido con éxito <a href='vista/TP/tp3/archivos/$nombre' target='_blank'>Ver archivo</a>";
 
                 }
             }
