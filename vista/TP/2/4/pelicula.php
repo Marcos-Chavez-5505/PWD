@@ -1,5 +1,17 @@
 <?php
-require_once "controlPelicula.php";
+require_once __DIR__ . "/../../../../control/2/controlEj3.php";
+
+// Crear instancia de la clase
+$control = new ControlPelicula();
+
+// Verificar que llegaron datos
+if (!$_POST) {
+    echo "<h2>No se recibieron datos del formulario.</h2>";
+    exit;
+}
+
+// Validar usando la clase
+$errores = $control->validarPelicula($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,12 +24,7 @@ require_once "controlPelicula.php";
 <body class="bg-light">
 
 <div class="container mt-4">
-  <?php if ($_POST): ?>
-    <?php
-      $errores = validarPelicula($_POST);
-
-      if (!empty($errores)):
-    ?>
+  <?php if (!empty($errores)): ?>
       <div class="alert alert-danger">
         <h4>Errores en el formulario:</h4>
         <ul>
@@ -26,7 +33,7 @@ require_once "controlPelicula.php";
           <?php endforeach; ?>
         </ul>
       </div>
-    <?php else: ?>
+  <?php else: ?>
       <div class="alert alert-success">
         <h1 class="alert-heading text-primary">La película introducida es</h1>
         <br>
@@ -37,16 +44,13 @@ require_once "controlPelicula.php";
           <strong>Guión:</strong> <?= htmlspecialchars($_POST['guion']) ?><br>
           <strong>Producción:</strong> <?= htmlspecialchars($_POST['produccion']) ?><br>
           <strong>Año:</strong> <?= htmlspecialchars($_POST['anio']) ?><br>
-          <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad1']) ?><br>
+          <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad']) ?><br>
           <strong>Género:</strong> <?= htmlspecialchars($_POST['genero'] ?? 'No especificado') ?><br>
           <strong>Duración:</strong> <?= htmlspecialchars($_POST['duracion']) ?><br>
           <strong>Restricciones de edad:</strong> <?= htmlspecialchars($_POST['restriccion']) ?><br>
           <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?>
         </p>
       </div>
-    <?php endif; ?>
-  <?php else: ?>
-    <div class="alert alert-danger">No se recibieron datos del formulario.</div>
   <?php endif; ?>
 
   <div class="text-end">

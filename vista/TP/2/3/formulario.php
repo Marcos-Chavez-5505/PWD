@@ -6,8 +6,7 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="/PWD/vista/css/tp2.css">
-
+    <link rel="stylesheet" href="../../../css/tp2.css">
 
 </head>
 <body>
@@ -37,8 +36,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-validator@0.5.4/dist/js/bootstrapValidator.min.js"></script>
-<script src="/PWD/vista/js/validator.js"></script>
+<script src="../../../js/validator.js"></script>
 
 </body>
 </html>

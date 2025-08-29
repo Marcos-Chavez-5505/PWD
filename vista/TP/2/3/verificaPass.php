@@ -1,6 +1,5 @@
 <?php
-// Ruta CORRECTA desde verificaPass.php hasta control/2/
-require_once __DIR__ . '/../../../../../control/2/controlEj2.php';
+require_once __DIR__ . "/../../../../control/2/controlEj2.php";
 
 // Lista de usuarios válidos
 $usuarios = [
@@ -18,8 +17,11 @@ if (!isset($_POST['usuario']) || !isset($_POST['clave'])) {
 $usuarioIngresado = trim($_POST['usuario']);
 $claveIngresada   = trim($_POST['clave']);
 
-// ✅ Usar la función del archivo control.php
-$errores = validarDatos($usuarioIngresado, $claveIngresada);
+// Crear instancia de la clase
+$control = new ControlEj2();
+
+// Validar datos usando la clase
+$errores = $control->validarDatos($usuarioIngresado, $claveIngresada);
 
 if (!empty($errores)) {
     echo "<h2>Errores encontrados:</h2><ul>";
