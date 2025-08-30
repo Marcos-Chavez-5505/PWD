@@ -1,6 +1,6 @@
 <?php
 //incluimos a la clase
-include_once "../control/claseVerNumero.php";
+include_once "/../../../../control/1/controlTp1Ej.php";
 
 //creamos el objeto de la clase
 $validador = new verNumero();
