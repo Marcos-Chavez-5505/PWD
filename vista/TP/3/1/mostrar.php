@@ -27,7 +27,6 @@ include_once '../../../../control/3/controlEJ1.php';
                         $control = new ControlEJ1();
                         $mensaje = $control->veryfyFile();
 
-                        // Mostrar mensaje con alerta de Bootstrap
                         echo '<div class="alert alert-info mt-3">' . htmlspecialchars($mensaje) . '</div>';
                     }
                     ?>

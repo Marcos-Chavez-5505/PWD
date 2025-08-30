@@ -1,12 +1,13 @@
-<?php
-//include_once encabezado
-?>
-
 <head>
     <link rel="stylesheet" href="tp3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/header-footer.css">
 </head>
+
+<?php
+include_once '../../../estructura/header.php'
+?>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -37,5 +38,5 @@
 </div>
 
 <?php
-//include_once footer
+include_once '../../../estructura/footer.php'
 ?>

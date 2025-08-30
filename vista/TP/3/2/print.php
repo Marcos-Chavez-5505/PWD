@@ -16,7 +16,6 @@ $mensaje = $control->verifyFile();
                 <div class="card-body">
                     <h3 class="card-title text-center mb-4">Resultado del archivo</h3>
 
-                    <!-- Mostrar mensaje con textarea dentro de un contenedor -->
                     <div class="mb-3">
                         <?= $mensaje ?>
                     </div>
