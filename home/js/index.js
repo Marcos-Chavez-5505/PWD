@@ -2,7 +2,7 @@ let data = {};
 let container = document.getElementById("container");
 
 // Cargar datos de PHP
-fetch("../php/getTPs.php")
+fetch("../../home/php/getTPs.php")
   .then(res => res.json())
   .then(json => {
     data = json;
@@ -24,10 +24,10 @@ function mostrarTPs() {
 // Mostrar tarjetas de Ejercicios dentro de un TP
 function mostrarEjercicios(tp) {
   container.innerHTML = "";
-  Object.keys(data[tp]).forEach((ejercicio, index) => {
+  Object.keys(data[tp]).forEach((ejercicio) => {
     let card = document.createElement("div");
     card.className = "card";
-    card.innerText = "Ejercicio " + (index + 1);
+    card.innerText = "Ejercicio " + ejercicio;
     card.onclick = () => mostrarArchivos(tp, ejercicio);
     container.appendChild(card);
   });
@@ -35,7 +35,7 @@ function mostrarEjercicios(tp) {
   // Botón volver a TPs
   let back = document.createElement("div");
   back.className = "card";
-  back.innerText = "↙ Volver";
+  back.innerHTML = `<i class="fa-solid fa-rotate-left">&nbsp&nbspVOLVER</i>`;
   back.onclick = mostrarTPs;
   container.appendChild(back);
 }
@@ -56,7 +56,7 @@ function mostrarArchivos(tp, ejercicio) {
   // Botón volver a ejercicios
   let back = document.createElement("div");
   back.className = "card";
-  back.innerText = "↙ Volver";
+  back.innerHTML = `<i class="fa-solid fa-rotate-left">&nbsp&nbspVOLVER</i>`;
   back.onclick = () => mostrarEjercicios(tp);
   container.appendChild(back);
 }
