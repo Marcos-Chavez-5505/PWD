@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWD - Grupo 6</title>
-    <link rel="stylesheet" href="../css/header-footer.css">
-    <link rel="stylesheet" href="../../home/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../../../vista/css/header-footer.css">
+    <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
 
-    <script src="../../home/js/main.js" defer></script>
-    <script src="../../home/js/lightmode.js" defer></script>
-    <script src="../../home/js/index.js" defer></script>
+    <script src="../../../../home/js/main.js" defer></script>
+    <script src="../../../../home/js/lightmode.js" defer></script>
+    <script src="../../../../vista/js/index.js" defer></script>
 </head>
 <body>
     <header>
@@ -29,7 +29,7 @@
             
             <!-- ======================== Escritorio ======================== -->
             <ul>
-                <li><a href="../../home/html/index.html"><h1>PWD - Grupo 6</h1></a></li>
+                <li><a href="../../../../home/html/index.html"><h1>PWD - Grupo 6</h1></a></li>
                 <!-- <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-folder-open"></i>&nbsp;&nbsp;Historial</a></li>
                 <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuario</a></li>
                 <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Log Out</a></li>

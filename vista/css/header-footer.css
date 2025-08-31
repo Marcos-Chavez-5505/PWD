@@ -51,6 +51,8 @@ header {
     position: fixed;    /* para que se mantenga siempre en pantalla */
     top: 0;
     left: 0;
+
+    z-index: 1000;
 }
 /*=======================================================================================*/
 
