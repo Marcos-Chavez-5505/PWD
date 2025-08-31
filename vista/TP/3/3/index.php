@@ -1,12 +1,14 @@
-<?php
-//include_once encabezado
-?>
+
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../css/tp2.css">
 </head>
 <body class="bg-light">
+
+<?php
+include_once '../../../estructura/header.php'
+?>
 
 <div class="container mt-4">
     <div class="card shadow">
@@ -130,5 +132,5 @@
 </body>
 
 <?php
-//include_once footer
+include_once '../../../estructura/footer.php'
 ?>
