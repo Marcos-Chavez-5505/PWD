@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 
 // Carpeta base donde están los TPs
-$baseDir = __DIR__ . "../../../vista/TP";
+$baseDir = __DIR__ . "/../../vista/TP";
 
 $tps = [];
 
