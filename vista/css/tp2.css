@@ -30,20 +30,7 @@ button {
     border-radius: 8px;
     background-color: #f9f9f9;
 }
-.parsley-errors-list {
-    color: red;
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 0 0;
-    font-size: 0.9em;
-}
+
 .input-group-text i {
     color: black; /* Iconos negros */
-}
-.input-group .parsley-errors-list {
-    display: block;
-    width: 100%;
-    margin-top: 5px;
-    padding: 0;
-    list-style: none;
 }

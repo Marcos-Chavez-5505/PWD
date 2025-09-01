@@ -1,3 +1,30 @@
+// Ejercio 1 TP 1 
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.getElementById("form1");
+    const numeroInput = document.getElementById("numero");
+    const mensajeError = document.getElementById("mensaje-error");
+
+    formulario.addEventListener("submit", function(event) {
+        let numero = numeroInput.value.trim();
+        let mensaje = "";
+
+        if(numero === ""){
+            mensaje = "Debes de ingresar un numero: ";
+        }else if(isNaN(numero)){
+            mensaje = "Solo puedes ingresar valores numericos"; 
+        }
+
+        if(mensaje !== ""){
+            mensajeError.textContent = mensaje;
+            event.preventDefault();
+        } else {
+            mensajeError.textContent = "";
+        }
+    }) 
+})
+
+
+
 // Ejercio 3 TP 2 - Login
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("loginForm");
@@ -93,3 +120,5 @@ document.addEventListener("DOMContentLoaded", function() {
         restriccionRadios.forEach(r => r.addEventListener("change", () => r.classList.remove("is-invalid")));
     });
 });
+
+
