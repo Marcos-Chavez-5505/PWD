@@ -18,27 +18,21 @@
             <!-- ========================== Móviles ========================= -->
             <ul class="sidebar sidebar-hidden">
               <div id="container"></div>
-                <!-- <button class="theme-switch">
+                <button class="theme-switch">
                     <i class="fa-solid fa-moon"></i>
                     <i class="fa-solid fa-sun"></i>
                 </button>
-                <li><a href="#"><i class="fa-solid fa-folder-open"></i>&nbsp;&nbsp;Historial</a></li>
-                <li><a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuario</a></li>
-                <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Log Out</a></li> -->
             </ul>
             
             <!-- ======================== Escritorio ======================== -->
             <ul>
                 <li><a href="../../../../home/html/index.html"><h1>PWD - Grupo 6</h1></a></li>
-                <!-- <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-folder-open"></i>&nbsp;&nbsp;Historial</a></li>
-                <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuario</a></li>
-                <li class="hideOnMobile"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;Log Out</a></li>
                 <div class="hideOnMobile">
                   <button class="theme-switch">
                     <i class="fa-solid fa-moon"></i>
                     <i class="fa-solid fa-sun"></i>
                   </button>
-                </div> -->
+                </div>
                 <li id="menuBtn"><i class="fa-solid fa-bars"></i></li>
             </ul>
         </nav>

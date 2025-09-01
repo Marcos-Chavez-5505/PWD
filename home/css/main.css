@@ -330,7 +330,7 @@ footer h3 {
         display: none;
     }
     #menuBtn {
-        display: flex;
+        display: none;
     }
 
     button.theme-switch {
