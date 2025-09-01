@@ -1,6 +1,5 @@
-// Ejercio 1 TP 1 
 document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.getElementById("form1");
+    const formulario = document.getElementById("form-numero"); // <-- corregido
     const numeroInput = document.getElementById("numero");
     const mensajeError = document.getElementById("mensaje-error");
 
@@ -9,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let mensaje = "";
 
         if(numero === ""){
-            mensaje = "Debes de ingresar un numero: ";
-        }else if(isNaN(numero)){
-            mensaje = "Solo puedes ingresar valores numericos"; 
+            mensaje = "Debes de ingresar un número.";
+        } else if(isNaN(numero)){
+            mensaje = "Solo puedes ingresar valores numéricos."; 
         }
 
         if(mensaje !== ""){
@@ -20,9 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             mensajeError.textContent = "";
         }
-    }) 
-})
-
+    }); 
+});
 
 
 // Ejercio 3 TP 2 - Login

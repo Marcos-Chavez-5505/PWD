@@ -1,36 +1,66 @@
-body {
-    background-color: #f8f9fa;
+/* tp2.css */
+
+/* Fondo general */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #192024; /* fondo oscuro */
+    font-family: 'Roboto', sans-serif;
 }
 
-.card {
-    border-radius: 15px;
+/* Contenido principal (se expande) */
+main {
+    flex: 1;
 }
 
-.card-body {
-    padding: 30px;
+/* Contenedor del login */
+.login-container {
+    max-width: 400px;
+    margin: 120px auto 50px auto; /* espacio para header */
 }
 
-h3 {
-    color: #198754; /* verde bootstrap */
+/* Caja del login (clara, como querías) */
+.login-box {
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* caja clara */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Título */
+.login-box h3 {
+    color: #198754;
     font-weight: bold;
 }
 
-button {
-    width: 120px;
-}
-
-.login-container {
-    max-width: 400px;
-    margin: 50px auto;
-}
-
-.login-box {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+/* Inputs */
+.input-group-text {
+    background-color: #fff;
+    border: none;
 }
 
 .input-group-text i {
-    color: black; /* Iconos negros */
+    color: black;
+}
+
+.form-control {
+    border: none;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Botón */
+button {
+    width: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto; /* lo empuja al fondo */
+    width: 100%;
 }

@@ -7,20 +7,22 @@
     <title>Ejercicio 1</title>
 </head>
 <body>
-    <div class="form-conteiner">
-    <form name ="form1" id="form1" method="POST" action="vernumero.php">
-        <div class="elementos-form">
-        <div class="titulo">
-        <h3>Ingrese por favor un numero</h3>
-        </div>
-        <input type="text" name="numero" id="numero" > <br>
-        <span id="mensaje-error"></span>
+    <div class="form-container">
+        <form id="form-numero" method="POST" action="vernumero.php">
+            <div class="elementos-form">
+                <div class="titulo">
+                    <h3>Ingrese por favor un número</h3>
+                </div>
 
-        <input type="submit" name="Submit" value="Enviar">
-        </div>
-    </form>
+                <input type="text" name="numero" id="numero">
+                <br>
+                <span id="mensaje-error" class="error"></span>
+
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
     </div>
 
-    <script src="../../../validador.js"></script>
+    <script src="../../../validator.js"></script>
 </body>
 </html>
