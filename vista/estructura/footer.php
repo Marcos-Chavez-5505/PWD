@@ -1,4 +1,14 @@
-<footer>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWD - Grupo 6</title>
+    <link rel="stylesheet" href="../../../../vista/css/header-footer.css">
+    <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
+</head>
+<body>
+    <footer>
         <div class="footer-contactos">
             <h3>Repositorio del Proyecto</h3>
             <a href="https://github.com/Marcos-Chavez-5505/PWD.git"><i class="fa-brands fa-github"></i>&nbsp;&nbsp;GitHub</a>
@@ -12,3 +22,5 @@
             <i><p>Directorio para Trabajos Prácticos de la materia Programación Web Dinámica</p><p>- segundo cuatrimestre 2025</p></i>
         </div>
     </footer>
+</body>
+</html>
