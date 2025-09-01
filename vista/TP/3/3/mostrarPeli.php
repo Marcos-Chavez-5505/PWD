@@ -30,30 +30,32 @@ include_once '../../../estructura/header.php';
 ?>
 
 <body>
-    <div class="alert alert-success contenido">
-        <h1 class="alert-heading text-primary">La película introducida es</h1>
-        <br>
-        <p>
-            <strong>Título:</strong> <?= htmlspecialchars($_POST['titulo']) ?><br>
-            <strong>Actores:</strong> <?= htmlspecialchars($_POST['actores']) ?><br>
-            <strong>Director:</strong> <?= htmlspecialchars($_POST['director']) ?><br>
-            <strong>Guión:</strong> <?= htmlspecialchars($_POST['guion']) ?><br>
-            <strong>Producción:</strong> <?= htmlspecialchars($_POST['produccion']) ?><br>
-            <strong>Año:</strong> <?= htmlspecialchars($_POST['anio']) ?><br>
-            <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad']) ?><br>
-            <strong>Género:</strong> <?= htmlspecialchars($_POST['genero'] ?? 'No especificado') ?><br>
-            <strong>Duración:</strong> <?= htmlspecialchars($_POST['duracion']) ?><br>
-            <strong>Restricciones de edad:</strong> <?= htmlspecialchars($_POST['restriccion']) ?><br>
-            <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?><br>
-            <strong>Imagen de la pelicula: </strong>
-            <?php
-                if ($_FILES){
-                    echo "<img src='$ruta' alt='imagen de pelicula' width='200px'height='auto'>";
-                }
+    <main>
+        <div class="alert alert-success contenido">
+            <h1 class="alert-heading text-primary">La película introducida es</h1>
+            <br>
+            <p>
+                <strong>Título:</strong> <?= htmlspecialchars($_POST['titulo']) ?><br>
+                <strong>Actores:</strong> <?= htmlspecialchars($_POST['actores']) ?><br>
+                <strong>Director:</strong> <?= htmlspecialchars($_POST['director']) ?><br>
+                <strong>Guión:</strong> <?= htmlspecialchars($_POST['guion']) ?><br>
+                <strong>Producción:</strong> <?= htmlspecialchars($_POST['produccion']) ?><br>
+                <strong>Año:</strong> <?= htmlspecialchars($_POST['anio']) ?><br>
+                <strong>Nacionalidad:</strong> <?= htmlspecialchars($_POST['nacionalidad']) ?><br>
+                <strong>Género:</strong> <?= htmlspecialchars($_POST['genero'] ?? 'No especificado') ?><br>
+                <strong>Duración:</strong> <?= htmlspecialchars($_POST['duracion']) ?><br>
+                <strong>Restricciones de edad:</strong> <?= htmlspecialchars($_POST['restriccion']) ?><br>
+                <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?><br>
+                <strong>Imagen de la pelicula: </strong>
+                <?php
+                    if ($_FILES){
+                        echo "<img src='$ruta' alt='imagen de pelicula' width='200px'height='auto'>";
+                    }
 
-            ?>
-        </p>
-    </div>
+                ?>
+            </p>
+        </div>
+    </main>
 </body>
 <?php
 include_once '../../../estructura/footer.php';

@@ -10,29 +10,33 @@ include_once __DIR__ . "../../../../../control/3/controlEJ2.php";
 $control = new controlEJ2();
 $mensaje = $control->verifyFile();
 ?>
+<body>
+    
+    <main>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-center mb-4">Resultado del archivo</h3>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="card-title text-center mb-4">Resultado del archivo</h3>
+                            <div class="mb-3">
+                                <?= $mensaje ?>
+                            </div>
 
-                    <div class="mb-3">
-                        <?= $mensaje ?>
+                            <div class="text-center mt-3">
+                                <a href="javascript:history.back()" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left me-2"></i> Volver
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
-
-                    <div class="text-center mt-3">
-                        <a href="javascript:history.back()" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left me-2"></i> Volver
-                        </a>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </main>
+</body>
 
 <?php
 include_once '../../../estructura/footer.php';
