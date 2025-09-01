@@ -4,21 +4,11 @@
         .alert.alert-success{
             margin: 40px 0;
         }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
         .contenido {
         flex: 1; /* empuja el footer hacia abajo */
         }
 
         footer {
-        background: #333;
-        color: white;
-        text-align: center;
         padding: 1rem;
         }
     </style>
