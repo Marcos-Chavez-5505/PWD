@@ -70,53 +70,70 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Ejercio 4 TP 2 - Película
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("peliculaForm");
-    if (!form) return;
+// Ejercicio 4 TP 2 - Película
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("peliculaForm");
+  if (!form) return;
 
-    form.addEventListener("submit", function(event) {
-        let isValid = true;
+  const fields = {
+    titulo: document.getElementById("titulo"),
+    actores: document.getElementById("actores"),
+    director: document.getElementById("director"),
+    guion: document.getElementById("guion"),
+    produccion: document.getElementById("produccion"),
+    anio: document.getElementById("anio"),
+    duracion: document.getElementById("duracion"),
+    nacionalidad: document.getElementById("nacionalidad"),
+    sinopsis: document.getElementById("sinopsis"),
+  };
 
-        const titulo = document.getElementById("titulo");
-        const actores = document.getElementById("actores");
-        const director = document.getElementById("director");
-        const guion = document.getElementById("guion");
-        const produccion = document.getElementById("produccion");
-        const anio = document.getElementById("anio");
-        const duracion = document.getElementById("duracion");
-        const nacionalidad = document.getElementById("nacionalidad1");
-        const sinopsis = document.getElementById("sinopsis");
-        const restriccionRadios = document.querySelectorAll('input[name="restriccion"]');
+  const restriccionRadios = Array.from(document.querySelectorAll('input[name="restriccion"]'));
 
-        // Reiniciar clases
-        [titulo, actores, director, guion, produccion, anio, duracion, nacionalidad, sinopsis].forEach(campo => campo.classList.remove("is-invalid"));
-        restriccionRadios.forEach(radio => radio.classList.remove("is-invalid"));
+  const markInvalid = (el) => el && el.classList.add("is-invalid");
+  const unmarkInvalid = (el) => el && el.classList.remove("is-invalid");
 
-        // Validaciones
-        if (!titulo.value || titulo.value.trim().length < 2) { titulo.classList.add("is-invalid"); isValid = false; }
-        if (!actores.value) { actores.classList.add("is-invalid"); isValid = false; }
-        if (!director.value) { director.classList.add("is-invalid"); isValid = false; }
-        if (!guion.value) { guion.classList.add("is-invalid"); isValid = false; }
-        if (!produccion.value) { produccion.classList.add("is-invalid"); isValid = false; }
-        if (!anio.value || !/^\d{4}$/.test(anio.value)) { anio.classList.add("is-invalid"); isValid = false; }
-        if (!duracion.value || !/^\d{1,3}$/.test(duracion.value) || parseInt(duracion.value) <= 0) { duracion.classList.add("is-invalid"); isValid = false; }
-        if (!nacionalidad.value) { nacionalidad.classList.add("is-invalid"); isValid = false; }
-        if (!sinopsis.value || sinopsis.value.trim().length < 10) { sinopsis.classList.add("is-invalid"); isValid = false; }
+  Object.values(fields).forEach((el) => {
+    if (el) el.addEventListener("input", () => unmarkInvalid(el));
+  });
+  restriccionRadios.forEach((r) =>
+    r.addEventListener("change", () => restriccionRadios.forEach(unmarkInvalid))
+  );
 
-        // Validación de radio
-        if (![...restriccionRadios].some(r => r.checked)) {
-            restriccionRadios.forEach(r => r.classList.add("is-invalid"));
-            isValid = false;
-        }
+  form.addEventListener("submit", (event) => {
+    let isValid = true;
 
-        if (!isValid) event.preventDefault();
+    const { titulo, actores, director, guion, produccion, anio, duracion, nacionalidad, sinopsis } = fields;
 
-        // Quitar error al escribir o cambiar
-        [titulo, actores, director, guion, produccion, anio, duracion, nacionalidad, sinopsis].forEach(campo => {
-            campo.addEventListener("input", () => campo.classList.remove("is-invalid"));
-        });
-        restriccionRadios.forEach(r => r.addEventListener("change", () => r.classList.remove("is-invalid")));
-    });
+    Object.values(fields).forEach(unmarkInvalid);
+    restriccionRadios.forEach(unmarkInvalid);
+
+    if (!titulo.value || titulo.value.trim().length < 2) { markInvalid(titulo); isValid = false; }
+    if (!actores.value) { markInvalid(actores); isValid = false; }
+    if (!director.value) { markInvalid(director); isValid = false; }
+    if (!guion.value) { markInvalid(guion); isValid = false; }
+    if (!produccion.value) { markInvalid(produccion); isValid = false; }
+
+    if (!anio.value || !/^\d{4}$/.test(anio.value)) { markInvalid(anio); isValid = false; }
+    if (!duracion.value || !/^\d{1,3}$/.test(duracion.value) || parseInt(duracion.value, 10) <= 0) {
+      markInvalid(duracion); isValid = false;
+    }
+
+    if (!nacionalidad.value) { markInvalid(nacionalidad); isValid = false; }
+    if (!sinopsis.value || sinopsis.value.trim().length < 10) { markInvalid(sinopsis); isValid = false; }
+
+    if (!restriccionRadios.some(r => r.checked)) {
+      restriccionRadios.forEach(markInvalid);
+      isValid = false;
+    }
+
+    // Mostrar mensajes de Bootstrap
+    form.classList.add("was-validated");
+
+    if (!isValid) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
 });
 
 
