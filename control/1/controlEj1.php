@@ -9,7 +9,7 @@ class verNumero{
         if($num > 0){
             $mensaje = "positivo";
         }elseif($num == 0){
-            $mensaje = "igual a 0!";
+            $mensaje = "igual a 0";
         }else{
             $mensaje = "negativo";
         }
