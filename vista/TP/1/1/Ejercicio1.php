@@ -18,7 +18,7 @@
 <?php
 include_once '../../../estructura/header.php'
 ?>
-
+<main>
 <!--centramos horizontal y vertical y hacemos que el formulario quede centrado-->
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;"><!--creamos una tarjeta rectangular y la ajustamos al ancho del contenedor-->
         <h3 class="text-center mb-4">Ingrese un número</h3><!--centramos el texto-->
@@ -38,6 +38,7 @@ include_once '../../../estructura/header.php'
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</main>
 </body>
 <?php
 include_once '../../../estructura/footer.php'
