@@ -70,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Ejercio 4 TP 2 - Película
-// Ejercicio 4 TP 2 - Película
-document.addEventListener("DOMContentLoaded", () => {
+// Ejercicio 3 TP 3 - Película
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("peliculaForm");
-  if (!form) return;
+  if (!form) return; // única salida
 
   const fields = {
     titulo: document.getElementById("titulo"),
@@ -84,49 +84,132 @@ document.addEventListener("DOMContentLoaded", () => {
     anio: document.getElementById("anio"),
     duracion: document.getElementById("duracion"),
     nacionalidad: document.getElementById("nacionalidad"),
+    genero: document.getElementById("genero"),
     sinopsis: document.getElementById("sinopsis"),
   };
 
-  const restriccionRadios = Array.from(document.querySelectorAll('input[name="restriccion"]'));
-
-  const markInvalid = (el) => el && el.classList.add("is-invalid");
-  const unmarkInvalid = (el) => el && el.classList.remove("is-invalid");
-
-  Object.values(fields).forEach((el) => {
-    if (el) el.addEventListener("input", () => unmarkInvalid(el));
-  });
-  restriccionRadios.forEach((r) =>
-    r.addEventListener("change", () => restriccionRadios.forEach(unmarkInvalid))
+  const restriccionRadios = Array.from(
+    document.querySelectorAll('input[name="restriccion"]')
   );
 
-  form.addEventListener("submit", (event) => {
+  const markInvalid = (el) => el && el.classList.add("is-invalid");
+  const markValid = (el) => el && el.classList.add("is-valid");
+  const unmarkInvalid = (el) => el && el.classList.remove("is-invalid");
+  const unmarkValid = (el) => el && el.classList.remove("is-valid");
+
+  // Limpiar clases al escribir/cambiar
+  Object.values(fields).forEach((el) => {
+    if (el) el.addEventListener("input", () => {
+      unmarkInvalid(el);
+      unmarkValid(el);
+    });
+  });
+  restriccionRadios.forEach((r) =>
+    r.addEventListener("change", () => {
+      restriccionRadios.forEach((radio) => {
+        unmarkInvalid(radio);
+        markValid(radio);
+      });
+    })
+  );
+
+  form.addEventListener("submit", function (event) {
     let isValid = true;
+    const currentYear = new Date().getFullYear();
 
-    const { titulo, actores, director, guion, produccion, anio, duracion, nacionalidad, sinopsis } = fields;
+    // Limpiar estados previos
+    Object.values(fields).forEach((el) => {
+      unmarkInvalid(el);
+      unmarkValid(el);
+    });
+    restriccionRadios.forEach((r) => {
+      unmarkInvalid(r);
+      unmarkValid(r);
+    });
 
-    Object.values(fields).forEach(unmarkInvalid);
-    restriccionRadios.forEach(unmarkInvalid);
-
-    if (!titulo.value || titulo.value.trim().length < 2) { markInvalid(titulo); isValid = false; }
-    if (!actores.value) { markInvalid(actores); isValid = false; }
-    if (!director.value) { markInvalid(director); isValid = false; }
-    if (!guion.value) { markInvalid(guion); isValid = false; }
-    if (!produccion.value) { markInvalid(produccion); isValid = false; }
-
-    if (!anio.value || !/^\d{4}$/.test(anio.value)) { markInvalid(anio); isValid = false; }
-    if (!duracion.value || !/^\d{1,3}$/.test(duracion.value) || parseInt(duracion.value, 10) <= 0) {
-      markInvalid(duracion); isValid = false;
-    }
-
-    if (!nacionalidad.value) { markInvalid(nacionalidad); isValid = false; }
-    if (!sinopsis.value || sinopsis.value.trim().length < 10) { markInvalid(sinopsis); isValid = false; }
-
-    if (!restriccionRadios.some(r => r.checked)) {
-      restriccionRadios.forEach(markInvalid);
+    // Validaciones
+    if (!fields.titulo.value || fields.titulo.value.trim().length < 2) {
+      markInvalid(fields.titulo);
       isValid = false;
+    } else {
+      markValid(fields.titulo);
     }
 
-    // Mostrar mensajes de Bootstrap
+    if (!fields.actores.value) {
+      markInvalid(fields.actores);
+      isValid = false;
+    } else {
+      markValid(fields.actores);
+    }
+
+    if (!fields.director.value) {
+      markInvalid(fields.director);
+      isValid = false;
+    } else {
+      markValid(fields.director);
+    }
+
+    if (!fields.guion.value) {
+      markInvalid(fields.guion);
+      isValid = false;
+    } else {
+      markValid(fields.guion);
+    }
+
+    if (!fields.produccion.value) {
+      markInvalid(fields.produccion);
+      isValid = false;
+    } else {
+      markValid(fields.produccion);
+    }
+
+    const anioNum = parseInt(fields.anio.value, 10);
+    if (!fields.anio.value || !/^\d{4}$/.test(fields.anio.value) || anioNum < 1900 || anioNum > currentYear) {
+      markInvalid(fields.anio);
+      isValid = false;
+    } else {
+      markValid(fields.anio);
+    }
+
+    const duracionNum = parseInt(fields.duracion.value, 10);
+    if (!fields.duracion.value || !/^\d{1,3}$/.test(fields.duracion.value) || duracionNum < 30 || duracionNum > 500) {
+      markInvalid(fields.duracion);
+      isValid = false;
+    } else {
+      markValid(fields.duracion);
+    }
+
+    if (!fields.nacionalidad.value) {
+      markInvalid(fields.nacionalidad);
+      isValid = false;
+    } else {
+      markValid(fields.nacionalidad);
+    }
+
+    if (!fields.genero.value) {
+      markInvalid(fields.genero);
+      isValid = false;
+    } else {
+      markValid(fields.genero);
+    }
+
+    if (!fields.sinopsis.value || fields.sinopsis.value.trim().length < 10) {
+      markInvalid(fields.sinopsis);
+      isValid = false;
+    } else {
+      markValid(fields.sinopsis);
+    }
+
+    if (!restriccionRadios.some((r) => r.checked)) {
+      restriccionRadios[0].classList.add("is-invalid");
+      isValid = false;
+    } else {
+      restriccionRadios.forEach((r) => {
+        r.classList.remove("is-invalid");
+        markValid(r);
+      });
+    }
+
     form.classList.add("was-validated");
 
     if (!isValid) {
@@ -135,5 +218,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
