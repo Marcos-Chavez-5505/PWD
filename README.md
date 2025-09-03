@@ -1,12 +1,13 @@
 # GRUPO 6
 ---
-Materia: Programación Web Dinámica
+_Materia:_ ___Programación Web Dinámica___ \
+\
 Alumnos integrantes:
 - Angulo Alejo
 - Chavez Marcos
 - Lara Lautaro
 - Martinez Lucas
 ---
-Visualización del proyecto:
-Home > html > index.html
-[ esto abre el menú 'Home' del proyecto ]
+Visualización del proyecto:\
+__Home > html > index.html__\
+_[ esto abre el menú 'Home' del proyecto ]_
