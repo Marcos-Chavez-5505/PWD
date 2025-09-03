@@ -32,7 +32,7 @@ include_once '../../../estructura/header.php'
                             $control = new ControlEJ1();
                             $mensaje = $control->veryfyFile();
 
-                            echo '<div class="alert alert-info mt-3">' . htmlspecialchars($mensaje) . '</div>';
+                            echo '<div class="alert alert-info mt-3">' . $mensaje . '</div>';
                         }
                         ?>
                     </div>

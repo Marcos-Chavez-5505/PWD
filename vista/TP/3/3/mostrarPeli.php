@@ -17,6 +17,9 @@
 <?php
 include_once __DIR__ . '../../../../../control/3/controlEJ3.php';
 include_once '../../../estructura/header.php';
+
+$controlEJ3 = new controlEJ3;
+$ruta = $controlEJ3->moveImage();
 ?>
 
 <body>
