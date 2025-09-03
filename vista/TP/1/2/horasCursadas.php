@@ -24,8 +24,8 @@ $total = $control->sumarHoras($horas);
     </p>
 
     <div class="mt-4">
-      <a href="ejercicio2.php" class="btn btn-outline-primary btn-lg">
-        <i class="bi bi-arrow-left-circle me-1"></i> Volver al formulario
+      <a href="javascript:history.back()" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Volver al Formulario
       </a>
     </div>
   </div>
