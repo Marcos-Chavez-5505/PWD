@@ -68,9 +68,9 @@ include_once '../../../estructura/header.php'
             </div>
         </form>
     </div>
-</main>    
-</body>
+</main>
 <?php
 include_once '../../../estructura/footer.php'
-?>
+?>    
+</body>
 </html>
