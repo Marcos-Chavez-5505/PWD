@@ -1,26 +1,52 @@
+//TP1 EJERCICIO 2
 document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.getElementById("form-numero"); // <-- corregido
-    const numeroInput = document.getElementById("numero");
-    const mensajeError = document.getElementById("mensaje-error");
+    const formulario = document.getElementById("formulario2");
+    //creamos el arreglos con los dias
+    const dias = ["lunes", "martes", "miercoles", "jueves", "viernes"];
 
-    formulario.addEventListener("submit", function(event) {
-        let numero = numeroInput.value.trim();
-        let mensaje = "";
+    // Función para validar un input específico
+    function validarCampo(input, error) {
+        const valor = input.value.trim();
 
-        if(numero === ""){
-            mensaje = "Debes de ingresar un número.";
-        } else if(isNaN(numero)){
-            mensaje = "Solo puedes ingresar valores numéricos."; 
-        }
-
-        if(mensaje !== ""){
-            mensajeError.textContent = mensaje;
-            event.preventDefault();
+        if (valor === "") {
+            error.textContent = " Debes ingresar un número (usa 0 si no cursas)";
+            return false;
+        } else if (isNaN(valor)) {
+            error.textContent = " Solo se permiten valores numéricos";
+            return false;
         } else {
-            mensajeError.textContent = "";
+            error.textContent = "";
+            return true;
         }
-    }); 
+    }
+    // Validación al enviar
+    formulario.addEventListener("submit", function(event) {
+        let valido = true;
+
+        dias.forEach(dia => {
+            const input = document.getElementById(dia);
+            const error = document.getElementById("error-" + dia);
+
+            if (!validarCampo(input, error)) {
+                valido = false;
+            }
+        });
+
+        if (!valido) {
+            event.preventDefault();
+        }
+    });
+    // Validación en tiempo real (cuando el usuario escribe  o cambia)
+    dias.forEach(dia => {
+        const input = document.getElementById(dia);
+        const error = document.getElementById("error-" + dia);
+
+        input.addEventListener("input", () => {
+            validarCampo(input, error);
+        });
+    });
 });
+
 
 
 // Ejercio 3 TP 2 - Login

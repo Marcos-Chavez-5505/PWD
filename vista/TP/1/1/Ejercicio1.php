@@ -14,7 +14,7 @@
     </style>
 </head>
     
-<body><!--aca le damos un fondo gris claro-->
+<body>
 <?php
 include_once '../../../estructura/header.php'
 ?>
