@@ -7,7 +7,7 @@ $usuarios = [
     ['usuario' => 'pedro', 'clave' => 'pedroabcd']
 ];
 
-// Obtener informacion con metodo POST o GET
+// Obtener información con método POST o GET
 function obtenerValor($campo, $default = '') {
     return isset($_REQUEST[$campo]) ? trim($_REQUEST[$campo]) : $default;
 }
@@ -16,34 +16,36 @@ $usuarioIngresado = obtenerValor('usuario');
 $claveIngresada   = obtenerValor('clave');  
 
 $mostrarResultado = false;
+$errores          = [];
+$mensaje          = '';
+$loginExitoso     = false;
+$nombreUsuario    = '';
 
 if ($usuarioIngresado === '' || $claveIngresada === '') {
-    echo "<h2>Error: faltan datos del formulario.</h2>";
+    $mensaje = "<div class='alert alert-warning'><h4>Error: faltan datos del formulario.</h4></div>";
 } else {
     $control = new ControlEj2();
     $errores = $control->validarDatos($usuarioIngresado, $claveIngresada);
 
     if (!empty($errores)) {
-        echo "<h2>Errores encontrados:</h2><ul>";
+        $mensaje = "<div class='alert alert-danger'><h4>Errores encontrados:</h4><ul>";
         foreach ($errores as $error) {
-            echo "<li>$error</li>";
+            $mensaje .= "<li>" . htmlspecialchars($error) . "</li>";
         }
-        echo "</ul><a href='formulario.php'>Volver al login</a>";
+        $mensaje .= "</ul><a href='formulario.php' class='btn btn-outline-primary'>Volver al login</a></div>";
     } else {
         $mostrarResultado = true;
     }
 }
 
 if ($mostrarResultado) {
-    $loginExitoso = false;
-    $nombreUsuario = "";
     $i = 0;
     $flag = true;
 
     while ($i < count($usuarios) && $flag) {
         $user = $usuarios[$i];
         if ($user['usuario'] === $usuarioIngresado && $user['clave'] === $claveIngresada) {
-            $loginExitoso = true;
+            $loginExitoso  = true;
             $nombreUsuario = $user['usuario'];
             $flag = false;
         }
@@ -51,10 +53,32 @@ if ($mostrarResultado) {
     }
 
     if ($loginExitoso) {
-        echo "<h2>Bienvenido, $nombreUsuario!</h2>";
+        $mensaje = "<div class='alert alert-success'><h2>Bienvenido, " . htmlspecialchars($nombreUsuario) . "!</h2></div>";
     } else {
-        echo "<h2>Usuario o contraseña incorrectos.</h2>";
-        echo '<a href="formulario.php">Volver al login</a>';
+        $mensaje = "<div class='alert alert-danger'><h2>Usuario o contraseña incorrectos.</h2>
+                    <a href='formulario.php' class='btn btn-outline-primary mt-2'>Volver al login</a></div>";
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado del Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- Header -->
+    <?php include_once '../../../estructura/header.php'; ?>
+
+    <main class="container mt-5 mb-5">
+        <?= $mensaje ?>
+    </main>
+
+    <!-- Footer -->
+    <?php include_once '../../../estructura/footer.php'; ?>
+
+</body>
+</html>
