@@ -2,16 +2,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <?php
 include_once '../../../estructura/header.php';
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$edad = $_POST['edad'];
-$direccion = $_POST['direccion'];
-$nivelEstudio = $_POST['nivelEstudio'];
-$genero = $_POST['opcion'];
+// Función para obtener valores desde GET o POST (solo un return)
+function obtenerValor($campo, $default = '') {
+    $valor = $default;
+
+    if (isset($_POST[$campo])) {
+        $valor = trim($_POST[$campo]);
+    } elseif (isset($_GET[$campo])) {
+        $valor = trim($_GET[$campo]);
+    }
+
+    return $valor;
+}
+
+// Capturamos los datos usando la función
+$nombre       = obtenerValor('nombre');
+$apellido     = obtenerValor('apellido');
+$edad         = obtenerValor('edad');
+$direccion    = obtenerValor('direccion');
+$nivelEstudio = obtenerValor('nivelEstudio');
+$genero       = obtenerValor('opcion');
 ?>
+
 <main class="d-flex justify-content-center align-items-center vh-100">
     <div class="bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
         <h3 class="mb-3 text-center">Datos recibidos</h3>
@@ -32,6 +48,7 @@ $genero = $_POST['opcion'];
         </div>
     </div>
 </main>
+
 <?php
 include_once '../../../estructura/footer.php';
 ?>

@@ -2,20 +2,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
 <?php
 include_once __DIR__ . "../../../../../control/1/controlEj4.php";
 include_once '../../../estructura/header.php';
 
+// Función para obtener valores desde GET o POST (solo un return)
+function obtenerValor($campo, $default = '') {
+    $valor = $default;
 
-$nombre = $_GET['nombre'] ?? '';
-$apellido = $_GET['apellido'] ?? '';
-$edad = $_GET['edad'] ?? '';
-$direccion = $_GET['direccion'] ?? '';
+    if (isset($_POST[$campo])) {
+        $valor = trim($_POST[$campo]);
+    } elseif (isset($_GET[$campo])) {
+        $valor = trim($_GET[$campo]);
+    }
 
+    return $valor;
+}
 
+// Capturamos los datos usando la función
+$nombre    = obtenerValor('nombre');
+$apellido  = obtenerValor('apellido');
+$edad      = obtenerValor('edad');
+$direccion = obtenerValor('direccion');
+
+// Instancia de la clase Edad
 $edadObj = new Edad();
 $mensajeEdad = $edad !== '' ? $edadObj->generarMensaje((int)$edad) : '';
 ?>
+
 <main class="d-flex justify-content-center align-items-center vh-100">
     <div class="bg-white p-4 rounded shadow-sm" style="width: 500px;">
         <h3 class="mb-3 text-center">Datos recibidos</h3>
@@ -37,6 +52,7 @@ $mensajeEdad = $edad !== '' ? $edadObj->generarMensaje((int)$edad) : '';
         </div>
     </div>
 </main>
+
 <?php
 include_once '../../../estructura/footer.php';
 ?>
