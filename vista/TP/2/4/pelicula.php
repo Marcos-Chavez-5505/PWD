@@ -1,9 +1,17 @@
 <?php
 require_once __DIR__ . "/../../../../control/2/controlEj3.php";
 
-// Función para obtener valores desde GET o POST
+// Función para obtener valores desde GET o POST (solo un return)
 function obtenerValor($campo, $default = '') {
-    return isset($_REQUEST[$campo]) ? trim($_REQUEST[$campo]) : $default;
+    $valor = $default;
+
+    if (isset($_POST[$campo])) {
+        $valor = trim($_POST[$campo]);
+    } elseif (isset($_GET[$campo])) {
+        $valor = trim($_GET[$campo]);
+    }
+
+    return $valor;
 }
 
 // Crear instancia de la clase
@@ -87,6 +95,8 @@ if ($hayDatos) {
             </div>
         </div>
     </main>            
+
+    <!-- Footer -->
     <?php include_once '../../../estructura/footer.php'; ?>
 
 </body>

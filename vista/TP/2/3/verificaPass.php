@@ -7,9 +7,17 @@ $usuarios = [
     ['usuario' => 'pedro', 'clave' => 'pedroabcd']
 ];
 
-// Obtener información con método POST o GET
+// Obtener información con método POST o GET (un solo return)
 function obtenerValor($campo, $default = '') {
-    return isset($_REQUEST[$campo]) ? trim($_REQUEST[$campo]) : $default;
+    $valor = $default;
+
+    if (isset($_POST[$campo])) {
+        $valor = trim($_POST[$campo]);
+    } elseif (isset($_GET[$campo])) {
+        $valor = trim($_GET[$campo]);
+    }
+
+    return $valor;
 }
 
 $usuarioIngresado = obtenerValor('usuario');
