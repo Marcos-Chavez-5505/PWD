@@ -1,4 +1,4 @@
-# PWD-GRUPO-4
+# GRUPO 6
 ---
 Materia: Programación Web Dinámica
 Alumnos integrantes:
