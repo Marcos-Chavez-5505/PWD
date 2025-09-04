@@ -35,6 +35,16 @@ if (isset($_POST['deportes']) && is_array($_POST['deportes'])) {
     $deportes = $_GET['deportes'];
 }
 $cantDepo = count($deportes);
+$listDeportes = "";
+$listDeportesFinal = end($deportes);
+foreach ($deportes as $deporte){
+    if ($deporte == $listDeportesFinal){
+        $listDeportes .= $deporte . ".";
+    }else{
+        $listDeportes .= $deporte . ", ";
+    }
+    
+}
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100">
@@ -53,6 +63,10 @@ $cantDepo = count($deportes);
         <p>
             Cantidad de deportes que realizo: <strong><?= $cantDepo ?></strong>
         </p>
+
+        <?php
+            echo "Deportes: {$listDeportes}";
+        ?>
 
         <div class="d-grid">
             <a href="javascript:history.back()" class="btn btn-secondary">
