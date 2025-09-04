@@ -8,7 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
 <?php
 include_once __DIR__ . "../../../../../control/1/controlEj2.php";
@@ -43,8 +43,8 @@ $horas = [
 $total = $control->sumarHoras($horas);
 ?>
 
-<main class="container mt-5 mb-5">
-  <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+<main class="d-flex flex-column justify-content-center align-items-center min-vh-10">
+  <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
     <h2 class="text-primary mb-4 text-center">Resultado</h2>
 
     <p class="fs-4 fw-semibold text-center">
@@ -53,8 +53,8 @@ $total = $control->sumarHoras($horas);
     </p>
 
     <div class="d-grid gap-2 mt-4">
-      <a href="javascript:history.back()" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i> Volver al formulario
+      <a href="Ejercicio2.php" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Ir al formulario
       </a>
     </div>
   </div>

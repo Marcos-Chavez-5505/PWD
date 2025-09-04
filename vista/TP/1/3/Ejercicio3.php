@@ -14,7 +14,6 @@ include_once '../../../estructura/header.php'
 <main class="d-flex justify-content-center align-items-center vh-100 mt-5">
     <div class="row justify-content-center">
         <div class="bg-white p-4 rounded shadow-sm" style="width: 500px;">
-            <!-- Fondo blanco tipo cuadrado -->
             <div class="bg-white p-4 rounded shadow-sm">
                 <h3 class="mb-4 text-center">Ingrese sus datos:</h3>
                 <form name="formulario3" id="formulario3" method="POST" action="mostrarDatos3.php">
@@ -47,8 +46,9 @@ include_once '../../../estructura/header.php'
         </div>
     </div>
 </main>
-</body>
+<script src="../../../js/validator.js"></script>
 <?php
 include_once '../../../estructura/footer.php'
 ?>
+</body>
 </html>

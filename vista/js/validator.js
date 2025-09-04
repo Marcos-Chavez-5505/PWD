@@ -47,6 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+//TP1 EJERCICIO 3
+document.addEventListener("DOMContentLoaded", function () {
+    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    document.querySelectorAll("#nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            if (!soloLetras.test(this.value)) {
+                // Reemplaza todo lo que no sea letra o espacio
+                this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+            }
+        });
+    });
+});
 
 
 // Ejercio 3 TP 2 - Login

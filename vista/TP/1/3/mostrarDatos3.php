@@ -39,8 +39,8 @@ $direccion= obtenerValor('direccion');
                     y vivo en <strong><?= htmlspecialchars($direccion) ?></strong>.
                 </p>
 
-                <a href="javascript:history.back()" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Volver al Formulario
+                <a href="Ejercicio3.php" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Ir al formulario
                 </a>
             </div>
         </div>
