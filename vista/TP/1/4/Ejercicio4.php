@@ -43,6 +43,7 @@ include_once '../../../estructura/header.php'
         </form>
     </div>
 </main>
+<script src="../../../js/validator.js"></script>
 <?php
 include_once '../../../estructura/footer.php'
 ?>
