@@ -90,8 +90,8 @@ include_once '../../../estructura/header.php'
         </form>
     </div>
 </main>
-</body>
 <?php
 include_once '../../../estructura/footer.php'
 ?>
+</body>
 </html>
