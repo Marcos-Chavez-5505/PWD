@@ -50,7 +50,7 @@ switch($operacion){
         </p>
 
         <div class="d-grid">
-            <a href="javascript:history.back()" class="btn btn-secondary">
+            <a href="Ejercicio7.php" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Volver al Formulario
             </a>
         </div>
