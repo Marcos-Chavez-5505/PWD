@@ -18,10 +18,6 @@
             <!-- ========================== Móviles ========================= -->
             <ul class="sidebar sidebar-hidden">
               <div id="container"></div>
-                <button class="theme-switch">
-                    <i class="fa-solid fa-moon"></i>
-                    <i class="fa-solid fa-sun"></i>
-                </button>
             </ul>
             
             <!-- ======================== Escritorio ======================== -->

@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . "/../../../../control/2/controlEj2.php";
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
+
 
 $usuarios = [
     ['usuario' => 'marcos', 'clave' => 'marcos1234'],
@@ -7,21 +9,12 @@ $usuarios = [
     ['usuario' => 'pedro', 'clave' => 'pedroabcd']
 ];
 
-// Obtener información con método POST o GET (un solo return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
+// Crear instancia de clase
+$valorRecibido = new ValorEncapsulado();
 
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
 
-    return $valor;
-}
-
-$usuarioIngresado = obtenerValor('usuario');
-$claveIngresada   = obtenerValor('clave');  
+$usuarioIngresado = $valorRecibido->obtenerValor('usuario');
+$claveIngresada   = $valorRecibido->obtenerValor('clave');  
 
 $mostrarResultado = false;
 $errores          = [];
@@ -76,7 +69,7 @@ if ($mostrarResultado) {
     <title>Resultado del Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
 
     <!-- Header -->
     <?php include_once '../../../estructura/header.php'; ?>

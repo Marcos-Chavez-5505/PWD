@@ -7,22 +7,12 @@
 include_once __DIR__ . "../../../../../control/1/controlEj1.php";
 include_once '../../../estructura/header.php';
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
-
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
-
-    return $valor;
-}
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
 // Crear instancia de la clase
 $validador = new verNumero(); 
-$numero    = obtenerValor('numero');
+$valorRecibido = new ValorEncapsulado();
+$numero    = $valorRecibido->obtenerValor('numero');
 $mensaje   = '';
 $tieneDato = ($numero !== '');
 if ($tieneDato) {

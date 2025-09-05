@@ -6,23 +6,15 @@
 <?php
 include_once __DIR__ . "../../../../../control/1/controlEj8.php";
 include_once '../../../estructura/header.php';
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
+// Crear instancia de clase
+$valorRecibido = new ValorEncapsulado();
 
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
-
-    return $valor;
-}
 
 // Capturamos los datos usando la función
-$edad       = obtenerValor('edad', 0);
-$estudiante = obtenerValor('estudiante', 'no');
+$edad       = $valorRecibido->obtenerValor('edad', 0);
+$estudiante = $valorRecibido->obtenerValor('estudiante', 'no');
 
 $entrada = new entradaCine();
 $precio = $entrada->calcularPrecio($edad, $estudiante);

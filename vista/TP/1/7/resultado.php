@@ -6,24 +6,16 @@
 <?php
 include_once __DIR__ . "../../../../../control/1/controlEj7.php";
 include_once '../../../estructura/header.php';
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
+// Crear instancia de clase
+$valorRecibido = new ValorEncapsulado();
 
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
-
-    return $valor;
-}
 
 // Capturamos los datos usando la función
-$num1      = obtenerValor('numero1', 0);
-$num2      = obtenerValor('numero2', 0);
-$operacion = obtenerValor('operacion', 'suma');
+$num1      = $valorRecibido->obtenerValor('numero1', 0);
+$num2      = $valorRecibido->obtenerValor('numero2', 0);
+$operacion = $valorRecibido->obtenerValor('operacion', 'suma');
 
 $objOpe = new Operaciones();
 $resultado = $objOpe->operacion($operacion, $num1, $num2);

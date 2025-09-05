@@ -6,24 +6,17 @@
 <?php
 include_once '../../../estructura/header.php';
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
+// Crear instancia de clase
+$valorRecibido = new ValorEncapsulado();
 
-    return $valor;
-}
 
 // Capturamos los datos usando la función
-$nombre   = obtenerValor('nombre');
-$apellido = obtenerValor('apellido');
-$edad     = obtenerValor('edad');
-$direccion= obtenerValor('direccion');
+$nombre   = $valorRecibido->obtenerValor('nombre');
+$apellido = $valorRecibido->obtenerValor('apellido');
+$edad     = $valorRecibido->obtenerValor('edad');
+$direccion= $valorRecibido->obtenerValor('direccion');
 ?>
 
 <main class="container py-5">

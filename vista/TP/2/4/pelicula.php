@@ -1,21 +1,12 @@
 <?php
 require_once __DIR__ . "/../../../../control/2/controlEj3.php";
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = '') {
-    $valor = $default;
-
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
-
-    return $valor;
-}
 
 // Crear instancia de la clase
 $control = new ControlPelicula();
+$valorRecibido = new ValorEncapsulado();
+
 
 // Verificar que llegaron datos
 $hayDatos = ($_SERVER['REQUEST_METHOD'] === 'POST');
@@ -26,17 +17,17 @@ $datos   = [];
 
 if ($hayDatos) {
     $datos = [
-        'titulo'       => obtenerValor('titulo'),
-        'actores'      => obtenerValor('actores'),
-        'director'     => obtenerValor('director'),
-        'guion'        => obtenerValor('guion'),
-        'produccion'   => obtenerValor('produccion'),
-        'anio'         => obtenerValor('anio'),
-        'nacionalidad' => obtenerValor('nacionalidad'),
-        'genero'       => obtenerValor('genero'),
-        'duracion'     => obtenerValor('duracion'),
-        'restriccion'  => obtenerValor('restriccion'),
-        'sinopsis'     => obtenerValor('sinopsis'),
+        'titulo'       => $valorRecibido->obtenerValor('titulo'),
+        'actores'      => $valorRecibido->obtenerValor('actores'),
+        'director'     => $valorRecibido->obtenerValor('director'),
+        'guion'        => $valorRecibido->obtenerValor('guion'),
+        'produccion'   => $valorRecibido->obtenerValor('produccion'),
+        'anio'         => $valorRecibido->obtenerValor('anio'),
+        'nacionalidad' => $valorRecibido->obtenerValor('nacionalidad'),
+        'genero'       => $valorRecibido->obtenerValor('genero'),
+        'duracion'     => $valorRecibido->obtenerValor('duracion'),
+        'restriccion'  => $valorRecibido->obtenerValor('restriccion'),
+        'sinopsis'     => $valorRecibido->obtenerValor('sinopsis'),
     ];
 
     $errores = $control->validarPelicula($datos);

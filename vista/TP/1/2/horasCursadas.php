@@ -14,29 +14,19 @@
 include_once __DIR__ . "../../../../../control/1/controlEj2.php";
 include_once '../../../estructura/header.php';
 
-// Función para obtener valores desde GET o POST (solo un return)
-function obtenerValor($campo, $default = 0) {
-    $valor = $default;
-
-    if (isset($_POST[$campo])) {
-        $valor = trim($_POST[$campo]);
-    } elseif (isset($_GET[$campo])) {
-        $valor = trim($_GET[$campo]);
-    }
-
-    return $valor;
-}
+include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
 
 // Crear instancia de la clase
 $control = new horasCursadas();
+$valorRecibido = new ValorEncapsulado();
 
 // Capturamos las horas de cada día
 $horas = [
-    'lunes'     => (int) obtenerValor('lunes'),
-    'martes'    => (int) obtenerValor('martes'),
-    'miercoles' => (int) obtenerValor('miercoles'),
-    'jueves'    => (int) obtenerValor('jueves'),
-    'viernes'   => (int) obtenerValor('viernes')
+    'lunes'     => (int) $valorRecibido->obtenerValor('lunes'),
+    'martes'    => (int) $valorRecibido->obtenerValor('martes'),
+    'miercoles' => (int) $valorRecibido->obtenerValor('miercoles'),
+    'jueves'    => (int) $valorRecibido->obtenerValor('jueves'),
+    'viernes'   => (int) $valorRecibido->obtenerValor('viernes')
 ];
 
 // Calculamos total
