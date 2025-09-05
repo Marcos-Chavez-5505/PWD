@@ -21,7 +21,7 @@ if ($tieneDato) {
 ?>
 
 <main class="container my-5">
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
         <div class="col-md-6">
 
             <?php if ($tieneDato): ?>
@@ -31,13 +31,17 @@ if ($tieneDato) {
                         El número que ingresaste es: 
                         <strong><?= htmlspecialchars($numero) ?> (<?= htmlspecialchars($mensaje) ?>)</strong>
                     </p>
-                    <a href="Ejercicio1.php" class="btn btn-primary mt-3">Volver al formulario</a>
+                    <a href="Ejercicio1.php" class="btn btn-secondary mt-3">
+                        <i class="bi bi-arrow-left"></i> Volver al formulario
+                    </a>
                 </div>
             <?php else: ?>
                 <div class="alert alert-warning text-center">
                     No se recibió ningún número.
                     <div class="mt-3">
-                        <a href="Ejercicio1.php" class="btn btn-secondary">Ir al formulario</a>
+                        <a href="Ejercicio1.php" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Ir al formulario
+                        </a>
                     </div>
                 </div>
             <?php endif; ?>

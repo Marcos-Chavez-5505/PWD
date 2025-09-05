@@ -19,9 +19,9 @@ $edad     = $valorRecibido->obtenerValor('edad');
 $direccion= $valorRecibido->obtenerValor('direccion');
 ?>
 
-<main class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-12" style="max-width: 600px;">
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div class="row justify-content-center w-100">
+        <div class="col-12" style="max-width: 700px;">
             <div class="bg-white p-4 rounded shadow-sm text-center">
                 <h3 class="mb-3">Datos recibidos</h3>
                 

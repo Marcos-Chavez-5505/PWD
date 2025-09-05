@@ -20,8 +20,8 @@ $entrada = new entradaCine();
 $precio = $entrada->calcularPrecio($edad, $estudiante);
 ?>
 
-<main class="mt-5 mb-5 d-flex justify-content-center">
-    <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+<main class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
         <h3 class="mb-3 text-center">Precio de tu Entrada</h3>
 
         <p class="lead text-center">
