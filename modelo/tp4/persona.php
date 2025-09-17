@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '../../conector/conector.php';
-class Persona{
+
+class Persona {
     private $nroDni;
     private $nombre;
     private $apellido;
@@ -8,9 +9,10 @@ class Persona{
     private $telefono;
     private $domicilio;
     private $estadoPersona;
-    private $objPdo; //Representa un objeto de la clase pdo
+    private $objPdo;
     private $colVehiculos;
-    public function __construct($objPdo) {
+
+    public function __construct($objPdo = null) {
         $this->nroDni = "";
         $this->nombre = "";
         $this->apellido = "";
@@ -18,11 +20,11 @@ class Persona{
         $this->telefono = "";
         $this->domicilio = "";
         $this->estadoPersona = true;
-        $this->objPdo = $objPdo;
+        $this->objPdo = $objPdo ?? new BaseDatos();
         $this->colVehiculos = [];
     }
 
-    // Getters
+    // Getters y Setters
     public function getNroDni() { return $this->nroDni; }
     public function getNombre() { return $this->nombre; }
     public function getApellido() { return $this->apellido; }
@@ -30,10 +32,8 @@ class Persona{
     public function getTelefono() { return $this->telefono; }
     public function getDomicilio() { return $this->domicilio; }
     public function getEstadoPersona() { return $this->estadoPersona; }
-    public function getObjPdo() { return $this->objPdo; }
-    public function getcolVehiculos() { return $this->colVehiculos; }
+    public function getColVehiculos() { return $this->colVehiculos; }
 
-    // Setters
     public function setNroDni($nroDni) { $this->nroDni = $nroDni; }
     public function setNombre($nombre) { $this->nombre = $nombre; }
     public function setApellido($apellido) { $this->apellido = $apellido; }
@@ -41,70 +41,52 @@ class Persona{
     public function setTelefono($telefono) { $this->telefono = $telefono; }
     public function setDomicilio($domicilio) { $this->domicilio = $domicilio; }
     public function setEstadoPersona($estadoPersona) { $this->estadoPersona = $estadoPersona; }
-    public function setObjPdo($pdo) { $this->objPdo = $pdo; }
     public function setColVehiculos($colVehiculos) { $this->colVehiculos = $colVehiculos; }
 
-    /**
-     * Esta funcion utiliza las variables ya seteadas y manda el sql a el conector para que se ejecute, devuelve un numero
-     * positivo que indica que el insert fue exitoso y es el numero de id que se uso si el campo es AUTO_INCREMENT
-     * caso opuesto devuelve -1
-     * @return int
-     */
-    public function insertar(){
-        $sql = "INSERT INTO Persona (nroDni, nombre, apellido, fechaNac, telefono, domicilio)
-                VALUES ('{$this->getNroDni()}', '{$this->getNombre()}', '{$this->getApellido()}',
-                        '{$this->getFechaNac()}', '{$this->getTelefono()}', '{$this->getDomicilio()}')";
-        $bd = new BaseDatos;
-        if ($bd->Iniciar()){
-            $idInsertado = $bd->Ejecutar($sql);
+    // Insertar persona
+    public function insertar() {
+        $resultado = -1;
+        if ($this->objPdo->Iniciar()) {
+            $sql = "INSERT INTO Persona (nroDni, nombre, apellido, fechaNac, telefono, domicilio, estadoPersona)
+                    VALUES ('{$this->nroDni}', '{$this->nombre}', '{$this->apellido}', '{$this->fechaNac}', '{$this->telefono}', '{$this->domicilio}', {$this->estadoPersona})";
+            $resultado = $this->objPdo->Ejecutar($sql);
         }
-
-        return $idInsertado;
+        return $resultado;
     }
 
-
-    // public function eliminar() NECESITA BORRADO LOGICO???? si necesita borrado logico hay que añadir una propiedad mas
-    public function eliminar(){
-        $sql = "UPDATE Persona 
-        SET estadoPersona = FALSE 
-        WHERE nroDni = {$this->getNroDni()}";
-
-        $bd = new BaseDatos;
-        if ($bd->Iniciar()){
-            $filasAfectadas = $bd->Ejecutar($sql);
+    // Borrado lógico
+    public function eliminar() {
+        $resultado = -1;
+        if ($this->objPdo->Iniciar()) {
+            $sql = "UPDATE Persona SET estadoPersona = FALSE WHERE nroDni = '{$this->nroDni}'";
+            $resultado = $this->objPdo->Ejecutar($sql);
         }
-
-        return $filasAfectadas;
-    }
-    /**
-     * Una funcion que dado un id (que va a estar seteado) modifica el registro que tenga la misma id
-     */
-    public function modificar(){
-        $sql = "UPDATE Persona 
-        SET nombre='{$this->getNombre()}', apellido='{$this->getApellido()}',
-            fechaNac='{$this->getFechaNac()}', telefono='{$this->getTelefono()}', domicilio='{$this->getDomicilio()}'
-        WHERE nroDni='{$this->getNroDni()}' AND estadoPersona = TRUE";
-
-        $bd = new BaseDatos;
-        if ($bd->Iniciar()){
-            $filasAfectadas = $bd->Ejecutar($sql);
-        }
-
-        return $filasAfectadas;
+        return $resultado;
     }
 
-    /**
-     * este es el equivalente al select
-     */
-    public function buscar($dniABuscar){
-        $sql = "SELECT * FROM Persona WHERE nroDni='{$dniABuscar}' AND estadoPersona = TRUE";
-
-        $bd = new BaseDatos;
-        if ($bd->Iniciar()){
-            $cantRegistros = $bd->Ejecutar($sql);
+    // Modificar persona
+    public function modificar() {
+        $resultado = -1;
+        if ($this->objPdo->Iniciar()) {
+            $sql = "UPDATE Persona 
+                    SET nombre='{$this->nombre}', apellido='{$this->apellido}', fechaNac='{$this->fechaNac}', telefono='{$this->telefono}', domicilio='{$this->domicilio}'
+                    WHERE nroDni='{$this->nroDni}' AND estadoPersona = TRUE";
+            $resultado = $this->objPdo->Ejecutar($sql);
         }
+        return $resultado;
+    }
 
-        return $cantRegistros;
+    // Buscar persona por DNI
+    public function buscar($dniABuscar) {
+        $resultado = -1;
+        if ($this->objPdo->Iniciar()) {
+            $sql = "SELECT * FROM Persona WHERE nroDni='{$dniABuscar}' AND estadoPersona = TRUE";
+            $resultado = $this->objPdo->Ejecutar($sql);
+        }
+        return $resultado;
     }
 }
+
+// Es mejor retornar -1 en estas funciones por si hay algun error 
 ?>
+
