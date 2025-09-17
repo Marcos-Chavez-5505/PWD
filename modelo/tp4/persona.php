@@ -7,6 +7,7 @@ class Persona{
     private $fechaNac;
     private $telefono;
     private $domicilio;
+    private $estadoPersona;
     private $objPdo; //Representa un objeto de la clase pdo
     private $colVehiculos;
     public function __construct($objPdo) {
@@ -16,6 +17,7 @@ class Persona{
         $this->fechaNac = "";
         $this->telefono = "";
         $this->domicilio = "";
+        $this->estadoPersona = true;
         $this->objPdo = $objPdo;
         $this->colVehiculos = [];
     }
@@ -27,6 +29,7 @@ class Persona{
     public function getFechaNac() { return $this->fechaNac; }
     public function getTelefono() { return $this->telefono; }
     public function getDomicilio() { return $this->domicilio; }
+    public function getEstadoPersona() { return $this->estadoPersona; }
     public function getObjPdo() { return $this->objPdo; }
     public function getcolVehiculos() { return $this->colVehiculos; }
 
@@ -37,6 +40,7 @@ class Persona{
     public function setFechaNac($fechaNac) { $this->fechaNac = $fechaNac; }
     public function setTelefono($telefono) { $this->telefono = $telefono; }
     public function setDomicilio($domicilio) { $this->domicilio = $domicilio; }
+    public function setEstadoPersona($estadoPersona) { $this->estadoPersona = $estadoPersona; }
     public function setObjPdo($pdo) { $this->objPdo = $pdo; }
     public function setColVehiculos($colVehiculos) { $this->colVehiculos = $colVehiculos; }
 
@@ -60,7 +64,18 @@ class Persona{
 
 
     // public function eliminar() NECESITA BORRADO LOGICO???? si necesita borrado logico hay que añadir una propiedad mas
+    public function eliminar(){
+        $sql = "UPDATE Persona 
+        SET estadoPersona = FALSE 
+        WHERE nroDni = {$this->getNroDni()}";
 
+        $bd = new BaseDatos;
+        if ($bd->Iniciar()){
+            $filasAfectadas = $bd->Ejecutar($sql);
+        }
+
+        return $filasAfectadas;
+    }
     /**
      * Una funcion que dado un id (que va a estar seteado) modifica el registro que tenga la misma id
      */
@@ -68,7 +83,7 @@ class Persona{
         $sql = "UPDATE Persona 
         SET nombre='{$this->getNombre()}', apellido='{$this->getApellido()}',
             fechaNac='{$this->getFechaNac()}', telefono='{$this->getTelefono()}', domicilio='{$this->getDomicilio()}'
-        WHERE nroDni={$this->getNroDni()}";
+        WHERE nroDni='{$this->getNroDni()}' AND estadoPersona = TRUE";
 
         $bd = new BaseDatos;
         if ($bd->Iniciar()){
@@ -82,7 +97,7 @@ class Persona{
      * este es el equivalente al select
      */
     public function buscar($dniABuscar){
-        $sql = "SELECT * FROM Persona WHERE nroDni='{$dniABuscar}'";
+        $sql = "SELECT * FROM Persona WHERE nroDni='{$dniABuscar}' AND estadoPersona = TRUE";
 
         $bd = new BaseDatos;
         if ($bd->Iniciar()){
@@ -91,9 +106,5 @@ class Persona{
 
         return $cantRegistros;
     }
-
-
-
 }
-
 ?>
