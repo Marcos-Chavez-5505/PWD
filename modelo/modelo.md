@@ -1,1 +1,0 @@
-La carpeta modelo no se utiliza actualmente, pero es creada para un uso posterior.

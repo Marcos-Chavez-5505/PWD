@@ -1,5 +1,5 @@
 <?php
-include_once '/../../modelo/tp4/persona.php';
+include_once '../../../../modelo/tp4/persona.php';
 
 class ControlPersona {
     private $objPdo;
