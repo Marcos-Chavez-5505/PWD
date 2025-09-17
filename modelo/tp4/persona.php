@@ -9,7 +9,7 @@ class Persona {
     private $telefono;
     private $domicilio;
     private $estadoPersona;
-    private $objPdo;
+    public $objPdo;
     private $colVehiculos;
 
     public function __construct($objPdo = null) {
@@ -85,6 +85,8 @@ class Persona {
         }
         return $resultado;
     }
+
+    
 }
 
 // Es mejor retornar -1 en estas funciones por si hay algun error 
