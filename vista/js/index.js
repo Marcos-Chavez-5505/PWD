@@ -41,9 +41,15 @@ function mostrarEjercicios(tp) {
 }
 
 // Mostrar archivos dentro de un ejercicio
+// Mostrar archivos dentro de un ejercicio (solo el primero)
 function mostrarArchivos(tp, ejercicio) {
   container.innerHTML = "";
-  data[tp][ejercicio].forEach(file => {
+
+  // aseguramos que sea array aunque venga como objeto
+  let archivos = Object.values(data[tp][ejercicio]);
+
+  let file = archivos[0]; // primer archivo
+  if (file) {
     let card = document.createElement("div");
     card.className = "card";
     card.innerText = file;
@@ -51,7 +57,9 @@ function mostrarArchivos(tp, ejercicio) {
       window.location.href = "../../../../vista/TP/" + tp + "/" + ejercicio + "/" + file;
     };
     container.appendChild(card);
-  });
+  }
+
+
 
   // Botón volver a ejercicios
   let back = document.createElement("div");
