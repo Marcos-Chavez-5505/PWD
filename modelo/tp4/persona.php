@@ -78,6 +78,7 @@ class Persona {
 
     // Buscar persona por DNI
     public function buscar($dniABuscar) {
+        $resultado = 0;
         if ($this->objPdo->Iniciar()) {
             $sql = "SELECT * FROM Persona WHERE NroDni='{$dniABuscar}' AND estadoPersona = 1";
             $cant = $this->objPdo->Ejecutar($sql);
@@ -91,11 +92,11 @@ class Persona {
                     $this->Telefono = $fila['Telefono'];
                     $this->Domicilio = $fila['Domicilio'];
                     $this->estadoPersona = $fila['estadoPersona'];
-                    return 1;
+                    $resultado = 1;
                 }
             }
         }
-        return 0;
+        return $resultado;
     }
 
     // Listar todas las personas activas

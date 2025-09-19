@@ -1,11 +1,3 @@
-CREATE TABLE `auto` (
-  `Patente` varchar(10) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `Marca` varchar(50) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `Modelo` int(11) NOT NULL,
-  `DniDuenio` varchar(10) character set utf8 collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`Patente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 <?php
 
 include_once __DIR__ . '../../conector/conector.php';
