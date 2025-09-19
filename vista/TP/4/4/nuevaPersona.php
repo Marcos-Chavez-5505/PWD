@@ -1,5 +1,4 @@
 <?php
-// Incluimos header/footer si corresponde
 include_once '../../../estructura/header.php';
 ?>
 
@@ -17,45 +16,30 @@ include_once '../../../estructura/header.php';
     <!-- Estilos propios -->
     <link rel="stylesheet" href="../../../css/header-footer.css">
     <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
-
-    <script>
-        function validarFormulario() {
-            let dni = document.getElementById("nroDni").value;
-            let nombre = document.getElementById("nombre").value;
-            let apellido = document.getElementById("apellido").value;
-
-            if (dni === "" || isNaN(dni)) {
-                alert("El DNI es obligatorio y debe ser un número.");
-                return false;
-            }
-            if (nombre.trim() === "" || apellido.trim() === "") {
-                alert("Nombre y Apellido son obligatorios.");
-                return false;
-            }
-            return true;
-        }
-    </script>
 </head>
 <body>
 
     <main class="container my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cargar Nueva Persona</h3>
-            <form action="accionNuevaPersona.php" method="post" onsubmit="return validarFormulario()">
+            <form id="personaForm" action="z_accionNuevaPersona.php" method="post">
 
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
                     <input type="text" name="nroDni" id="nroDni" class="form-control" required>
+                    <div class="invalid-feedback">El DNI es obligatorio y debe ser un número.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" required>
+                    <div class="invalid-feedback">El nombre es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="apellido" class="form-label">Apellido:</label>
                     <input type="text" name="apellido" id="apellido" class="form-control" required>
+                    <div class="invalid-feedback">El apellido es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
@@ -86,5 +70,8 @@ include_once '../../../estructura/header.php';
     <!-- Scripts Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Archivo de validación externo -->
+    <script src="../../../js/validarPersona.js"></script>
 </body>
 </html>

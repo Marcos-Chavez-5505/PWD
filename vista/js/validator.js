@@ -299,3 +299,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+
+// Ejercicio 4 validarPersona.js
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("personaForm");
+
+    form.addEventListener("submit", function (event) {
+        let isValid = true;
+
+        const dni = document.getElementById("nroDni");
+        const nombre = document.getElementById("nombre");
+        const apellido = document.getElementById("apellido");
+
+        // Resetear errores previos
+        [dni, nombre, apellido].forEach(input => {
+            input.classList.remove("is-invalid");
+        });
+
+        // Validar DNI
+        if (!dni.value || isNaN(dni.value)) {
+            dni.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        // Validar Nombre
+        if (!nombre.value.trim()) {
+            nombre.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        // Validar Apellido
+        if (!apellido.value.trim()) {
+            apellido.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    });
+
+    // Quitar error en tiempo real
+    document.querySelectorAll("#nroDni, #nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            input.classList.remove("is-invalid");
+        });
+    });
+});

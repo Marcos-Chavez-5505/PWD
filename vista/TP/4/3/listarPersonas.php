@@ -27,7 +27,6 @@ $personas = $control->listarPersonas();
     <?php include_once '../../../estructura/header.php'; ?>
 
     <main class="container meudeus">
-        
         <div>
             <div>
                 <div>
@@ -45,11 +44,11 @@ $personas = $control->listarPersonas();
                             <?php if (!empty($personas)): ?>
                                 <?php foreach ($personas as $p): ?>
                                     <tr>
-                                        <td><?= $p['nroDni'] ?></td>
-                                        <td><?= $p['nombre'] ?></td>
-                                        <td><?= $p['apellido'] ?></td>
+                                        <td><?= $p['NroDni'] ?></td>
+                                        <td><?= $p['Nombre'] ?></td>
+                                        <td><?= $p['Apellido'] ?></td>
                                         <td>
-                                            <a href="autosPersona.php?dni=<?= $p['nroDni'] ?>" class="btn btn-primary btn-sm">
+                                            <a href="autosPersona.php?dni=<?= $p['NroDni'] ?>" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-car-front"></i> Ver Autos
                                             </a>
                                         </td>
