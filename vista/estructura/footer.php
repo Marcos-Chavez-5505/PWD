@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWD - Grupo 6</title>
-    <link rel="stylesheet" href="../../../../vista/css/header-footer.css">
-    <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
+    <link rel="stylesheet" href="./../css/header-footer.css">
+    <link rel="stylesheet" href="./../../home/fonts/css/all.min.css">
 </head>
 <body>
     <footer>

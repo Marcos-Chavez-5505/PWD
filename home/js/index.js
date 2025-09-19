@@ -2,7 +2,7 @@ let data = {};
 let container = document.getElementById("container");
 
 // Cargar datos de PHP
-fetch("../../home/php/getTPs.php")
+fetch("./../../home/php/getTPs.php")
   .then(res => res.json())
   .then(json => {
     data = json;

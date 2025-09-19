@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . "../../../control/valorEncapsulado.php";
-
+include_once __DIR__ . "../../estructura/header.php";
 $encapsulamiento = new ValorEncapsulado; //usen esto para agarrar los campos
 
 $accion = $encapsulamiento->obtenerValor('accion');
@@ -16,4 +16,6 @@ switch ($accion){
     default:
         $mensaje = "no se han encontrado datos";
 }
+
+include_once __DIR__ . "../../estructura/footer.php";
 ?>
