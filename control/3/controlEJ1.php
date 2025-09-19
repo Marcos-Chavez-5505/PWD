@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . "../../../vista/action/action.php";
 class ControlEJ1 {
 
     public function veryfyFile(){
@@ -26,4 +27,5 @@ class ControlEJ1 {
         return $mensaje;
     }
 }
+
 ?>

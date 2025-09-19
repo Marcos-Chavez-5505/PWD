@@ -17,7 +17,8 @@ include_once '../../../estructura/header.php'
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">Subir archivo</h3>
     
-                        <form action="mostrar.php" method="post" enctype="multipart/form-data">
+                        <form action="../../../action/action.php" method="post" enctype="multipart/form-data">
+                            <input hidden type="text" value="subirPdfDoc" id="accion" name="accion"> <!-- Hay que añadir esto para poder ver los casos del action-->
                             <div class="mb-3">
                                 <label for="archivo" class="form-label">Seleccione un archivo (.pdf o .doc)</label>
                                 <input class="form-control" type="file" id="archivo" name="archivo" accept=".pdf,.doc">

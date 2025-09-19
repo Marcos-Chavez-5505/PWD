@@ -26,14 +26,8 @@ include_once '../../../estructura/header.php'
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>
                         </form>
-
-                                <?php
-                        if ($_FILES) {
-                            $control = new ControlEJ1();
-                            $mensaje = $control->veryfyFile();
-
+                        <?php
                             echo '<div class="alert alert-info mt-3">' . $mensaje . '</div>';
-                        }
                         ?>
                     </div>
                 </div>
