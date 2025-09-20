@@ -15,17 +15,7 @@
 </head>
 
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-
-include_once __DIR__ . '../../../../../control/3/controlEJ3.php';
 include_once '../../../estructura/header.php';
-
-$controlEJ3 = new controlEJ3;
-$ruta = $controlEJ3->moveImage();
 ?>
 
 <body>
@@ -47,15 +37,10 @@ $ruta = $controlEJ3->moveImage();
                 <strong>Sinopsis:</strong> <?= nl2br(htmlspecialchars($_POST['sinopsis'])) ?><br>
                 <strong>Imagen de la pelicula: </strong>
                 <?php
-                    if ($_FILES && !is_null($ruta)){
-                        echo "<img src='$ruta' alt='imagen de pelicula' width='200px'height='auto'>";
-                    }else{
-                        echo "El formato de archivo tiene que ser una imagen";
-                    }
-
+                    echo $mensaje;
                 ?>
                 <div class="text-center">
-                    <a href="index.php" class="btn btn-outline-primary"> <--Volver al formulario</a>
+                    <a href="/PWD/vista/TP/3/3/index.php" class="btn btn-outline-primary"> <--Volver al formulario</a>
                 </div>
             </p>
         </div>

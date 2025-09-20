@@ -4,11 +4,7 @@
 </head>
 
 <?php
-include_once '../../../estructura/header.php';
-include_once __DIR__ . "../../../../../control/3/controlEJ2.php";
-
-$control = new controlEJ2();
-$mensaje = $control->verifyFile();
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/vista/estructura/header.php";
 ?>
 <body>
     
@@ -39,5 +35,5 @@ $mensaje = $control->verifyFile();
 </body>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/vista/estructura/footer.php";
 ?>
