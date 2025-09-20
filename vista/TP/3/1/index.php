@@ -5,7 +5,7 @@
 </head>
 
 <?php
-include_once '../../../estructura/header.php'
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/vista/estructura/header.php";
 ?>
 
 <main>
@@ -40,5 +40,5 @@ include_once '../../../estructura/header.php'
 </main>
 
 <?php
-include_once '../../../estructura/footer.php'
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/vista/estructura/footer.php";
 ?>

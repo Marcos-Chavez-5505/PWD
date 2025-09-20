@@ -2,7 +2,7 @@ let data = {};
 let container = document.getElementById("container");
 
 // Cargar datos de PHP
-fetch("../../../../home/php/getTPs.php")
+fetch("/PWD/home/php/getTPs.php")
   .then(res => res.json())
   .then(json => {
     data = json;
@@ -54,7 +54,7 @@ function mostrarArchivos(tp, ejercicio) {
     card.className = "card";
     card.innerText = file;
     card.onclick = () => {
-      window.location.href = "../../../../vista/TP/" + tp + "/" + ejercicio + "/" + file;
+      window.location.href = "/PWD/vista/TP/" + tp + "/" + ejercicio + "/" + file;
     };
     container.appendChild(card);
   }
