@@ -79,25 +79,27 @@ class Persona {
     // Buscar persona por DNI
     public function buscar($dniABuscar) {
         $resultado = 0;
+        $dniABuscar = trim($dniABuscar);
+
         if ($this->objPdo->Iniciar()) {
-            $sql = "SELECT * FROM Persona WHERE NroDni='{$dniABuscar}' AND estadoPersona = 1";
-            $cant = $this->objPdo->Ejecutar($sql);
-            if ($cant > 0) {
-                $fila = $this->objPdo->Registro();
-                if ($fila) {
-                    $this->NroDni = $fila['NroDni'];
-                    $this->Nombre = $fila['Nombre'];
-                    $this->Apellido = $fila['Apellido'];
-                    $this->fechaNac = $fila['fechaNac'];
-                    $this->Telefono = $fila['Telefono'];
-                    $this->Domicilio = $fila['Domicilio'];
-                    $this->estadoPersona = $fila['estadoPersona'];
-                    $resultado = 1;
-                }
+            $sql = "SELECT * FROM Persona WHERE TRIM(CAST(NroDni AS CHAR)) = '{$dniABuscar}' AND estadoPersona = 1";
+            $this->objPdo->Ejecutar($sql);
+            $fila = $this->objPdo->Registro();
+
+            if ($fila) {
+                $this->NroDni      = $fila['NroDni'];
+                $this->Nombre      = $fila['Nombre'];
+                $this->Apellido    = $fila['Apellido'];
+                $this->fechaNac    = $fila['fechaNac'];
+                $this->Telefono    = $fila['Telefono'];
+                $this->Domicilio   = $fila['Domicilio'];
+                $this->estadoPersona = $fila['estadoPersona'];
+                $resultado = 1;
             }
         }
         return $resultado;
     }
+
 
     // Listar todas las personas activas
     public function listar() {

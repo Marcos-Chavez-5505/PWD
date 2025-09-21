@@ -33,7 +33,6 @@ class ControlPersona {
         return $resultado;
     }
 
-    // Inserta una nueva persona en la BD sin duplicados
     public function insertarPersona($datos) {
         $persona = new Persona($this->objPdo);
 
@@ -44,15 +43,21 @@ class ControlPersona {
         $persona->setTelefono($datos['telefono']);
         $persona->setDomicilio($datos['domicilio']);
 
-        $resultado = -1; // Valor por defecto: error o duplicado
+        $resultado = 0; 
 
-        // Verificar si ya existe
-        if ($persona->buscar($datos['nroDni']) <= 0) {
-            // Insertar si no existe
-            $resultado = $persona->insertar();
+        $existe = $persona->buscar($datos['nroDni']);
+
+        if ($existe == 0) { 
+            $insertar = $persona->insertar();
+            $resultado = $insertar ? 1 : 0; 
+        } else {
+            $resultado = -1; 
         }
 
-        return $resultado;
+        return $resultado; 
     }
+
+
+
 }
 ?>

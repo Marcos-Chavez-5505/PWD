@@ -1,7 +1,6 @@
 <?php
 include_once '../../../../control/4/controlPersona.php';
 
-// TIRA UN ERROR DE QUE YA EXISTE PERO LO CREA IGUAL, DEPUES LO CORRIGO 😎
 
 $mensaje = "";
 
@@ -29,12 +28,12 @@ if ($_POST) {
     // Insertamos la persona
     $resultado = $control->insertarPersona($nuevaPersona);
 
-    if ($resultado > 0) {
-        $mensaje = "Persona cargada correctamente (ID insertado: $resultado)";
-    } elseif ($resultado == -1) {
+    if ($resultado === 1) {
+    $mensaje = "Persona cargada correctamente.";
+    } elseif ($resultado === -1) {
         $mensaje = "Error: la persona ya existe en la base de datos.";
     } else {
-        $mensaje = "Error: no se pudo cargar la persona.";
+        $mensaje = "Error inesperado.";
     }
 } else {
     $mensaje = "No se recibieron datos.";
