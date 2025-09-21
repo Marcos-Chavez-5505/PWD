@@ -349,3 +349,45 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+// Ejercicio 8 TP4 (DNI, Patente)
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("cambioDuenioForm");
+
+    form.addEventListener("submit", function (event) {
+        let isValid = true;
+
+        const dni = document.getElementById("nroDni");
+        const patente = document.getElementById("patente");
+
+        // Resetear errores previos
+        [dni, patente].forEach(input => {
+            input.classList.remove("is-invalid");
+        });
+
+        // Validar DNI (solo números, entre 7 y 9 dígitos)
+        if (!dni.value || !/^[0-9]{7,9}$/.test(dni.value)) {
+            dni.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        // Validar Patente (formato ABC123 o AB123CD)
+        if (!patente.value || !/^[A-Z0-9]{6,7}$/.test(patente.value.toUpperCase())) {
+            patente.classList.add("is-invalid");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    });
+
+    // Quitar error en tiempo real
+    document.querySelectorAll("#nroDni, #patente").forEach(input => {
+        input.addEventListener("input", function () {
+            input.classList.remove("is-invalid");
+        });
+    });
+});

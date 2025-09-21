@@ -100,6 +100,7 @@
     `Marca` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
     `Modelo` int(11) NOT NULL,
     `DniDuenio` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+    `estadoAuto` TINYINT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (`Patente`),
     KEY `idx_dni_duenio` (`DniDuenio`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

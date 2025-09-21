@@ -10,7 +10,7 @@ class Persona {
     private $Domicilio;
     private $estadoPersona;
     public $objPdo;
-    private $colVehiculos;
+    private $colAutos;
 
     public function __construct($objPdo = null) {
         $this->NroDni = "";
@@ -21,7 +21,7 @@ class Persona {
         $this->Domicilio = "";
         $this->estadoPersona = 1; // activo
         $this->objPdo = $objPdo ?? new BaseDatos();
-        $this->colVehiculos = [];
+        $this->colAutos = [];
     }
 
     // Getters y Setters
@@ -32,7 +32,7 @@ class Persona {
     public function getTelefono() { return $this->Telefono; }
     public function getDomicilio() { return $this->Domicilio; }
     public function getEstadoPersona() { return $this->estadoPersona; }
-    public function getColVehiculos() { return $this->colVehiculos; }
+    public function getColAutos() { return $this->colAutos; }
 
     public function setNroDni($val) { $this->NroDni = $val; }
     public function setNombre($val) { $this->Nombre = $val; }
@@ -41,7 +41,7 @@ class Persona {
     public function setTelefono($val) { $this->Telefono = $val; }
     public function setDomicilio($val) { $this->Domicilio = $val; }
     public function setEstadoPersona($val) { $this->estadoPersona = $val; }
-    public function setColVehiculos($val) { $this->colVehiculos = $val; }
+    public function setColAutos($val) { $this->colAutos = $val; }
 
     // Insertar persona
     public function insertar() {

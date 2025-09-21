@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/control/controlPersona.php';
-include_once __DIR__ . '/control/controlVehiculo.php'; // Supongamos que existe
+include_once __DIR__ . '/control/controlAuto.php'; // Supongamos que existe
 
 if (!isset($_GET['dni'])) {
     die("DNI no recibido.");
@@ -15,8 +15,8 @@ if (!$persona) {
 }
 
 // Obtener autos asociados
-$controlVehiculo = new ControlVehiculo();
-$autos = $controlVehiculo->listarAutosPorDni($dni); // suponemos este método
+$controlAuto = new ControlAuto();
+$autos = $controlAuto->listarAutosPorDni($dni); // suponemos este método
 ?>
 
 <!DOCTYPE html>
