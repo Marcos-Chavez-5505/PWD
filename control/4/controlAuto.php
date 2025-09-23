@@ -1,6 +1,6 @@
 <?php
-include_once 'C:/xampp/htdocs/PWD/modelo/tp4/auto.php';
-include_once 'C:/xampp/htdocs/PWD/modelo/tp4/persona.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp4/auto.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp4/persona.php';
 class ControlAuto {
     private $objPdo;
 
@@ -46,14 +46,54 @@ class ControlAuto {
         return $auto->eliminar();
     }
 
-    // Buscar un auto por patente
-    public function buscarAuto($patente) {
-        $auto = new Auto($this->objPdo);
-        if ($auto->buscar($patente)) {
-            return $auto; // Devuelve el objeto Auto con dueño incluido
+    // Devuelve una persona por DNI
+    public function obtenerPersona($dni) {
+        $persona = new Persona($this->objPdo);
+        $resultado = null;
+        if ($persona->buscar($dni) > 0) {
+            $resultado = $persona;
         }
-        return false;
+        return $resultado;
     }
+
+    // Devuelve un auto por patente
+    public function obtenerAuto($patente) {
+        $auto = new Auto($this->objPdo);
+        $resultado = null;
+        if ($auto->buscar($patente)) {
+            $resultado = $auto;
+        }
+        return $resultado;
+    }
+
+    // Compara DNI con patente (dni duenio) de un auto
+    public function perteneceDuenio($patente, $dni){
+        $resultado = false;
+        $auto = $this->obtenerAuto($patente);
+        if ($auto != null){
+            if ($auto->getObjDuenio()->getNroDni() === $dni){
+                $resultado = true;
+            }
+        }
+        return $resultado;
+    }
+
+    // Cambia duenio del auto
+    public function cambiarDuenio($patente, $dni){
+        $resultado = false;
+        $auto = $this->obtenerAuto($patente);
+        if ($auto != null){
+            $persona = $this->obtenerPersona($dni);
+            if ($persona != null){
+                $auto->setObjDuenio($persona);
+                if ($auto->modificar() != -1){
+                    $resultado = true;
+                }
+            }
+        }
+        return $resultado;
+    }
+
 
     // Listar autos de un DNI
     public function listarAutosPorDni($dni) {

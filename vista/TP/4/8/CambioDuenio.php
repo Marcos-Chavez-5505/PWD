@@ -7,7 +7,7 @@ include_once '../../../estructura/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambio Duenio</title>
+    <title>Cambio Dueño</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@ include_once '../../../estructura/header.php';
 </head>
 <body>
 
-    <main class="container my-5 d-flex justify-content-center">
+    <main class="container py-5 my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cambiar Dueño del Auto</h3>
             <form id="cambioDuenioForm" action="z_accionCambioDuenio.php" method="post">
@@ -33,7 +33,7 @@ include_once '../../../estructura/header.php';
                 <div class="mb-3">
                     <label for="patente" class="form-label">Patente:</label>
                     <input type="text" name="patente" id="patente" class="form-control" required>
-                    <div class="invalid-feedback">La patente es obligatoria.</div>
+                    <div class="invalid-feedback">La patente es obligatoria, con formato AAA 123 (con espaciado).</div>
                 </div>
 
                 <button type="submit" class="btn btn-success w-100">

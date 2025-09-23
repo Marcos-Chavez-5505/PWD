@@ -81,10 +81,10 @@ class Auto {
 
         if ($this->getObjPdo()->Iniciar()) {
             $sql = "SELECT v.Patente, v.Marca, v.Modelo, v.estadoAuto,
-                           p.nroDni, p.nombre, p.apellido, p.fechaNac, p.telefono, p.domicilio, p.estadoPersona
+                           p.NroDni, p.Nombre, p.Apellido, p.fechaNac, p.Telefono, p.Domicilio, p.estadoPersona
                     FROM auto v
-                    INNER JOIN persona p ON v.DniDuenio = p.nroDni
-                    WHERE v.Patente = '{$patenteABuscar}' AND v.estadoAuto = TRUE";
+                    INNER JOIN persona p ON v.DniDuenio = p.NroDni
+                    WHERE TRIM(UPPER(v.Patente)) = TRIM(UPPER('{$patenteABuscar}')) AND v.estadoAuto = TRUE";
 
             if ($this->getObjPdo()->Ejecutar($sql)) {
                 if ($fila = $this->getObjPdo()->Registro()) {
@@ -97,12 +97,12 @@ class Auto {
 
                     // Crear y setear el dueño
                     $duenio = new Persona($this->getObjPdo());
-                    $duenio->setNroDni($fila['nroDni']);
-                    $duenio->setNombre($fila['nombre']);
-                    $duenio->setApellido($fila['apellido']);
+                    $duenio->setNroDni($fila['NroDni']);
+                    $duenio->setNombre($fila['Nombre']);
+                    $duenio->setApellido($fila['Apellido']);
                     $duenio->setFechaNac($fila['fechaNac']);
-                    $duenio->setTelefono($fila['telefono']);
-                    $duenio->setDomicilio($fila['domicilio']);
+                    $duenio->setTelefono($fila['Telefono']);
+                    $duenio->setDomicilio($fila['Domicilio']);
                     $duenio->setEstadoPersona($fila['estadoPersona']);
 
                     $this->setObjDuenio($duenio);

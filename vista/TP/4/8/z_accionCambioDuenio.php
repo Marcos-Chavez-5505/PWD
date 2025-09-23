@@ -1,38 +1,33 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlCambioDuenio.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
 
 
-// Crear instancia de clase
 $valorRecibido = new ValorEncapsulado();
 
 
 $nroDni = $valorRecibido->obtenerValor('dni');
 $patente = $valorRecibido->obtenerValor('patente');  
-// TIRA UN ERROR DE QUE YA EXISTE PERO LO CREA IGUAL, DEPUES LO CORRIGO 😎
 
 $mensaje = "";
 
 if ($nroDni != 0 && $patente != 0) {
-    // Tomamos los datos del formulario con null coalescing
-    // $dni = $nroDni ?? '';
-    // $patente1 = $patente ?? '';
 
-    $control = new ControlCambioDuenio();
+    $control = new ControlAuto();
 
 
-    if ($control->obtenerAuto($patente) == null){
-        $mensaje = "Error: No existe un auto con esta petente (patente ingresada:".$patente.").";
+    if ($control->obtenerAuto($patente)){
+        $mensaje = "Error: No existe un auto con esta petente (patente ingresada: ".strtoupper($patente).").";
     }
-    elseif ($control->obtenerPersona($dni) == null){
-        $mensaje = "Error: La persona con DNI: ".$dni." no existe en la base de datos.";
+    elseif (!$control->obtenerPersona($nroDni)){
+        $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
     }
-    elseif ($control->perteneceDuenio($patente, $dni)){
-        $mensaje = "Error: El auto con patente ".$patente." ya está asociado a la persona con DNI ".$dni.".";
+    elseif ($control->perteneceDuenio($patente, $nroDni)){
+        $mensaje = "Error: El auto con patente ".strtoupper($patente)." ya está asociado a la persona con DNI ".$nroDni.".";
     }
     else {
-        if ($control->cambiarDuenio($patente, $dni)){
-            $mensaje = "Cambio de dueño (DNI: ".$dni.") realizado con éxito para patente ".$patente.".";
+        if ($control->cambiarDuenio($patente, $nroDni)){
+            $mensaje = "Cambio de dueño (DNI: ".$nroDni.") realizado con éxito para patente ".strtoupper($patente).".";
         }
         else {
             $mensaje = "Error: No se pudo realizar el cambio de duenio para este auto.";
@@ -44,18 +39,34 @@ if ($nroDni != 0 && $patente != 0) {
 }
 ?>
 
+<?php include_once '../../../estructura/header.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Resultado Nueva Persona</title>
+    <title>Resultado Cambio Dueño</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="../../../css/header-footer.css">
+    <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
+
 </head>
-<body class="p-4">
-    <div class="container">
-        <h1 class="mb-4"><?= $mensaje ?></h1>
-        <a href="NuevaPersona.php" class="btn btn-secondary">Volver</a>
-        <a href="../3/listarPersonas.php" class="btn btn-primary">Ver listado de personas</a>
-    </div>
+<body>
+    <main class="container py-5 my-5 d-flex justify-content-center">
+
+        <div class="card p-4 shadow-sm w-100" style="max-width: 800px;">
+            <h1 class="mb-4"><?= $mensaje ?></h1>
+            <a href="./cambioDuenio.php" class="btn btn-secondary m-2 my-5 mx-5">Volver</a>
+            <!-- <a href="../3/listarPersonas.php" class="btn btn-primary m-2">Ver listado de personas</a> -->
+        </div>
+
+    </main>
 </body>
 </html>
+
+<?php include_once '../../../estructura/footer.php'; ?>
