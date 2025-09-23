@@ -19,7 +19,7 @@ if ($nroDni != 0 && $patente != 0) {
     if ($control->obtenerAuto($patente)){
         $mensaje = "Error: No existe un auto con esta petente (patente ingresada: ".strtoupper($patente).").";
     }
-    elseif (!$control->obtenerPersona($nroDni)){
+    elseif ($control->obtenerPersona($nroDni)){
         $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
     }
     elseif ($control->perteneceDuenio($patente, $nroDni)){
