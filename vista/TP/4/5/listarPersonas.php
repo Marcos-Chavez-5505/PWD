@@ -48,7 +48,7 @@ $personas = $control->listarPersonas();
                                         <td><?= $p['Nombre'] ?></td>
                                         <td><?= $p['Apellido'] ?></td>
                                         <td>
-                                            <a href="autosPersona.php?dni=<?= $p['NroDni'] ?>" class="btn btn-primary btn-sm">
+                                            <a href="z_autosPersona.php?dni=<?= $p['NroDni'] ?>" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-car-front"></i> Ver Autos
                                             </a>
                                         </td>

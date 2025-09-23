@@ -391,3 +391,72 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+
+// validator.js - Validación NuevoAuto
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("autoForm");
+    if (!form) return; // Salir si no existe el formulario
+
+    const patente = document.getElementById("patente");
+    const marca = document.getElementById("marca");
+    const modelo = document.getElementById("modelo");
+    const dniDuenio = document.getElementById("dniDuenio");
+
+    // Función para marcar inválido/válido
+    const markInvalid = (el) => el.classList.add("is-invalid");
+    const markValid = (el) => el.classList.add("is-valid");
+    const unmarkInvalid = (el) => el.classList.remove("is-invalid");
+    const unmarkValid = (el) => el.classList.remove("is-valid");
+
+    // Limpiar errores en tiempo real
+    [patente, marca, modelo, dniDuenio].forEach(input => {
+        input.addEventListener("input", () => {
+            unmarkInvalid(input);
+            unmarkValid(input);
+        });
+    });
+
+    form.addEventListener("submit", function (event) {
+        let isValid = true;
+
+        // Validar Patente (ej: ABC123 o AB123CD)
+        const patenteRegex = /^[A-Z]{2,3}\d{3,4}[A-Z]{0,2}$/i;
+        if (!patente.value || !patenteRegex.test(patente.value.trim())) {
+            markInvalid(patente);
+            isValid = false;
+        } else {
+            markValid(patente);
+        }
+
+        // Validar Marca
+        if (!marca.value.trim()) {
+            markInvalid(marca);
+            isValid = false;
+        } else {
+            markValid(marca);
+        }
+
+        // Validar Modelo
+        if (!modelo.value.trim()) {
+            markInvalid(modelo);
+            isValid = false;
+        } else {
+            markValid(modelo);
+        }
+
+        // Validar Dueño (debe seleccionar una persona)
+        if (!dniDuenio.value) {
+            markInvalid(dniDuenio);
+            isValid = false;
+        } else {
+            markValid(dniDuenio);
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    });
+});
