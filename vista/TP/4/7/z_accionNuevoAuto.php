@@ -82,6 +82,7 @@ if ($_POST) {
                             <a href="NuevoAuto.php" class="btn btn-secondary me-2">
                                 <i class="bi bi-arrow-left-circle"></i> Volver
                             </a>
+                            <br><br>
                             <a href="../3/listarPersonas.php" class="btn btn-primary">
                                 <i class="bi bi-people-fill"></i> Ver listado de personas
                             </a>

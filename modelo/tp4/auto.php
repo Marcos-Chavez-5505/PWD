@@ -36,18 +36,28 @@ class Auto {
     public function setEstadoAuto($estadoAuto) { $this->estadoAuto = $estadoAuto; }
     public function setObjPdo($objPdo) { $this->objPdo = $objPdo; }
 
-    public function insertar(){
-        $resultado = -1;
-        if ($this->getObjPdo()->iniciar()){
-            $sql = "INSERT INTO Auto (patente, marca, modelo, DniDuenio, estadoAuto)
-                    VALUES (
-                        '{$this->getPatente()}',
-                        '{$this->getMarca()}',
-                        '{$this->getModelo()}',
-                        '{$this->getObjDuenio()->getNroDni()}',
-                        '{$this->getEstadoAuto()}'  -- <-- Agregar este valor
-                    )";
-            $resultado = $this->getObjPdo()->Ejecutar($sql);
+    public function insertar() {
+        $resultado = -2; // valor por defecto: error de conexión o ejecución
+
+        if ($this->getObjPdo()->iniciar()) {
+
+            if ($this->buscar($this->getPatente())) {
+                $resultado = -1; // patente ya existe
+            } else {
+                $sql = "INSERT INTO Auto (patente, marca, modelo, DniDuenio, estadoAuto)
+                        VALUES (
+                            '{$this->getPatente()}',
+                            '{$this->getMarca()}',
+                            '{$this->getModelo()}',
+                            '{$this->getObjDuenio()->getNroDni()}',
+                            '{$this->getEstadoAuto()}'
+                        )";
+
+                $exec = $this->getObjPdo()->Ejecutar($sql);
+                if ($exec !== false) {
+                    $resultado = 1; // inserción exitosa
+                }
+            }
         }
 
         return $resultado;
@@ -80,39 +90,26 @@ class Auto {
         $resultado = false;
 
         if ($this->getObjPdo()->Iniciar()) {
-            $sql = "SELECT v.Patente, v.Marca, v.Modelo, v.estadoAuto,
-                           p.NroDni, p.Nombre, p.Apellido, p.fechaNac, p.Telefono, p.Domicilio, p.estadoPersona
+            // Normalizar patente
+            $patenteABuscar = trim(strtoupper($patenteABuscar));
+
+            $sql = "SELECT v.Patente
                     FROM auto v
-                    INNER JOIN persona p ON v.DniDuenio = p.NroDni
-                    WHERE TRIM(UPPER(v.Patente)) = TRIM(UPPER('{$patenteABuscar}')) AND v.estadoAuto = TRUE";
+                    WHERE TRIM(UPPER(v.Patente)) = '{$patenteABuscar}'
+                    AND v.estadoAuto = TRUE";
 
-            if ($this->getObjPdo()->Ejecutar($sql)) {
-                if ($fila = $this->getObjPdo()->Registro()) {
+            // Ejecutar y obtener la primera fila
+            $this->getObjPdo()->Ejecutar($sql);
+            $fila = $this->getObjPdo()->Registro();
 
-                    // Setear atributos del Auto
-                    $this->setPatente($fila['Patente']);
-                    $this->setMarca($fila['Marca']);
-                    $this->setModelo($fila['Modelo']);
-                    $this->setEstadoAuto($fila['estadoAuto']);
-
-                    // Crear y setear el dueño
-                    $duenio = new Persona($this->getObjPdo());
-                    $duenio->setNroDni($fila['NroDni']);
-                    $duenio->setNombre($fila['Nombre']);
-                    $duenio->setApellido($fila['Apellido']);
-                    $duenio->setFechaNac($fila['fechaNac']);
-                    $duenio->setTelefono($fila['Telefono']);
-                    $duenio->setDomicilio($fila['Domicilio']);
-                    $duenio->setEstadoPersona($fila['estadoPersona']);
-
-                    $this->setObjDuenio($duenio);
-
-                    $resultado = true;
-                }
+            if ($fila) {
+                $resultado = true;
             }
         }
+        var_dump("Ejecutando buscar para patente: ", $patenteABuscar, " -> Resultado: ", $resultado);
 
         return $resultado;
     }
+
 }
 ?>
