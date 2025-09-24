@@ -15,7 +15,7 @@ class Auto {
         $this->patente = "";
         $this->marca = "";
         $this->modelo = "";
-        $this->objDuenio = "";
+        $this->objDuenio = null;  // <-- inicializado como null
         $this->estadoAuto = true;
         $this->objPdo = $objPdo ?? new BaseDatos();
     }
@@ -36,6 +36,7 @@ class Auto {
     public function setEstadoAuto($estadoAuto) { $this->estadoAuto = $estadoAuto; }
     public function setObjPdo($objPdo) { $this->objPdo = $objPdo; }
 
+    // Insertar nuevo auto
     public function insertar() {
         $resultado = -2; // valor por defecto: error de conexión o ejecución
 
@@ -44,12 +45,17 @@ class Auto {
             if ($this->buscar($this->getPatente())) {
                 $resultado = -1; // patente ya existe
             } else {
+                // Solo acceder a getNroDuenio si objDuenio es objeto
+                $dniDuenio = is_object($this->getObjDuenio()) 
+                             ? $this->getObjDuenio()->getNroDni() 
+                             : null;
+
                 $sql = "INSERT INTO Auto (patente, marca, modelo, DniDuenio, estadoAuto)
                         VALUES (
                             '{$this->getPatente()}',
                             '{$this->getMarca()}',
                             '{$this->getModelo()}',
-                            '{$this->getObjDuenio()->getNroDni()}',
+                            '{$dniDuenio}',
                             '{$this->getEstadoAuto()}'
                         )";
 
@@ -63,53 +69,118 @@ class Auto {
         return $resultado;
     }
 
+    // Modificar un auto existente
     public function modificar() {
         $resultado = -1;
+
         if ($this->getObjPdo()->iniciar()) {
+            $dniDuenio = is_object($this->getObjDuenio()) 
+                         ? $this->getObjDuenio()->getNroDni() 
+                         : null;
+
             $sql = "UPDATE Auto 
                     SET Marca = '{$this->getMarca()}', 
                         Modelo = '{$this->getModelo()}',
-                        DniDuenio = '{$this->getObjDuenio()->getNroDni()}'
+                        DniDuenio = '{$dniDuenio}'
                     WHERE Patente = '{$this->getPatente()}' AND estadoAuto = TRUE";
-            $resultado = $this->getObjPdo()->Ejecutar($sql);
+
+            $exec = $this->getObjPdo()->Ejecutar($sql);
+            if ($exec !== false) {
+                $resultado = 1;
+            }
         }
 
         return $resultado;
     }
 
+    // Eliminar (marcar como inactivo)
     public function eliminar() {
         $resultado = -1;
+
         if ($this->getObjPdo()->Iniciar()) {
             $sql = "UPDATE Auto SET estadoAuto = FALSE WHERE Patente = '{$this->getPatente()}'";
-            $resultado = $this->getObjPdo()->Ejecutar($sql);
+            $exec = $this->getObjPdo()->Ejecutar($sql);
+            if ($exec !== false) {
+                $resultado = 1;
+            }
         }
-        return $resultado;        
+
+        return $resultado;
     }
 
+    // Buscar auto por patente
     public function buscar($patenteABuscar) {
         $resultado = false;
 
         if ($this->getObjPdo()->Iniciar()) {
-            // Normalizar patente
             $patenteABuscar = trim(strtoupper($patenteABuscar));
 
-            $sql = "SELECT v.Patente
+            $sql = "SELECT v.Patente, v.Marca, v.Modelo, v.estadoAuto,
+                           p.NroDni, p.Nombre, p.Apellido, p.fechaNac, p.Telefono, p.Domicilio, p.estadoPersona
                     FROM auto v
-                    WHERE TRIM(UPPER(v.Patente)) = '{$patenteABuscar}'
+                    INNER JOIN persona p ON v.DniDuenio = p.NroDni
+                    WHERE TRIM(UPPER(v.Patente)) = '{$patenteABuscar}' 
                     AND v.estadoAuto = TRUE";
 
-            // Ejecutar y obtener la primera fila
             $this->getObjPdo()->Ejecutar($sql);
             $fila = $this->getObjPdo()->Registro();
 
             if ($fila) {
+                $this->setPatente($fila['Patente']);
+                $this->setMarca($fila['Marca']);
+                $this->setModelo($fila['Modelo']);
+                $this->setEstadoAuto($fila['estadoAuto']);
+
+                $duenio = new Persona($this->getObjPdo());
+                $duenio->setNroDni($fila['NroDni']);
+                $duenio->setNombre($fila['Nombre']);
+                $duenio->setApellido($fila['Apellido']);
+                $duenio->setFechaNac($fila['fechaNac']);
+                $duenio->setTelefono($fila['Telefono']);
+                $duenio->setDomicilio($fila['Domicilio']);
+                $duenio->setEstadoPersona($fila['estadoPersona']);
+
+                $this->setObjDuenio($duenio);
+
                 $resultado = true;
             }
         }
-        var_dump("Ejecutando buscar para patente: ", $patenteABuscar, " -> Resultado: ", $resultado);
 
         return $resultado;
     }
 
+    // Verifica si el auto pertenece a un dueño
+    public function perteneceDuenio($patente, $dni) {
+        $resultado = false;
+
+        $auto = $this->buscar($patente) ? $this : null;
+
+        if ($auto && is_object($this->getObjDuenio())) {
+            if ($this->getObjDuenio()->getNroDni() === $dni) {
+                $resultado = true;
+            }
+        }
+
+        return $resultado;
+    }
+
+    // Cambiar dueño del auto
+    public function cambiarDuenio($patente, $dni) {
+        $resultado = false;
+
+        $auto = $this->buscar($patente) ? $this : null;
+
+        if ($auto) {
+            $persona = new Persona($this->getObjPdo());
+            if ($persona->buscar($dni)) {
+                $auto->setObjDuenio($persona);
+                if ($auto->modificar() === 1) {
+                    $resultado = true;
+                }
+            }
+        }
+
+        return $resultado;
+    }
 }
 ?>
