@@ -46,15 +46,6 @@ class ControlAuto {
         return $auto->eliminar();
     }
 
-    // Devuelve una persona por DNI
-    public function obtenerPersona($dni) {
-        $persona = new Persona($this->objPdo);
-        $resultado = null;
-        if ($persona->buscar($dni) > 0) {
-            $resultado = $persona;
-        }
-        return $resultado;
-    }
 
     // Devuelve un auto por patente
     public function obtenerAuto($patente) {
@@ -79,11 +70,10 @@ class ControlAuto {
     }
 
     // Cambia duenio del auto
-    public function cambiarDuenio($patente, $dni){
+    public function cambiarDuenio($patente, $persona){
         $resultado = false;
         $auto = $this->obtenerAuto($patente);
         if ($auto != null){
-            $persona = $this->obtenerPersona($dni);
             if ($persona != null){
                 $auto->setObjDuenio($persona);
                 if ($auto->modificar() != -1){

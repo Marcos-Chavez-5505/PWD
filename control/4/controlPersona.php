@@ -43,9 +43,9 @@ class ControlPersona {
         $persona->setTelefono($datos['telefono']);
         $persona->setDomicilio($datos['domicilio']);
 
-        $resultado = 0; 
+        $resultado = 0;
 
-        $existe = $persona->buscar($datos['nroDni']);
+        $existe = $persona->buscar($persona->getNroDni());
 
         if ($existe == 0) { 
             $insertar = $persona->insertar();

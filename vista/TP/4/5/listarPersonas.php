@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../control/4/controlPersona.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
 
 $control = new ControlPersona();
 $personas = $control->listarPersonas();

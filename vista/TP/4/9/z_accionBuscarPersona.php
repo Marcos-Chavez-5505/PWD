@@ -65,34 +65,34 @@ if ($nroDni != 0) {
 
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
-                    <input type="text" name="nroDni" id="nroDni" class="form-control" value=<?= $datosPersona['nroDni'] ?> readonly> <!-- solución insegura para uso real -->
+                    <input type="text" name="nroDni" id="nroDni" class="form-control" value="<?= $datosPersona['nroDni'] ?>" readonly> <!-- solución insegura para uso real -->
                 </div>
 
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" value=<?= $datosPersona['nombre'] ?> required>
+                    <input type="text" name="nombre" id="nombre" class="form-control" value="<?= $datosPersona['nombre'] ?>" required>
                     <div class="invalid-feedback">El nombre es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="apellido" class="form-label">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" class="form-control" value=<?= $datosPersona['apellido'] ?> required>
+                    <input type="text" name="apellido" id="apellido" class="form-control" value="<?= $datosPersona['apellido'] ?>" required>
                     <div class="invalid-feedback">El apellido es obligatorio.</div>
                 </div>
 
                 <div class="mb-3">
                     <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
-                    <input type="date" name="fechaNac" id="fechaNac" class="form-control" value=<?= $datosPersona['fechaNac'] ?> >
+                    <input type="date" name="fechaNac" id="fechaNac" class="form-control" value="<?= $datosPersona['fechaNac'] ?>" >
                 </div>
 
                 <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="text" name="telefono" id="telefono" class="form-control" value=<?= $datosPersona['telefono'] ?> >
+                    <input type="text" name="telefono" id="telefono" class="form-control" value="<?= $datosPersona['telefono'] ?>" >
                 </div>
 
                 <div class="mb-3">
                     <label for="domicilio" class="form-label">Domicilio:</label>
-                    <input type="text" name="domicilio" id="domicilio" class="form-control" value=<?= $datosPersona['domicilio'] ?> >
+                    <input type="text" name="domicilio" id="domicilio" class="form-control" value="<?= $datosPersona['domicilio'] ?>" >
                 </div>
 
                 <button type="submit" class="btn btn-success w-100">

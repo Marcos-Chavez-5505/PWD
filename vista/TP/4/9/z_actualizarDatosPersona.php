@@ -71,6 +71,9 @@ if ($dni != 0 && $dni != ''){
         <div class="text-center mt-4">
             <a href="/PWD/vista/TP/4/9/buscarPersona.php" class="btn btn-secondary m-2">Volver</a>
         </div>
+        <div class="text-center mt-4">
+            <a href="/PWD/vista/TP/4/5/listarPersonas.php" class="btn btn-primary"><i class="bi bi-people-fill"></i> Ver listado de personas</a>
+        </div>
     </div>
 </main>
 </body>

@@ -1,12 +1,14 @@
 <?php
-include_once '../../../../control/4/controlPersona.php';
-include_once '../../../../control/4/controlAuto.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
 
-if (!isset($_GET['dni'])) {
+$valorRecibido = new ValorEncapsulado();
+$dni = $valorRecibido->obtenerValor('dni');
+
+if (!$dni) {
     die("DNI no recibido.");
 }
 
-$dni = $_GET['dni'];
 $control = new ControlPersona();
 $persona = $control->obtenerPersona($dni);
 

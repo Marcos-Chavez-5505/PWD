@@ -318,8 +318,8 @@ document.addEventListener("DOMContentLoaded", function () {
             input.classList.remove("is-invalid");
         });
 
-        // Validar DNI
-        if (!dni.value || isNaN(dni.value)) {
+        // Validar DNI (solo números, de 1 o más dígitos)
+        if (!dni.value || !/^[0-9]+$/.test(dni.value)) {
             dni.classList.add("is-invalid");
             isValid = false;
         }
@@ -366,8 +366,8 @@ document.addEventListener("DOMContentLoaded", function () {
             input.classList.remove("is-invalid");
         });
 
-        // Validar DNI (solo números, entre 7 y 9 dígitos)
-        if (!dni.value || !/^[0-9]{7,9}$/.test(dni.value)) {
+        // Validar DNI (solo números, de 1 o más dígitos)
+        if (!dni.value || !/^[0-9]+$/.test(dni.value)) {
             dni.classList.add("is-invalid");
             isValid = false;
         }

@@ -1,15 +1,20 @@
 <?php
-include_once '../../../../control/4/controlAuto.php';
-include_once '../../../../control/4/controlPersona.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
 
 $mensaje = "";
 $tipoAlerta = "danger";
 
-if ($_POST) {
-    $patente   = $_POST['patente'] ?? '';
-    $marca     = $_POST['marca'] ?? '';
-    $modelo    = $_POST['modelo'] ?? '';
-    $dniDuenio = $_POST['dniDuenio'] ?? '';
+$valorRecibido = new ValorEncapsulado();
+
+$patente   = $valorRecibido->obtenerValor('patente') ?? '';
+$marca     = $valorRecibido->obtenerValor('marca') ?? '';
+$modelo    = $valorRecibido->obtenerValor('modelo') ?? '';
+$dniDuenio = $valorRecibido->obtenerValor('dniDuenio') ?? '';
+
+
+
+if ($patente != 0 && $marca != 0 && $modelo != 0 && $dniDuenio != 0) {
 
     $controlPersona = new ControlPersona();
     $duenio = $controlPersona->obtenerPersona($dniDuenio);

@@ -2,17 +2,19 @@
 include_once '../../../../control/4/controlPersona.php';
 
 $mensaje = "";
-$tipoAlerta = "danger"; 
+$tipoAlerta = "danger";
 
-if ($_POST) {
+$valorRecibido = new ValorEncapsulado();
+
+$dni       = $valorRecibido->obtenerValor('nroDni') ?? '';
+$nombre    = $valorRecibido->obtenerValor('nombre') ?? '';
+$apellido  = $valorRecibido->obtenerValor('apellido') ?? '';
+$fechaNac  = $valorRecibido->obtenerValor('fechaNac') ?? null;
+$telefono  = $valorRecibido->obtenerValor('telefono') ?? '';
+$domicilio = $valorRecibido->obtenerValor('domicilio') ?? '';
+
+if ($dni) {
     
-    $dni       = $_POST['nroDni'] ?? '';
-    $nombre    = $_POST['nombre'] ?? '';
-    $apellido  = $_POST['apellido'] ?? '';
-    $fechaNac  = $_POST['fechaNac'] ?? null;
-    $telefono  = $_POST['telefono'] ?? '';
-    $domicilio = $_POST['domicilio'] ?? '';
-
     $control = new ControlPersona();
 
     // Array con claves que espera ControlPersona

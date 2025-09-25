@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
 
 $valorRecibido = new ValorEncapsulado();
@@ -12,27 +13,29 @@ $tipoAlerta = "info"; // default
 
 if ($nroDni != 0 && $patente != 0) {
 
-    $control = new ControlAuto();
+    $controlAuto = new ControlAuto();
+    $controlPersona = new ControlPersona();
 
     // Verificamos si existe el auto
-    $auto = $control->obtenerAuto($patente);
+    $auto = $controlAuto->obtenerAuto($patente);
     if (!$auto) {
         $mensaje = "Error: No existe un auto con esta patente (patente ingresada: ".strtoupper($patente).").";
         $tipoAlerta = "danger";
     } 
     // Verificamos si existe la persona
-    elseif (!$control->obtenerPersona($nroDni)) {
+    elseif (!$controlPersona->obtenerPersona($nroDni)) {
         $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
         $tipoAlerta = "danger";
     } 
     // Verificamos si el auto ya pertenece a esa persona
-    elseif ($control->perteneceDuenio($patente, $nroDni)) {
+    elseif ($controlAuto->perteneceDuenio($patente, $nroDni)) {
         $mensaje = "Error: El auto con patente ".strtoupper($patente)." ya está asociado a la persona con DNI ".$nroDni.".";
         $tipoAlerta = "warning";
     } 
     // Realizamos el cambio de dueño
     else {
-        if ($control->cambiarDuenio($patente, $nroDni)) {
+        $persona = $controlPersona->obtenerPersona($nroDni);
+        if ($controlAuto->cambiarDuenio($patente, $persona)) {
             $mensaje = "Cambio de dueño (DNI: ".$nroDni.") realizado con éxito para patente ".strtoupper($patente).".";
             $tipoAlerta = "success";
         } else {
