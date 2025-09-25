@@ -11,26 +11,7 @@
 <body>
 
 <?php
-include_once __DIR__ . "../../../../../control/1/controlEj2.php";
-include_once '../../../estructura/header.php';
-
-include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de la clase
-$control = new horasCursadas();
-$valorRecibido = new ValorEncapsulado();
-
-// Capturamos las horas de cada día
-$horas = [
-    'lunes'     => (int) $valorRecibido->obtenerValor('lunes'),
-    'martes'    => (int) $valorRecibido->obtenerValor('martes'),
-    'miercoles' => (int) $valorRecibido->obtenerValor('miercoles'),
-    'jueves'    => (int) $valorRecibido->obtenerValor('jueves'),
-    'viernes'   => (int) $valorRecibido->obtenerValor('viernes')
-];
-
-// Calculamos total
-$total = $control->sumarHoras($horas);
+include_once __DIR__ . '../../../../estructura/header.php';
 ?>
 
 <main class="d-flex flex-column justify-content-center align-items-center min-vh-10">
@@ -43,7 +24,7 @@ $total = $control->sumarHoras($horas);
     </p>
 
     <div class="d-grid gap-2 mt-4">
-      <a href="Ejercicio2.php" class="btn btn-secondary">
+      <a href="/PWD/vista/TP/1/2/Ejercicio2.php" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Ir al formulario
       </a>
     </div>
@@ -51,7 +32,7 @@ $total = $control->sumarHoras($horas);
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . '../../../../estructura/footer.php';
 ?>
 
 <!-- Bootstrap JS -->

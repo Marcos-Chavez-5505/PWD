@@ -16,7 +16,8 @@ include_once '../../../estructura/header.php'
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <h3 class="text-center mb-4">Ingrese un número</h3>
 
-        <form name="form1" id="form1" method="POST" action="vernumero.php">
+        <form name="form1" id="form1" method="POST" action="/PWD/vista/action/action.php">
+            <input type="text" hidden name="accion" value="verNumero">
             <div class="mb-3">
                 <label for="numero" class="form-label">Número:</label>
                 <input type="number" class="form-control" name="numero" id="numero" required>

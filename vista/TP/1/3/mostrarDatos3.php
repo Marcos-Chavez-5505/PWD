@@ -4,19 +4,7 @@
 </head>
 
 <?php
-include_once '../../../estructura/header.php';
-
-include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de clase
-$valorRecibido = new ValorEncapsulado();
-
-
-// Capturamos los datos usando la función
-$nombre   = $valorRecibido->obtenerValor('nombre');
-$apellido = $valorRecibido->obtenerValor('apellido');
-$edad     = $valorRecibido->obtenerValor('edad');
-$direccion= $valorRecibido->obtenerValor('direccion');
+include_once __DIR__ . "../../../../estructura/header.php";
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100">
@@ -32,7 +20,7 @@ $direccion= $valorRecibido->obtenerValor('direccion');
                     y vivo en <strong><?= htmlspecialchars($direccion) ?></strong>.
                 </p>
                 <div class="d-grid">
-                    <a href="Ejercicio3.php" class="btn btn-secondary">
+                    <a href="/PWD/vista/TP/1/3/Ejercicio3.php" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Ir al formulario
                     </a>
                 </div>
@@ -42,5 +30,5 @@ $direccion= $valorRecibido->obtenerValor('direccion');
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . "../../../../estructura/footer.php";
 ?>

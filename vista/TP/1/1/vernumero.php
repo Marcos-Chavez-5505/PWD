@@ -4,20 +4,9 @@
 </head>
 
 <?php 
-include_once __DIR__ . "../../../../../control/1/controlEj1.php";
-include_once '../../../estructura/header.php';
+include_once __DIR__ . '../../../../estructura/header.php';
 
 include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de la clase
-$validador = new verNumero(); 
-$valorRecibido = new ValorEncapsulado();
-$numero    = $valorRecibido->obtenerValor('numero');
-$mensaje   = '';
-$tieneDato = ($numero !== '');
-if ($tieneDato) {
-    $mensaje = $validador->validarNumero($numero);
-}
 ?>
 
 <main class="container my-5">
@@ -31,7 +20,7 @@ if ($tieneDato) {
                         El número que ingresaste es: 
                         <strong><?= htmlspecialchars($numero) ?> (<?= htmlspecialchars($mensaje) ?>)</strong>
                     </p>
-                    <a href="Ejercicio1.php" class="btn btn-secondary mt-3">
+                    <a href="/PWD/vista/TP/1/1/Ejercicio1.php" class="btn btn-secondary mt-3">
                         <i class="bi bi-arrow-left"></i> Volver al formulario
                     </a>
                 </div>
@@ -39,7 +28,7 @@ if ($tieneDato) {
                 <div class="alert alert-warning text-center">
                     No se recibió ningún número.
                     <div class="mt-3">
-                        <a href="Ejercicio1.php" class="btn btn-secondary">
+                        <a href="/PWD/vista/TP/1/1/Ejercicio1.php" class="btn btn-secondary">
                             <i class="bi bi-arrow-left"></i> Ir al formulario
                         </a>
                     </div>
@@ -51,5 +40,5 @@ if ($tieneDato) {
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . '../../../../estructura/footer.php';
 ?>

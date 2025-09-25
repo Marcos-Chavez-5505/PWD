@@ -14,7 +14,8 @@ include_once '../../../estructura/header.php'
 <main class="d-flex justify-content-center align-items-center vh-100">
     <div class="bg-white p-4 rounded shadow-sm" style="width: 500px;">
         <h3 class="mb-4 text-center">Ingrese sus datos</h3>
-        <form name="formulario4" id="formulario4" method="GET" action="mostrarDatos4.php">
+        <form name="formulario4" id="formulario4" method="GET" action="/PWD/vista/action/action.php">
+            <input type="text" hidden name="accion" value="mostrarDatos4">
             
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>

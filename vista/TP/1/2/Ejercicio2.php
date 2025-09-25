@@ -17,35 +17,36 @@ include_once '../../../estructura/header.php'
   <div class="card shadow p-4" >
     <h2 class="mb-4 text-center">Horas de cursada</h2>
 
-    <form name="formulario2" id="formulario2" method="GET" action="horasCursadas.php">
+    <form name="formulario2" id="formulario2" method="GET" action="/PWD/vista/action/action.php">
+      <input type="text" hidden name="accion" value="horasCursadas">
 
       <div class="mb-3">
         <label for="lunes" class="form-label">Lunes</label>
-        <input type="text" class="form-control" name="lunes" id="lunes">
+        <input type="number" min="0" class="form-control" name="lunes" id="lunes">
         <span class="error" id="error-lunes"></span>
       </div>
 
       <div class="mb-3">
         <label for="martes" class="form-label">Martes</label>
-        <input type="text" class="form-control" name="martes" id="martes">
+        <input type="number" min="0" class="form-control" name="martes" id="martes">
         <span class="error" id="error-martes"></span>
       </div>
 
       <div class="mb-3">
         <label for="miercoles" class="form-label">Miércoles</label>
-        <input type="text" class="form-control" name="miercoles" id="miercoles">
+        <input type="number" min="0" class="form-control" name="miercoles" id="miercoles">
         <span class="error" id="error-miercoles"></span>
       </div>
 
       <div class="mb-3">
         <label for="jueves" class="form-label">Jueves</label>
-        <input type="text" class="form-control" name="jueves" id="jueves">
+        <input type="number" min="0" class="form-control" name="jueves" id="jueves">
         <span class="error" id="error-jueves"></span>
       </div>
 
       <div class="mb-3">
         <label for="viernes" class="form-label">Viernes</label>
-        <input type="text" class="form-control" name="viernes" id="viernes">
+        <input type="number" min="0" class="form-control" name="viernes" id="viernes">
         <span class="error" id="error-viernes"></span>
       </div>
 

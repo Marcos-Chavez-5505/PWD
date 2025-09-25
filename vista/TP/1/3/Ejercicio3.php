@@ -16,7 +16,8 @@ include_once '../../../estructura/header.php'
         <div class="bg-white p-4 rounded shadow-sm" style="width: 500px;">
             <div class="bg-white p-4 rounded shadow-sm">
                 <h3 class="mb-4 text-center">Ingrese sus datos:</h3>
-                <form name="formulario3" id="formulario3" method="POST" action="mostrarDatos3.php">
+                <form name="formulario3" id="formulario3" method="POST" action="/PWD/vista/action/action.php">
+                    <input type="text" hidden name="accion" value="mostrarDatos">
                     
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
