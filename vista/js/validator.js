@@ -372,8 +372,8 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        // Validar Patente (formato ABC 123, lleva espaciado obligatoriamente por ejercicio)
-        if (!patente.value || !/^[A-Z]{3}\s[0-9]{3}$/.test(patente.value.toUpperCase())) {
+        // Validar Patente (formato ABC123)
+        if (!patente.value || !/^[A-Z]{3}[0-9]{3}$/.test(patente.value.toUpperCase())) {
             patente.classList.add("is-invalid");
             isValid = false;
         }

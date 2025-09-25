@@ -48,7 +48,7 @@ class Persona {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
             $sql = "INSERT INTO persona (NroDni, Nombre, Apellido, fechaNac, Telefono, Domicilio, estadoPersona)
-                    VALUES ('{$this->NroDni}', '{$this->Nombre}', '{$this->Apellido}', '{$this->fechaNac}', '{$this->Telefono}', '{$this->Domicilio}', {$this->estadoPersona})";
+                    VALUES ('{$this->getNroDni()}', '{$this->getNombre()}', '{$this->getApellido()}', '{$this->getFechaNac()}', '{$this->getTelefono()}', '{$this->getDomicilio()}', {$this->getEstadoPersona()})";
             $resultado = $this->objPdo->Ejecutar($sql);
         }
         return $resultado;
@@ -58,7 +58,7 @@ class Persona {
     public function eliminar() {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
-            $sql = "UPDATE persona SET estadoPersona = 0 WHERE NroDni = '{$this->NroDni}'";
+            $sql = "UPDATE persona SET estadoPersona = 0 WHERE NroDni = '{$this->getNroDni()}'";
             $resultado = $this->objPdo->Ejecutar($sql);
         }
         return $resultado;
@@ -69,8 +69,8 @@ class Persona {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
             $sql = "UPDATE persona 
-                    SET Nombre='{$this->Nombre}', Apellido='{$this->Apellido}', fechaNac='{$this->fechaNac}', Telefono='{$this->Telefono}', Domicilio='{$this->Domicilio}'
-                    WHERE NroDni='{$this->NroDni}' AND estadoPersona = 1";
+                    SET Nombre='{$this->getNombre()}', Apellido='{$this->getApellido()}', fechaNac='{$this->getFechaNac()}', Telefono='{$this->getTelefono()}', Domicilio='{$this->getDomicilio()}'
+                    WHERE NroDni='{$this->getNroDni()}' AND estadoPersona = 1";
             $resultado = $this->objPdo->Ejecutar($sql);
         }
         return $resultado;
@@ -87,13 +87,13 @@ class Persona {
             $fila = $this->objPdo->Registro();
 
             if ($fila) {
-                $this->NroDni      = $fila['NroDni'];
-                $this->Nombre      = $fila['Nombre'];
-                $this->Apellido    = $fila['Apellido'];
-                $this->fechaNac    = $fila['fechaNac'];
-                $this->Telefono    = $fila['Telefono'];
-                $this->Domicilio   = $fila['Domicilio'];
-                $this->estadoPersona = $fila['estadoPersona'];
+                $this->setNroDni($fila['NroDni']);
+                $this->setNombre($fila['Nombre']);
+                $this->setApellido($fila['Apellido']);
+                $this->setFechaNac($fila['fechaNac']);
+                $this->setTelefono($fila['Telefono']);
+                $this->setDomicilio($fila['Domicilio']);
+                $this->setEstadoPersona($fila['estadoPersona']);
                 $resultado = 1;
             }
         }

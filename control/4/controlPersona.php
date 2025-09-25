@@ -57,6 +57,40 @@ class ControlPersona {
         return $resultado; 
     }
 
+    public function modificarPersona($datos){
+        $persona = new Persona($this->objPdo);
+        
+        $resultado = 0; 
+        
+        $existe = $persona->buscar($datos['nroDni']);
+        
+        if ($existe == 1) {
+            $persona->setNroDni($datos['nroDni']);
+            $persona->setNombre($datos['nombre']);
+            $persona->setApellido($datos['apellido']);
+            $persona->setFechaNac($datos['fechaNac']);
+            $persona->setTelefono($datos['telefono']);
+            $persona->setDomicilio($datos['domicilio']);
+
+            $modificar = $persona->modificar();
+            switch ($modificar){
+                case -1:
+                    $resultado = -1;
+                    break;
+                case 0:
+                    $resultado = 0;
+                    break;
+                default:
+                    $resultado = 1;
+                    break;
+            }
+        } else {
+            $resultado = -1; 
+        }
+
+        return $resultado; 
+    }
+
 
 
 }

@@ -7,7 +7,7 @@ include_once '../../../estructura/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambio Dueño</title>
+    <title>Buscar Persona</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,19 +21,13 @@ include_once '../../../estructura/header.php';
 
     <main class="container py-5 my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
-            <h3 class="text-center mb-4">Cambiar Dueño del Auto</h3>
-            <form id="cambioDuenioForm" action="z_accionCambioDuenio.php" method="post">
+            <h3 class="text-center mb-4">Buscar una Persona:</h3>
+            <form id="buscarPersonaForm" action="z_accionBuscarPersona.php" method="post">
 
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
                     <input type="text" name="dni" id="nroDni" class="form-control" required>
                     <div class="invalid-feedback">El DNI es obligatorio y debe ser un número.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="patente" class="form-label">Patente:</label>
-                    <input type="text" name="patente" id="patente" class="form-control" required>
-                    <div class="invalid-feedback">La patente es obligatoria, con formato ABC123.</div>
                 </div>
 
                 <button type="submit" class="btn btn-success w-100">

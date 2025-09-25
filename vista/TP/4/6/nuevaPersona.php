@@ -20,7 +20,7 @@ include_once '../../../estructura/header.php';
 <body>
 
     <main class="container my-5 d-flex justify-content-center">
-        <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
+        <div class="card my-5 p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cargar Nueva Persona</h3>
             <form id="personaForm" action="/PWD/vista/TP/4/6/z_accionNuevaPersona.php" method="post">
 
