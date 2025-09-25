@@ -79,7 +79,7 @@ if ($_POST) {
                             </a>
                             <br>
                             <br>
-                            <a href="../3/listarPersonas.php" class="btn btn-primary">
+                            <a href="/PWD/vista/TP/4/5/listarPersonas.php" class="btn btn-primary">
                                 <i class="bi bi-people-fill"></i> Ver listado de personas
                             </a>
                         </div>

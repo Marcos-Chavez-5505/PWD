@@ -42,7 +42,7 @@ $personas = $controlPersona->listarPersonas();
                                 <a href="../../4/4/nuevaPersona.php" class="alert-link">Cargar nueva persona</a>
                             </div>
                         <?php else: ?>
-                            <form id="autoForm" action="z_accionNuevoAuto.php" method="POST" novalidate>
+                            <form id="autoForm" action="/PWD/vista/TP/4/7/z_accionNuevoAuto.php" method="POST" novalidate>
                                 <div class="mb-3">
                                     <label for="patente" class="form-label">Patente</label>
                                     <input type="text" class="form-control" id="patente" name="patente" maxlength="10" required>

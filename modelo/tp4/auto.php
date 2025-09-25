@@ -38,36 +38,40 @@ class Auto {
 
     // Insertar nuevo auto
     public function insertar() {
-        $resultado = -2; // valor por defecto: error de conexión o ejecución
+        $resultado = -2; // valor por defecto
 
-        if ($this->getObjPdo()->iniciar()) {
-
+        if ($this->getObjPdo()->Iniciar()) {
             if ($this->buscar($this->getPatente())) {
                 $resultado = -1; // patente ya existe
             } else {
-                // Solo acceder a getNroDuenio si objDuenio es objeto
-                $dniDuenio = is_object($this->getObjDuenio()) 
-                             ? $this->getObjDuenio()->getNroDni() 
-                             : null;
+                $dniDuenio = is_object($this->getObjDuenio())
+                            ? $this->getObjDuenio()->getNroDni()
+                            : null;
 
-                $sql = "INSERT INTO Auto (patente, marca, modelo, DniDuenio, estadoAuto)
-                        VALUES (
-                            '{$this->getPatente()}',
-                            '{$this->getMarca()}',
-                            '{$this->getModelo()}',
-                            '{$dniDuenio}',
-                            '{$this->getEstadoAuto()}'
-                        )";
+                $modelo = (int) $this->getModelo();
+                $estado = $this->getEstadoAuto() ? 1 : 0;
 
-                $exec = $this->getObjPdo()->Ejecutar($sql);
-                if ($exec !== false) {
-                    $resultado = 1; // inserción exitosa
+                if ($dniDuenio !== null) {
+                    $sql = "INSERT INTO auto (Patente, Marca, Modelo, DniDuenio, EstadoAuto)
+                            VALUES (
+                                '{$this->getPatente()}',
+                                '{$this->getMarca()}',
+                                $modelo,
+                                '{$dniDuenio}',
+                                $estado
+                            )";
+
+                    $exec = $this->getObjPdo()->Ejecutar($sql);
+                    if ($exec > 0 || $exec == -1) {
+                        $resultado = 1;
+                    }
                 }
             }
         }
 
         return $resultado;
     }
+
 
     // Modificar un auto existente
     public function modificar() {
@@ -78,7 +82,7 @@ class Auto {
                          ? $this->getObjDuenio()->getNroDni() 
                          : null;
 
-            $sql = "UPDATE Auto 
+            $sql = "UPDATE auto 
                     SET Marca = '{$this->getMarca()}', 
                         Modelo = '{$this->getModelo()}',
                         DniDuenio = '{$dniDuenio}'
@@ -98,7 +102,7 @@ class Auto {
         $resultado = -1;
 
         if ($this->getObjPdo()->Iniciar()) {
-            $sql = "UPDATE Auto SET estadoAuto = FALSE WHERE Patente = '{$this->getPatente()}'";
+            $sql = "UPDATE auto SET estadoAuto = FALSE WHERE Patente = '{$this->getPatente()}'";
             $exec = $this->getObjPdo()->Ejecutar($sql);
             if ($exec !== false) {
                 $resultado = 1;

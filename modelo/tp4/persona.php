@@ -47,7 +47,7 @@ class Persona {
     public function insertar() {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
-            $sql = "INSERT INTO Persona (NroDni, Nombre, Apellido, fechaNac, Telefono, Domicilio, estadoPersona)
+            $sql = "INSERT INTO persona (NroDni, Nombre, Apellido, fechaNac, Telefono, Domicilio, estadoPersona)
                     VALUES ('{$this->NroDni}', '{$this->Nombre}', '{$this->Apellido}', '{$this->fechaNac}', '{$this->Telefono}', '{$this->Domicilio}', {$this->estadoPersona})";
             $resultado = $this->objPdo->Ejecutar($sql);
         }
@@ -58,7 +58,7 @@ class Persona {
     public function eliminar() {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
-            $sql = "UPDATE Persona SET estadoPersona = 0 WHERE NroDni = '{$this->NroDni}'";
+            $sql = "UPDATE persona SET estadoPersona = 0 WHERE NroDni = '{$this->NroDni}'";
             $resultado = $this->objPdo->Ejecutar($sql);
         }
         return $resultado;
@@ -68,7 +68,7 @@ class Persona {
     public function modificar() {
         $resultado = -1;
         if ($this->objPdo->Iniciar()) {
-            $sql = "UPDATE Persona 
+            $sql = "UPDATE persona 
                     SET Nombre='{$this->Nombre}', Apellido='{$this->Apellido}', fechaNac='{$this->fechaNac}', Telefono='{$this->Telefono}', Domicilio='{$this->Domicilio}'
                     WHERE NroDni='{$this->NroDni}' AND estadoPersona = 1";
             $resultado = $this->objPdo->Ejecutar($sql);
@@ -82,7 +82,7 @@ class Persona {
         $dniABuscar = trim($dniABuscar);
 
         if ($this->objPdo->Iniciar()) {
-            $sql = "SELECT * FROM Persona WHERE TRIM(CAST(NroDni AS CHAR)) = '{$dniABuscar}' AND estadoPersona = 1";
+            $sql = "SELECT * FROM persona WHERE TRIM(CAST(NroDni AS CHAR)) = '{$dniABuscar}' AND estadoPersona = 1";
             $this->objPdo->Ejecutar($sql);
             $fila = $this->objPdo->Registro();
 
@@ -105,7 +105,7 @@ class Persona {
     public function listar() {
         $personas = [];
         if ($this->objPdo->Iniciar()) {
-            $sql = "SELECT * FROM Persona WHERE estadoPersona = 1";
+            $sql = "SELECT * FROM persona WHERE estadoPersona = 1";
             $cant = $this->objPdo->Ejecutar($sql);
             if ($cant > 0) {
                 while ($fila = $this->objPdo->Registro()) {
