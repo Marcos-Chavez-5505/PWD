@@ -351,29 +351,30 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Ejercicio 8 TP4 (DNI, Patente)
+// Ejercicio 4-8 TP4 (DNI, Patente)
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("cambioDuenioForm");
+    const form = document.getElementById("patenteForm");
+    if (!form) return; // si no existe el form, salimos
+
+    const dni = document.getElementById("nroDni"); // puede existir o no
+    const patente = document.getElementById("patente");
 
     form.addEventListener("submit", function (event) {
         let isValid = true;
 
-        const dni = document.getElementById("nroDni");
-        const patente = document.getElementById("patente");
-
-        // Resetear errores previos
+        // Resetear errores previos (sólo en los inputs que existen)
         [dni, patente].forEach(input => {
-            input.classList.remove("is-invalid");
+            if (input) input.classList.remove("is-invalid");
         });
 
-        // Validar DNI (solo números, de 1 o más dígitos)
-        if (!dni.value || !/^[0-9]+$/.test(dni.value)) {
+        // Validar DNI (si existe el campo)
+        if (dni && (!dni.value || !/^[0-9]+$/.test(dni.value))) {
             dni.classList.add("is-invalid");
             isValid = false;
         }
 
         // Validar Patente (formato ABC123)
-        if (!patente.value || !/^[A-Z]{3}[0-9]{3}$/.test(patente.value.toUpperCase())) {
+        if (!patente.value || !/^[A-Z]{3}[0-9]{3}$/.test(patente.value.trim().toUpperCase())) {
             patente.classList.add("is-invalid");
             isValid = false;
         }
@@ -384,11 +385,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Quitar error en tiempo real
-    document.querySelectorAll("#nroDni, #patente").forEach(input => {
-        input.addEventListener("input", function () {
-            input.classList.remove("is-invalid");
-        });
+    // Quitar error en tiempo real (sólo en inputs existentes)
+    ["#nroDni", "#patente"].forEach(sel => {
+        const input = document.querySelector(sel);
+        if (input) {
+            input.addEventListener("input", function () {
+                input.classList.remove("is-invalid");
+            });
+        }
     });
 });
 
@@ -421,9 +425,9 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         let isValid = true;
 
-        // Validar Patente (ej: ABC123 o AB123CD)
-        const patenteRegex = /^[A-Z]{2,3}\d{3,4}[A-Z]{0,2}$/i;
-        if (!patente.value || !patenteRegex.test(patente.value.trim())) {
+        // Validar Patente (formato ABC123)
+        const patenteRegex = /^[A-Z]{3}[0-9]{3}$/;
+        if (!patente.value || !patenteRegex.test(patente.value.trim().toUpperCase())) {
             markInvalid(patente);
             isValid = false;
         } else {

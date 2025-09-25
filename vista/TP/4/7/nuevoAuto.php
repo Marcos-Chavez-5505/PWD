@@ -45,8 +45,8 @@ $personas = $controlPersona->listarPersonas();
                             <form id="autoForm" action="/PWD/vista/TP/4/7/z_accionNuevoAuto.php" method="POST" novalidate>
                                 <div class="mb-3">
                                     <label for="patente" class="form-label">Patente</label>
-                                    <input type="text" class="form-control" id="patente" name="patente" maxlength="10" required>
-                                    <div class="invalid-feedback">Ingrese una patente válida (ej: ABC123 o AB123CD).</div>
+                                    <input type="text" class="form-control" id="patente" name="patente" required>
+                                    <div class="invalid-feedback">Ingrese una patente válida (formato ABC123).</div>
                                 </div>
 
                                 <div class="mb-3">

@@ -1,6 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
 
 $mensaje = "";
 $tipoAlerta = "danger";
