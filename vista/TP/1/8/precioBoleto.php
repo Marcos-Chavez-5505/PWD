@@ -4,20 +4,7 @@
 </head>
 
 <?php
-include_once __DIR__ . "../../../../../control/1/controlEj8.php";
-include_once '../../../estructura/header.php';
-include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de clase
-$valorRecibido = new ValorEncapsulado();
-
-
-// Capturamos los datos usando la función
-$edad       = $valorRecibido->obtenerValor('edad', 0);
-$estudiante = $valorRecibido->obtenerValor('estudiante', 'no');
-
-$entrada = new entradaCine();
-$precio = $entrada->calcularPrecio($edad, $estudiante);
+include_once __DIR__ . "../../../../estructura/header.php";
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100">
@@ -31,7 +18,7 @@ $precio = $entrada->calcularPrecio($edad, $estudiante);
         </p>
 
         <div class="d-grid">
-            <a href="Ejercicio8.php" class="btn btn-secondary">
+            <a href="/PWD/vista/TP/1/8/Ejercicio8.php" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Volver al Formulario
             </a>
         </div>
@@ -39,5 +26,5 @@ $precio = $entrada->calcularPrecio($edad, $estudiante);
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . '../../../../estructura/footer.php';
 ?>

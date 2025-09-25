@@ -14,7 +14,8 @@ include_once '../../../estructura/header.php'
 <main class="d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
         <h3 class="mb-3 text-center">Operaciones Matemáticas</h3>
-        <form id="form7" name="form7" method="POST" action="resultado.php">
+        <form id="form7" name="form7" method="POST" action="/PWD/vista/action/action.php">
+            <input type="text" hidden name="accion" value="resultado">
             
             <div class="mb-3">
                 <label for="numero1" class="form-label">Número 1</label>

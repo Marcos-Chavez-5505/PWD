@@ -4,40 +4,7 @@
 </head>
 
 <?php
-include_once '../../../estructura/header.php';
-include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de clase
-$valorRecibido = new ValorEncapsulado();
-
-// Capturamos los datos usando la función
-$nombre       = $valorRecibido->obtenerValor('nombre');
-$apellido     = $valorRecibido->obtenerValor('apellido');
-$edad         = $valorRecibido->obtenerValor('edad');
-$direccion    = $valorRecibido->obtenerValor('direccion');
-$nivelEstudio = $valorRecibido->obtenerValor('nivelEstudio');
-$genero       = $valorRecibido->obtenerValor('opcion');
-
-
-
-// Capturamos los deportes como array
-$deportes = [];
-if (isset($_POST['deportes']) && is_array($_POST['deportes'])) {
-    $deportes = $_POST['deportes'];
-} elseif (isset($_GET['deportes']) && is_array($_GET['deportes'])) {
-    $deportes = $_GET['deportes'];
-}
-$cantDepo = count($deportes);
-$listDeportes = "";
-$listDeportesFinal = end($deportes);
-foreach ($deportes as $deporte){
-    if ($deporte == $listDeportesFinal){
-        $listDeportes .= $deporte . ".";
-    }else{
-        $listDeportes .= $deporte . ", ";
-    }
-    
-}
+include_once __DIR__ . "../../../../estructura/header.php";
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100">
@@ -62,7 +29,7 @@ foreach ($deportes as $deporte){
         ?>
 
         <div class="d-grid">
-            <a href="Ejercicio6.php" class="btn btn-secondary">
+            <a href="/PWD/vista/TP/1/6/Ejercicio6.php" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Volver al Formulario
             </a>
         </div>
@@ -70,5 +37,5 @@ foreach ($deportes as $deporte){
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . "../../../../estructura/footer.php";
 ?>

@@ -57,6 +57,91 @@ switch ($accion){
 
         include_once __DIR__ . "../../TP/1/4/mostrarDatos4.php";
         break;
+    case 'mostrarDatos5':   //EJERCICIO 5 TP1
+
+        // Capturamos los datos usando la función
+        $nombre       = $encapsulamiento->obtenerValor('nombre');
+        $apellido     = $encapsulamiento->obtenerValor('apellido');
+        $edad         = $encapsulamiento->obtenerValor('edad');
+        $direccion    = $encapsulamiento->obtenerValor('direccion');
+        $nivelEstudio = $encapsulamiento->obtenerValor('nivelEstudio');
+        $genero       = $encapsulamiento->obtenerValor('opcion');
+        include_once __DIR__ . "../../TP/1/5/mostrarDatos5.php";
+        break;
+    case 'mostrarDatos6':   //EJERCICIO 6 TP1
+        
+        // Capturamos los datos usando la función
+        $nombre       = $encapsulamiento->obtenerValor('nombre');
+        $apellido     = $encapsulamiento->obtenerValor('apellido');
+        $edad         = $encapsulamiento->obtenerValor('edad');
+        $direccion    = $encapsulamiento->obtenerValor('direccion');
+        $nivelEstudio = $encapsulamiento->obtenerValor('nivelEstudio');
+        $genero       = $encapsulamiento->obtenerValor('opcion');
+
+        // Capturamos los deportes como array 
+        $deportes = [];
+        if (isset($_POST['deportes']) && is_array($_POST['deportes'])) {
+            $deportes = $_POST['deportes'];
+        } elseif (isset($_GET['deportes']) && is_array($_GET['deportes'])) {
+            $deportes = $_GET['deportes'];
+        }
+        $cantDepo = count($deportes);   //y contamos cuantos deportes hay
+
+        //esta parte es para imprimir por pantalla los deportes que se eligieron
+        $listDeportes = "";
+        $listDeportesFinal = end($deportes);
+        foreach ($deportes as $deporte){
+            if ($deporte == $listDeportesFinal){
+                $listDeportes .= $deporte . ".";
+            }else{
+                $listDeportes .= $deporte . ", ";
+            }
+        }
+        include_once __DIR__ . "../../TP/1/6/mostrarDatos6.php";
+        break;
+    case 'resultado': //EJERCICO 7 TP1
+        include_once __DIR__ . "../../../control/1/controlEj7.php";
+
+        // Capturamos los datos usando la función
+        $num1      = $encapsulamiento->obtenerValor('numero1', 0);
+        $num2      = $encapsulamiento->obtenerValor('numero2', 0);
+        $operacion = $encapsulamiento->obtenerValor('operacion', 'suma');
+
+        $objOpe = new Operaciones();
+        $resultado = $objOpe->operacion($operacion, $num1, $num2);
+
+        // Para mostrar la operación con texto bonito
+        switch($operacion){
+            case "suma":
+                $simbolo = "+";
+                $nombreOperacion = "Suma";
+                break;
+            case "resta":
+                $simbolo = "-";
+                $nombreOperacion = "Resta";
+                break;
+            case "multiplicacion":
+                $simbolo = "×";
+                $nombreOperacion = "Multiplicación";
+                break;
+            default:
+                $simbolo = "?";
+                $nombreOperacion = "Desconocida";
+        }
+
+        include_once __DIR__ . "../../TP/1/7/resultado.php";
+        break;
+    case 'precioBoleto': //EJERCICIO 8 TP1
+        include_once __DIR__ . "../../../control/1/controlEj8.php";
+        // Capturamos los datos usando la función
+        $edad       = $encapsulamiento->obtenerValor('edad', 0);
+        $estudiante = $encapsulamiento->obtenerValor('estudiante', 'no');
+
+        $entrada = new entradaCine();
+        $precio = $entrada->calcularPrecio($edad, $estudiante);
+
+        include_once __DIR__ . "../../TP/1/8/precioBoleto.php";
+        break;
     //----------------------------------------TP3----------------------------------------\\
     case 'subirPdfDoc':   //EJERCICIO 1 TP3
         include_once __DIR__ . "../../../control/3/controlEJ1.php";

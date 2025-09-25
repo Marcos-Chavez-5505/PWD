@@ -4,40 +4,7 @@
 </head>
 
 <?php
-include_once __DIR__ . "../../../../../control/1/controlEj7.php";
-include_once '../../../estructura/header.php';
-include_once __DIR__ . "../../../../../control/valorEncapsulado.php";
-
-// Crear instancia de clase
-$valorRecibido = new ValorEncapsulado();
-
-
-// Capturamos los datos usando la función
-$num1      = $valorRecibido->obtenerValor('numero1', 0);
-$num2      = $valorRecibido->obtenerValor('numero2', 0);
-$operacion = $valorRecibido->obtenerValor('operacion', 'suma');
-
-$objOpe = new Operaciones();
-$resultado = $objOpe->operacion($operacion, $num1, $num2);
-
-// Para mostrar la operación con texto bonito
-switch($operacion){
-    case "suma":
-        $simbolo = "+";
-        $nombreOperacion = "Suma";
-        break;
-    case "resta":
-        $simbolo = "-";
-        $nombreOperacion = "Resta";
-        break;
-    case "multiplicacion":
-        $simbolo = "×";
-        $nombreOperacion = "Multiplicación";
-        break;
-    default:
-        $simbolo = "?";
-        $nombreOperacion = "Desconocida";
-}
+include_once __DIR__ . "../../../../estructura/header.php";
 ?>
 
 <main class="d-flex justify-content-center align-items-center vh-100">
@@ -50,7 +17,7 @@ switch($operacion){
         </p>
 
         <div class="d-grid">
-            <a href="Ejercicio7.php" class="btn btn-secondary">
+            <a href="/PWD/vista/TP/1/7/Ejercicio7.php" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Volver al Formulario
             </a>
         </div>
@@ -58,5 +25,5 @@ switch($operacion){
 </main>
 
 <?php
-include_once '../../../estructura/footer.php';
+include_once __DIR__ . "../../../../estructura/footer.php";
 ?>
