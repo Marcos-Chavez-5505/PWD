@@ -83,8 +83,8 @@ if ($_POST) {
                                 <i class="bi bi-arrow-left-circle"></i> Volver
                             </a>
                             <br><br>
-                            <a href="/PWD/vista/TP/4/5/listarPersonas.php" class="btn btn-primary">
-                                <i class="bi bi-people-fill"></i> Ver listado de personas
+                            <a href="/PWD/vista/TP/4/3/VerAutos.php" class="btn btn-primary">
+                                <i class="bi bi-people-fill"></i> Ver Autos
                             </a>
                         </div>
                     </div>

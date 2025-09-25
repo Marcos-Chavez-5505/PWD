@@ -27,10 +27,10 @@ $personas = $controlPersona->listarPersonas();
     <!-- Header -->
     <?php include_once '../../../estructura/header.php'; ?>
 
-    <main class="container py-5">
+   <main class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-lg rounded-3">
+            <div class="col-12">
+                <div class="card shadow-lg rounded-3 mx-auto" style="max-width: 900px;">
                     <div class="card-body">
                         <h1 class="card-title text-center mb-4">
                             <i class="bi bi-car-front-fill"></i> Nuevo Auto
@@ -87,6 +87,8 @@ $personas = $controlPersona->listarPersonas();
             </div>
         </div>
     </main>
+
+
 
     <!-- Footer -->
     <?php include_once '../../../estructura/footer.php'; ?>

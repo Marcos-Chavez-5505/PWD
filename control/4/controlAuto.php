@@ -116,5 +116,27 @@ class ControlAuto {
 
         return $autos;
     }
+
+    // Listar todos los autos
+    public function listarTodosLosAutos() {
+        $autos = [];
+
+        if ($this->objPdo->Iniciar()) {
+            $sql = "SELECT v.Patente, v.Marca, v.Modelo, v.estadoAuto,
+                        p.nroDni, p.nombre, p.apellido
+                    FROM auto v
+                    INNER JOIN persona p ON v.DniDuenio = p.nroDni
+                    WHERE v.estadoAuto = TRUE"; // solo autos activos
+
+            $cant = $this->objPdo->Ejecutar($sql);
+            if ($cant > 0) {
+                while ($fila = $this->objPdo->Registro()) {
+                    $autos[] = $fila;
+                }
+            }
+        }
+
+        return $autos;
+    }
 }
 ?>

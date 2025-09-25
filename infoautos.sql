@@ -107,12 +107,12 @@
 
 
     INSERT INTO `auto` (`Patente`, `Marca`, `Modelo`, `DniDuenio`) VALUES 
-    ('ADC 152', 'Fiat Uno', 98, '28326986'),
-    ('POL 968', 'Renault 12', 77, '28326986'),
-    ('KJU 952', 'Ford Fiesta', 2006, '25963874'),
-    ('UYH 985', 'Fiat Palio', 95, '30875962'),
-    ('LKI 865', 'Fiat Siena', 90, '28326986'),
-    ('SDC 965', 'Peugeot 205', 88, '30875962');
+    ('ADC152', 'Fiat Uno', 98, '28326986'),
+    ('POL968', 'Renault 12', 77, '28326986'),
+    ('KJU952', 'Ford Fiesta', 2006, '25963874'),
+    ('UYH985', 'Fiat Palio', 95, '30875962'),
+    ('LKI865', 'Fiat Siena', 90, '28326986'),
+    ('SDC965', 'Peugeot 205', 88, '30875962');
 
     ALTER TABLE `auto`
     ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`DniDuenio`) REFERENCES `persona` (`NroDni`)

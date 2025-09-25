@@ -186,5 +186,9 @@ class Auto {
 
         return $resultado;
     }
+
+
 }
+
+
 ?>
