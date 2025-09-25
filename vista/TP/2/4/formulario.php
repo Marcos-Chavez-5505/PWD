@@ -21,7 +21,8 @@
                     <h5 class="mb-0"><i class="bi bi-pencil-square"></i> Cinem@s</h5>
                 </div>
                 <div class="card-body">
-                    <form id="peliculaForm" action="pelicula.php" method="POST" novalidate>
+                    <form id="peliculaForm" action="/PWD/vista/action/action.php" method="POST" novalidate>
+                        <input type="text" hidden name="accion" value="pelicula">
                         
                         <div class="row">
                             <!-- Título -->
