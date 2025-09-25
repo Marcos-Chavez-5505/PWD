@@ -74,7 +74,7 @@ if ($_POST) {
                         </div>
 
                         <div class="mt-4">
-                            <a href="NuevaPersona.php" class="btn btn-secondary me-2">
+                            <a href="/PWD/vista/TP/4/6/nuevaPersona.php" class="btn btn-secondary me-2">
                                 <i class="bi bi-arrow-left-circle"></i> Volver
                             </a>
                             <br>

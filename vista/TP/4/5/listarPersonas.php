@@ -64,7 +64,7 @@ $personas = $control->listarPersonas();
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="../../4/4/nuevaPersona.php" class="btn btn-success">
+                    <a href="/PWD/vista/TP/4/6/nuevaPersona.php" class="btn btn-success">
                         <i class="bi bi-person-plus-fill"></i> Nueva Persona
                     </a>
                 </div>

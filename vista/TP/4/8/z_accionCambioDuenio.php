@@ -65,7 +65,7 @@ if ($nroDni != 0 && $patente != 0) {
             <?= $mensaje ?>
         </div>
         <div class="text-center mt-4">
-            <a href="./cambioDuenio.php" class="btn btn-secondary m-2">Volver</a>
+            <a href="/PWD/vista/TP/4/8/CambioDuenio.php" class="btn btn-secondary m-2">Volver</a>
             <!-- <a href="../3/listarPersonas.php" class="btn btn-primary m-2">Ver listado de personas</a> -->
         </div>
     </div>

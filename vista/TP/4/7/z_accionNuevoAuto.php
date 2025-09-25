@@ -79,11 +79,11 @@ if ($_POST) {
                                 </a>
                             <?php endif; ?>
 
-                            <a href="NuevoAuto.php" class="btn btn-secondary me-2">
+                            <a href="/PWD/vista/TP/4/7/nuevoAuto.php" class="btn btn-secondary me-2">
                                 <i class="bi bi-arrow-left-circle"></i> Volver
                             </a>
                             <br><br>
-                            <a href="../3/listarPersonas.php" class="btn btn-primary">
+                            <a href="/PWD/vista/TP/4/5/listarPersonas.php" class="btn btn-primary">
                                 <i class="bi bi-people-fill"></i> Ver listado de personas
                             </a>
                         </div>
