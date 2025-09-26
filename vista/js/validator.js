@@ -1,31 +1,33 @@
 //TP1 EJERCICIO 2
-$(document).ready(function () {
-    const $formulario = $("#formulario2");
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.getElementById("formulario2");
+    //creamos el arreglos con los dias
     const dias = ["lunes", "martes", "miercoles", "jueves", "viernes"];
 
-    function validarCampo($input, $error) {
-        const valor = $input.val().trim();
+    // Función para validar un input específico
+    function validarCampo(input, error) {
+        const valor = input.value.trim();
 
         if (valor === "") {
-            $error.text(" Debes ingresar un número (usa 0 si no cursas)");
+            error.textContent = " Debes ingresar un número (usa 0 si no cursas)";
             return false;
         } else if (isNaN(valor)) {
-            $error.text(" Solo se permiten valores numéricos");
+            error.textContent = " Solo se permiten valores numéricos";
             return false;
         } else {
-            $error.text("");
+            error.textContent = "";
             return true;
         }
     }
-
-    $formulario.on("submit", function (event) {
+    // Validación al enviar
+    formulario.addEventListener("submit", function(event) {
         let valido = true;
 
         dias.forEach(dia => {
-            const $input = $("#" + dia);
-            const $error = $("#error-" + dia);
+            const input = document.getElementById(dia);
+            const error = document.getElementById("error-" + dia);
 
-            if (!validarCampo($input, $error)) {
+            if (!validarCampo(input, error)) {
                 valido = false;
             }
         });
@@ -34,196 +36,303 @@ $(document).ready(function () {
             event.preventDefault();
         }
     });
-
+    // Validación en tiempo real (cuando el usuario escribe  o cambia)
     dias.forEach(dia => {
-        const $input = $("#" + dia);
-        const $error = $("#error-" + dia);
+        const input = document.getElementById(dia);
+        const error = document.getElementById("error-" + dia);
 
-        $input.on("input", function () {
-            validarCampo($input, $error);
+        input.addEventListener("input", () => {
+            validarCampo(input, error);
         });
     });
 });
 
-
-//TP1 EJERCICIO 3, 5 y 6
-$(document).ready(function () {
+//TP1 EJERCICIO 3
+document.addEventListener("DOMContentLoaded", function () {
     const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
 
-    $("#nombre, #apellido").on("input", function () {
-        if (!soloLetras.test($(this).val())) {
-            $(this).val($(this).val().replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, ""));
-        }
+    document.querySelectorAll("#nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            if (!soloLetras.test(this.value)) {
+                // Reemplaza todo lo que no sea letra o espacio
+                this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+            }
+        });
+    });
+});
+
+//TP1 EJERCICIO 4
+document.addEventListener("DOMContentLoaded", function () {
+    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    document.querySelectorAll("#nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            if (!soloLetras.test(this.value)) {
+                // Reemplaza todo lo que no sea letra o espacio
+                this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+            }
+        });
+    });
+});
+
+//TP1 EJERCICIO 5
+document.addEventListener("DOMContentLoaded", function () {
+    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    document.querySelectorAll("#nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            if (!soloLetras.test(this.value)) {
+                // Reemplaza todo lo que no sea letra o espacio
+                this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+            }
+        });
+    });
+});
+
+//TP1 EJERCICIO 6
+document.addEventListener("DOMContentLoaded", function () {
+    const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    document.querySelectorAll("#nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            if (!soloLetras.test(this.value)) {
+                // Reemplaza todo lo que no sea letra o espacio
+                this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+            }
+        });
     });
 });
 
 
 // Ejercio 3 TP 2 - Login
-$(document).ready(function () {
-    const $form = $("#loginForm");
-    const $username = $("#username");
-    const $password = $("#password");
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("loginForm");
 
-    $form.on("submit", function (event) {
+    form.addEventListener("submit", function(event) {
         let isValid = true;
 
-        $username.removeClass("is-invalid");
-        $password.removeClass("is-invalid");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
 
-        if (!$username.val() || $username.val().length < 4) {
-            $username.addClass("is-invalid");
+        // Reiniciar clases de error
+        username.classList.remove("is-invalid");
+        password.classList.remove("is-invalid");
+
+        // Validar usuario
+        if (!username.value || username.value.length < 4) {
+            username.classList.add("is-invalid");
             isValid = false;
         }
 
+        // Validar contraseña
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/;
-        if (!$password.val() || $password.val().length < 8 || !passwordRegex.test($password.val())) {
-            $password.addClass("is-invalid");
+        if (!password.value || password.value.length < 8 || !passwordRegex.test(password.value)) {
+            password.classList.add("is-invalid");
             isValid = false;
         }
 
-        if ($password.val() === $username.val()) {
-            $password.addClass("is-invalid");
+        // Contraseña diferente a usuario
+        if (password.value === username.value) {
+            password.classList.add("is-invalid");
             isValid = false;
         }
 
         if (!isValid) {
-            event.preventDefault();
+            event.preventDefault(); 
         }
     });
 
-    $form.find("input").on("input", function () {
-        $(this).removeClass("is-invalid");
+    const inputs = form.querySelectorAll("input");
+    inputs.forEach(input => {
+        input.addEventListener("input", () => input.classList.remove("is-invalid"));
     });
 });
+
 
 
 // Ejercio 4 TP 2 - Película
 // Ejercicio 3 TP 3 - Película
-$(document).ready(function () {
-    const $form = $("#peliculaForm");
-    if (!$form.length) return;
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("peliculaForm");
+  if (!form) return; // única salida
 
-    const fields = {
-        titulo: $("#titulo"),
-        actores: $("#actores"),
-        director: $("#director"),
-        guion: $("#guion"),
-        produccion: $("#produccion"),
-        anio: $("#anio"),
-        duracion: $("#duracion"),
-        nacionalidad: $("#nacionalidad"),
-        genero: $("#genero"),
-        sinopsis: $("#sinopsis")
-    };
+  const fields = {
+    titulo: document.getElementById("titulo"),
+    actores: document.getElementById("actores"),
+    director: document.getElementById("director"),
+    guion: document.getElementById("guion"),
+    produccion: document.getElementById("produccion"),
+    anio: document.getElementById("anio"),
+    duracion: document.getElementById("duracion"),
+    nacionalidad: document.getElementById("nacionalidad"),
+    genero: document.getElementById("genero"),
+    sinopsis: document.getElementById("sinopsis"),
+  };
 
-    const $restriccionRadios = $('input[name="restriccion"]');
+  const restriccionRadios = Array.from(
+    document.querySelectorAll('input[name="restriccion"]')
+  );
 
-    const markInvalid = (el) => el.addClass("is-invalid");
-    const markValid = (el) => el.addClass("is-valid");
-    const unmarkInvalid = (el) => el.removeClass("is-invalid");
-    const unmarkValid = (el) => el.removeClass("is-valid");
+  const markInvalid = (el) => el && el.classList.add("is-invalid");
+  const markValid = (el) => el && el.classList.add("is-valid");
+  const unmarkInvalid = (el) => el && el.classList.remove("is-invalid");
+  const unmarkValid = (el) => el && el.classList.remove("is-valid");
 
-    $.each(fields, function (_, $el) {
-        $el.on("input", function () {
-            unmarkInvalid($el);
-            unmarkValid($el);
-        });
+  // Limpiar clases al escribir/cambiar
+  Object.values(fields).forEach((el) => {
+    if (el) el.addEventListener("input", () => {
+      unmarkInvalid(el);
+      unmarkValid(el);
+    });
+  });
+  restriccionRadios.forEach((r) =>
+    r.addEventListener("change", () => {
+      restriccionRadios.forEach((radio) => {
+        unmarkInvalid(radio);
+        markValid(radio);
+      });
+    })
+  );
+
+  form.addEventListener("submit", function (event) {
+    let isValid = true;
+    const currentYear = new Date().getFullYear();
+
+    // Limpiar estados previos
+    Object.values(fields).forEach((el) => {
+      unmarkInvalid(el);
+      unmarkValid(el);
+    });
+    restriccionRadios.forEach((r) => {
+      unmarkInvalid(r);
+      unmarkValid(r);
     });
 
-    $restriccionRadios.on("change", function () {
-        $restriccionRadios.each(function () {
-            unmarkInvalid($(this));
-            markValid($(this));
-        });
-    });
+    // Validaciones
+    if (!fields.titulo.value || fields.titulo.value.trim().length < 2) {
+      markInvalid(fields.titulo);
+      isValid = false;
+    } else {
+      markValid(fields.titulo);
+    }
 
-    $form.on("submit", function (event) {
-        let isValid = true;
-        const currentYear = new Date().getFullYear();
+    if (!fields.actores.value) {
+      markInvalid(fields.actores);
+      isValid = false;
+    } else {
+      markValid(fields.actores);
+    }
 
-        $.each(fields, function (_, $el) {
-            unmarkInvalid($el);
-            unmarkValid($el);
-        });
-        $restriccionRadios.each(function () {
-            unmarkInvalid($(this));
-            unmarkValid($(this));
-        });
+    if (!fields.director.value) {
+      markInvalid(fields.director);
+      isValid = false;
+    } else {
+      markValid(fields.director);
+    }
 
-        if (!fields.titulo.val() || fields.titulo.val().trim().length < 2) {
-            markInvalid(fields.titulo);
-            isValid = false;
-        } else { markValid(fields.titulo); }
+    if (!fields.guion.value) {
+      markInvalid(fields.guion);
+      isValid = false;
+    } else {
+      markValid(fields.guion);
+    }
 
-        if (!fields.actores.val()) { markInvalid(fields.actores); isValid = false; } else { markValid(fields.actores); }
-        if (!fields.director.val()) { markInvalid(fields.director); isValid = false; } else { markValid(fields.director); }
-        if (!fields.guion.val()) { markInvalid(fields.guion); isValid = false; } else { markValid(fields.guion); }
-        if (!fields.produccion.val()) { markInvalid(fields.produccion); isValid = false; } else { markValid(fields.produccion); }
+    if (!fields.produccion.value) {
+      markInvalid(fields.produccion);
+      isValid = false;
+    } else {
+      markValid(fields.produccion);
+    }
 
-        const anioNum = parseInt(fields.anio.val(), 10);
-        if (!fields.anio.val() || !/^\d{4}$/.test(fields.anio.val()) || anioNum < 1900 || anioNum > currentYear) {
-            markInvalid(fields.anio); isValid = false;
-        } else { markValid(fields.anio); }
+    const anioNum = parseInt(fields.anio.value, 10);
+    if (!fields.anio.value || !/^\d{4}$/.test(fields.anio.value) || anioNum < 1900 || anioNum > currentYear) {
+      markInvalid(fields.anio);
+      isValid = false;
+    } else {
+      markValid(fields.anio);
+    }
 
-        const duracionNum = parseInt(fields.duracion.val(), 10);
-        if (!fields.duracion.val() || !/^\d{1,3}$/.test(fields.duracion.val()) || duracionNum < 30 || duracionNum > 500) {
-            markInvalid(fields.duracion); isValid = false;
-        } else { markValid(fields.duracion); }
+    const duracionNum = parseInt(fields.duracion.value, 10);
+    if (!fields.duracion.value || !/^\d{1,3}$/.test(fields.duracion.value) || duracionNum < 30 || duracionNum > 500) {
+      markInvalid(fields.duracion);
+      isValid = false;
+    } else {
+      markValid(fields.duracion);
+    }
 
-        if (!fields.nacionalidad.val()) { markInvalid(fields.nacionalidad); isValid = false; } else { markValid(fields.nacionalidad); }
-        if (!fields.genero.val()) { markInvalid(fields.genero); isValid = false; } else { markValid(fields.genero); }
-        if (!fields.sinopsis.val() || fields.sinopsis.val().trim().length < 10) { markInvalid(fields.sinopsis); isValid = false; } else { markValid(fields.sinopsis); }
+    if (!fields.nacionalidad.value) {
+      markInvalid(fields.nacionalidad);
+      isValid = false;
+    } else {
+      markValid(fields.nacionalidad);
+    }
 
-        if (!$restriccionRadios.is(":checked")) {
-            markInvalid($restriccionRadios.first());
-            isValid = false;
-        } else {
-            $restriccionRadios.each(function () {
-                unmarkInvalid($(this));
-                markValid($(this));
-            });
-        }
+    if (!fields.genero.value) {
+      markInvalid(fields.genero);
+      isValid = false;
+    } else {
+      markValid(fields.genero);
+    }
 
-        $form.addClass("was-validated");
+    if (!fields.sinopsis.value || fields.sinopsis.value.trim().length < 10) {
+      markInvalid(fields.sinopsis);
+      isValid = false;
+    } else {
+      markValid(fields.sinopsis);
+    }
 
-        if (!isValid) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    });
+    if (!restriccionRadios.some((r) => r.checked)) {
+      restriccionRadios[0].classList.add("is-invalid");
+      isValid = false;
+    } else {
+      restriccionRadios.forEach((r) => {
+        r.classList.remove("is-invalid");
+        markValid(r);
+      });
+    }
+
+    form.classList.add("was-validated");
+
+    if (!isValid) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
 });
 
 
-// Ejercicio 4 validarPersona.js (versión jQuery)
-$(document).ready(function () {
-    const $form = $("#personaForm");
-    const $dni = $("#nroDni");
-    const $nombre = $("#nombre");
-    const $apellido = $("#apellido");
 
-    $form.on("submit", function (event) {
+// Ejercicio 4 validarPersona.js
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("personaForm");
+
+    form.addEventListener("submit", function (event) {
         let isValid = true;
 
+        const dni = document.getElementById("nroDni");
+        const nombre = document.getElementById("nombre");
+        const apellido = document.getElementById("apellido");
+
         // Resetear errores previos
-        $dni.removeClass("is-invalid");
-        $nombre.removeClass("is-invalid");
-        $apellido.removeClass("is-invalid");
+        [dni, nombre, apellido].forEach(input => {
+            input.classList.remove("is-invalid");
+        });
 
         // Validar DNI (solo números, de 1 o más dígitos)
-        if (!$dni.val() || !/^[0-9]+$/.test($dni.val())) {
-            $dni.addClass("is-invalid");
+        if (!dni.value || !/^[0-9]+$/.test(dni.value)) {
+            dni.classList.add("is-invalid");
             isValid = false;
         }
 
         // Validar Nombre
-        if (!$nombre.val().trim()) {
-            $nombre.addClass("is-invalid");
+        if (!nombre.value.trim()) {
+            nombre.classList.add("is-invalid");
             isValid = false;
         }
 
         // Validar Apellido
-        if (!$apellido.val().trim()) {
-            $apellido.addClass("is-invalid");
+        if (!apellido.value.trim()) {
+            apellido.classList.add("is-invalid");
             isValid = false;
         }
 
@@ -234,36 +343,39 @@ $(document).ready(function () {
     });
 
     // Quitar error en tiempo real
-    $("#nroDni, #nombre, #apellido").on("input", function () {
-        $(this).removeClass("is-invalid");
+    document.querySelectorAll("#nroDni, #nombre, #apellido").forEach(input => {
+        input.addEventListener("input", function () {
+            input.classList.remove("is-invalid");
+        });
     });
 });
 
 
-// Ejercicio 4-8 TP4 (DNI, Patente) con jQuery
-$(document).ready(function () {
-    const $form = $("#patenteForm");
-    if ($form.length === 0) return; // si no existe el form, salimos
+// Ejercicio 4, 8 y 9 TP4 (DNI o Patente)
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("patenteForm");
+    if (!form) return; // si no existe el form, salimos
 
-    const $dni = $("#nroDni");     // puede existir o no
-    const $patente = $("#patente");
+    const dni = document.getElementById("nroDni"); // puede existir o no
+    const patente = document.getElementById("patente"); // puede no existir
 
-    $form.on("submit", function (event) {
+    form.addEventListener("submit", function (event) {
         let isValid = true;
 
-        // Resetear errores previos
-        $dni.removeClass("is-invalid");
-        $patente.removeClass("is-invalid");
+        // Resetear errores solo en los inputs que existen
+        [dni, patente].forEach(input => {
+            if (input) input.classList.remove("is-invalid");
+        });
 
-        // Validar DNI (si existe el campo)
-        if ($dni.length && (!$dni.val() || !/^[0-9]+$/.test($dni.val()))) {
-            $dni.addClass("is-invalid");
+        // Validar DNI
+        if (dni && (!dni.value || !/^[0-9]+$/.test(dni.value))) {
+            dni.classList.add("is-invalid");
             isValid = false;
         }
 
-        // Validar Patente (formato ABC123)
-        if (!$patente.val() || !/^[A-Z]{3}[0-9]{3}$/.test($.trim($patente.val()).toUpperCase())) {
-            $patente.addClass("is-invalid");
+        // Validar Patente solo si existe
+        if (patente && (!patente.value || !/^[A-Z]{3}[0-9]{3}$/.test(patente.value.trim().toUpperCase()))) {
+            patente.classList.add("is-invalid");
             isValid = false;
         }
 
@@ -273,71 +385,76 @@ $(document).ready(function () {
         }
     });
 
-    // Quitar error en tiempo real
-    $dni.on("input", function () {
-        $(this).removeClass("is-invalid");
-    });
-
-    $patente.on("input", function () {
-        $(this).removeClass("is-invalid");
+    // Quitar errores en tiempo real solo en los inputs que existen
+    [dni, patente].forEach(input => {
+        if (input) {
+            input.addEventListener("input", function () {
+                input.classList.remove("is-invalid");
+            });
+        }
     });
 });
+
 
 
 // validator.js - Validación NuevoAuto
-$(document).ready(function () {
-    const $form = $("#autoForm");
-    if ($form.length === 0) return; // si no existe el form, salimos
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("autoForm");
+    if (!form) return; // Salir si no existe el formulario
 
-    const $patente = $("#patente");
-    const $marca = $("#marca");
-    const $modelo = $("#modelo");
-    const $dniDuenio = $("#dniDuenio");
+    const patente = document.getElementById("patente");
+    const marca = document.getElementById("marca");
+    const modelo = document.getElementById("modelo");
+    const dniDuenio = document.getElementById("dniDuenio");
 
-    // Funciones auxiliares
-    function markInvalid($el) { $el.addClass("is-invalid").removeClass("is-valid"); }
-    function markValid($el) { $el.addClass("is-valid").removeClass("is-invalid"); }
-    function unmark($el) { $el.removeClass("is-invalid is-valid"); }
+    // Función para marcar inválido/válido
+    const markInvalid = (el) => el.classList.add("is-invalid");
+    const markValid = (el) => el.classList.add("is-valid");
+    const unmarkInvalid = (el) => el.classList.remove("is-invalid");
+    const unmarkValid = (el) => el.classList.remove("is-valid");
 
     // Limpiar errores en tiempo real
-    $patente.add($marca).add($modelo).add($dniDuenio).on("input change", function () {
-        unmark($(this));
+    [patente, marca, modelo, dniDuenio].forEach(input => {
+        input.addEventListener("input", () => {
+            unmarkInvalid(input);
+            unmarkValid(input);
+        });
     });
 
-    $form.on("submit", function (event) {
+    form.addEventListener("submit", function (event) {
         let isValid = true;
 
         // Validar Patente (formato ABC123)
         const patenteRegex = /^[A-Z]{3}[0-9]{3}$/;
-        if (!$patente.val() || !patenteRegex.test($.trim($patente.val()).toUpperCase())) {
-            markInvalid($patente);
+        if (!patente.value || !patenteRegex.test(patente.value.trim().toUpperCase())) {
+            markInvalid(patente);
             isValid = false;
         } else {
-            markValid($patente);
+            markValid(patente);
         }
 
         // Validar Marca
-        if (!$marca.val().trim()) {
-            markInvalid($marca);
+        if (!marca.value.trim()) {
+            markInvalid(marca);
             isValid = false;
         } else {
-            markValid($marca);
+            markValid(marca);
         }
 
         // Validar Modelo
-        if (!$modelo.val().trim()) {
-            markInvalid($modelo);
+        if (!modelo.value.trim()) {
+            markInvalid(modelo);
             isValid = false;
         } else {
-            markValid($modelo);
+            markValid(modelo);
         }
 
-        // Validar Dueño (select obligatorio)
-        if (!$dniDuenio.val()) {
-            markInvalid($dniDuenio);
+        // Validar Dueño (debe seleccionar una persona)
+        if (!dniDuenio.value) {
+            markInvalid(dniDuenio);
             isValid = false;
         } else {
-            markValid($dniDuenio);
+            markValid(dniDuenio);
         }
 
         if (!isValid) {

@@ -20,7 +20,7 @@
     <main class="container py-5 my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Buscar una Persona:</h3>
-            <form id="buscarPersonaForm" action="/PWD/vista/action/action.php" method="post" novalidate>
+            <form id="patenteForm" action="/PWD/vista/action/action.php" method="post" novalidate>
                 <input type="text" hidden name="accion" value="buscarPersona">
 
                 <div class="mb-3">
