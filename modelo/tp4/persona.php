@@ -115,5 +115,27 @@ class Persona {
         }
         return $personas;
     }
+
+    // Agregar auto a la coleccion 
+    public function agregarAuto($auto) {
+        $resultado = false;
+
+        if ($auto instanceof Auto) {
+            $existe = false;
+            foreach ($this->colAutos as $a) {
+                if ($a->getPatente() === $auto->getPatente()) {
+                    $existe = true;
+                }
+            }
+            if (!$existe) {
+                $this->colAutos[] = $auto;
+                $resultado = true;
+            }
+        }
+
+        return $resultado;
+    }
+
+
 }
 ?>
