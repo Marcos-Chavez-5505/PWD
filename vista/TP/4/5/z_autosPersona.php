@@ -59,7 +59,7 @@
                 <?php endif; ?>
 
                 <div class="mt-4 text-center">
-                    <a href="listarPersonas.php" class="btn btn-secondary">
+                    <a href="/PWD/vista/TP/4/5/listarPersonas.php" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Volver al listado
                     </a>
                 </div>
