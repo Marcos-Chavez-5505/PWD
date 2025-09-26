@@ -1,54 +1,3 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
-
-$mensaje = "";
-$tipoAlerta = "danger";
-
-$valorRecibido = new ValorEncapsulado();
-
-$patente   = $valorRecibido->obtenerValor('patente') ?? '';
-$marca     = $valorRecibido->obtenerValor('marca') ?? '';
-$modelo    = $valorRecibido->obtenerValor('modelo') ?? '';
-$dniDuenio = $valorRecibido->obtenerValor('dniDuenio') ?? '';
-
-
-
-if ($patente != 0 && $marca != 0 && $modelo != 0 && $dniDuenio != 0) {
-
-    $controlPersona = new ControlPersona();
-    $duenio = $controlPersona->obtenerPersona($dniDuenio);
-
-    if ($duenio) {
-        $controlAuto = new ControlAuto();
-        $nuevoAuto = [
-            'patente'   => $patente,
-            'marca'     => $marca,
-            'modelo'    => $modelo,
-            'dniDuenio' => $dniDuenio
-        ];
-
-        $resultado = $controlAuto->insertarAuto($nuevoAuto);
-
-        if ($resultado === 1) {
-            $mensaje = "✅ Auto cargado correctamente.";
-            $tipoAlerta = "success";
-        } elseif ($resultado === -1) {
-            $mensaje = "⚠️ Error: la patente ya existe en la base de datos.";
-            $tipoAlerta = "warning";
-        } else {
-            $mensaje = "❌ Error inesperado al insertar el auto.";
-        }
-    } else {
-        $mensaje = "⚠️ El dueño con DNI $dniDuenio no existe en la base de datos.";
-        $tipoAlerta = "danger";
-    }
-} else {
-    $mensaje = "⚠️ No se recibieron datos.";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,7 +16,7 @@ if ($patente != 0 && $marca != 0 && $modelo != 0 && $dniDuenio != 0) {
 <body>
 
     <!-- Header -->
-    <?php include_once '../../../estructura/header.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
     <main class="container py-5">
         <div class="row justify-content-center">
@@ -100,7 +49,7 @@ if ($patente != 0 && $marca != 0 && $modelo != 0 && $dniDuenio != 0) {
     </main>
 
     <!-- Footer -->
-    <?php include_once '../../../estructura/footer.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

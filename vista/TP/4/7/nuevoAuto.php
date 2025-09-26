@@ -27,7 +27,7 @@ $personas = $controlPersona->listarPersonas();
     <!-- Header -->
     <?php include_once '../../../estructura/header.php'; ?>
 
-   <main class="container py-5">
+    <main class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="card shadow-lg rounded-3 mx-auto" style="max-width: 900px;">
@@ -42,7 +42,8 @@ $personas = $controlPersona->listarPersonas();
                                 <a href="../../4/4/nuevaPersona.php" class="alert-link">Cargar nueva persona</a>
                             </div>
                         <?php else: ?>
-                            <form id="autoForm" action="/PWD/vista/TP/4/7/z_accionNuevoAuto.php" method="POST" novalidate>
+                            <form id="autoForm" action="/PWD/vista/action/action.php" method="POST" novalidate>
+                                <input type="text" hidden name="accion" value="nuevoAuto">
                                 <div class="mb-3">
                                     <label for="patente" class="form-label">Patente</label>
                                     <input type="text" class="form-control" id="patente" name="patente" required>

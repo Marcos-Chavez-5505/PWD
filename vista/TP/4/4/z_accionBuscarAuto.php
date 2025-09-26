@@ -1,45 +1,4 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
-
-$valorRecibido = new ValorEncapsulado();
-
-$patente = $valorRecibido->obtenerValor('patente');
-
-$mensaje = "";
-$tipoAlerta = "d-none"; // default
-$esconder = "";
-
-if ($patente != 0){
-
-    $control = new ControlAuto();
-    $auto = $control->obtenerAuto($patente);
-
-    // Verificamos si existe el auto
-    if (!$auto) {
-        $mensaje = "Error: El auto con patente: ".$patente." no existe en la base de datos.";
-        $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
-        $esconder = "d-none";
-    } 
-    // Devuelve los datos del auto
-    else {
-        $datosAuto = [
-            'patente'   => $patente,
-            'marca'     => $auto->getMarca(),
-            'modelo'    => $auto->getModelo(),
-            'nombre'    => $auto->getObjDuenio()->getNombre() ?? '',
-            'apellido'  => $auto->getObjDuenio()->getApellido() ?? ''
-        ];
-    }
-
-} else {
-    $mensaje = "No se recibieron datos.";
-    $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
-    $esconder = "d-none";
-}
-?>
-
-<?php include_once '../../../estructura/header.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -89,4 +48,4 @@ if ($patente != 0){
 </body>
 </html>
 
-<?php include_once '../../../estructura/footer.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>

@@ -1,46 +1,4 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
-
-$valorRecibido = new ValorEncapsulado();
-
-$nroDni = $valorRecibido->obtenerValor('dni');
-
-$mensaje = "";
-$tipoAlerta = "d-none"; // default
-$formulario = "";
-
-if ($nroDni != 0) {
-
-    $control = new ControlPersona();
-    $persona = $control->obtenerPersona($nroDni);
-
-    // Verificamos si existe la persona
-    if (!$persona) {
-        $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
-        $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
-        $formulario = "d-none";
-    } 
-    // Devuelve los datos de la persona
-    else {
-        $datosPersona = [
-            'nroDni'    => $nroDni,
-            'nombre'    => $persona->getNombre(),
-            'apellido'  => $persona->getApellido(),
-            'fechaNac'  => $persona->getFechaNac(),
-            'telefono'  => $persona->getTelefono(),
-            'domicilio' => $persona->getDomicilio()
-        ];
-    }
-
-} else {
-    $mensaje = "No se recibieron datos.";
-    $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
-    $formulario = "d-none";
-}
-?>
-
-<?php include_once '../../../estructura/header.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -48,8 +6,8 @@ if ($nroDni != 0) {
     <meta charset="UTF-8">
     <title>Resultado Buscar Persona</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/header-footer.css">
-    <link rel="stylesheet" href="../../../../home/fonts/css/all.min.css">
+    <link rel="stylesheet" href="/PWD/vista/css/header-footer.css">
+    <link rel="stylesheet" href="/PWD/home/fonts/css/all.min.css">
 </head>
 <body>
     <main class="container py-5 my-5 d-flex justify-content-center">
@@ -59,9 +17,9 @@ if ($nroDni != 0) {
                 <?= $mensaje ?>
             </div>
 
-
             <h3 class="text-center mb-4 <?= $formulario ?>">Información de la persona solicitada</h3>
-            <form id="personaUpdateForm" action="z_actualizarDatosPersona.php" method="post" class="<?= $formulario ?>">
+            <form id="personaUpdateForm" action="/PWD/vista/action/action.php" method="post" class="<?= $formulario ?>" novalidate>
+                <input type="text" hidden name="accion" value="actualizarPersona">
 
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
@@ -108,4 +66,4 @@ if ($nroDni != 0) {
 </body>
 </html>
 
-<?php include_once '../../../estructura/footer.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>

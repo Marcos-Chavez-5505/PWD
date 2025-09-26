@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '../../conector/conector.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/conector/conector.php';
 
 class Persona {
     private $NroDni;

@@ -1,51 +1,3 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/4/controlPersona.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
-
-$mensaje = "";
-$tipoAlerta = "danger";
-
-$valorRecibido = new ValorEncapsulado();
-
-$dni       = $valorRecibido->obtenerValor('nroDni') ?? '';
-$nombre    = $valorRecibido->obtenerValor('nombre') ?? '';
-$apellido  = $valorRecibido->obtenerValor('apellido') ?? '';
-$fechaNac  = $valorRecibido->obtenerValor('fechaNac') ?? null;
-$telefono  = $valorRecibido->obtenerValor('telefono') ?? '';
-$domicilio = $valorRecibido->obtenerValor('domicilio') ?? '';
-
-if ($dni) {
-    
-    $control = new ControlPersona();
-
-    // Array con claves que espera ControlPersona
-    $nuevaPersona = [
-        'nroDni'    => $dni,
-        'nombre'    => $nombre,
-        'apellido'  => $apellido,
-        'fechaNac'  => $fechaNac,
-        'telefono'  => $telefono,
-        'domicilio' => $domicilio
-    ];
-
-    // Insertamos la persona
-    // Emojis apropositos, no me digan gpt
-    $resultado = $control->insertarPersona($nuevaPersona);
-
-    if ($resultado === 1) {
-        $mensaje = "✅ Persona cargada correctamente.";
-        $tipoAlerta = "success";
-    } elseif ($resultado === -1) {
-        $mensaje = "⚠️ Error: la persona ya existe en la base de datos.";
-        $tipoAlerta = "warning";
-    } else {
-        $mensaje = "❌ Error inesperado.";
-    }
-} else {
-    $mensaje = "⚠️ No se recibieron datos.";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -65,7 +17,7 @@ if ($dni) {
 <body>
 
     <!-- Header -->
-    <?php include_once '../../../estructura/header.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
     <main class="container py-5">
         <div class="row justify-content-center">
@@ -93,7 +45,7 @@ if ($dni) {
     </main>
 
     <!-- Footer -->
-    <?php include_once '../../../estructura/footer.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

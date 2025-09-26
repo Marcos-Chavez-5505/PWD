@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../modelo/tp4/persona.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp4/persona.php';
 
 class ControlPersona {
     private $objPdo;

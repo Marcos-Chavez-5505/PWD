@@ -1,6 +1,4 @@
-<?php
-include_once '../../../estructura/header.php';
-?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -22,11 +20,12 @@ include_once '../../../estructura/header.php';
     <main class="container py-5 my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cambiar Dueño del Auto</h3>
-            <form id="patenteForm" action="z_accionCambioDuenio.php" method="post">
+            <form id="patenteForm" action="/PWD/vista/action/action.php" method="post" novalidate>
+                <input type="text" hidden name="accion" value="cambioDuenio">
 
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
-                    <input type="text" name="dni" id="nroDni" class="form-control" required>
+                    <input type="text" name="nroDni" id="nroDni" class="form-control" required>
                     <div class="invalid-feedback">El DNI es obligatorio y debe ser un número.</div>
                 </div>
 
@@ -44,7 +43,7 @@ include_once '../../../estructura/header.php';
     </main>
 
     <!-- Footer -->
-    <?php include_once '../../../estructura/footer.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>
 
     <!-- Scripts Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

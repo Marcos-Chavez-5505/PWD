@@ -1,27 +1,3 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
-
-$valorRecibido = new ValorEncapsulado();
-$dni = $valorRecibido->obtenerValor('dni');
-
-if (!$dni) {
-    die("DNI no recibido.");
-}
-
-$control = new ControlPersona();
-$persona = $control->obtenerPersona($dni);
-
-if (!$persona) {
-    die("Persona no encontrada.");
-}
-
-// Obtener autos asociados
-$controlAuto = new ControlAuto();
-$autos = $controlAuto->listarAutosPorDni($dni); 
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,7 +17,7 @@ $autos = $controlAuto->listarAutosPorDni($dni);
 <body>
 
     <!-- Header -->
-    <?php include_once '../../../estructura/header.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
     <main class="container py-5">
         <div class="card shadow-lg rounded-3">
@@ -92,7 +68,7 @@ $autos = $controlAuto->listarAutosPorDni($dni);
     </main>
 
     <!-- Footer -->
-    <?php include_once '../../../estructura/footer.php'; ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/footer.php'; ?>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

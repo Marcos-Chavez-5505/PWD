@@ -1,5 +1,8 @@
 <?php
-include_once __DIR__ . "../../../control/valorEncapsulado.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/4/controlAuto.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/4/controlPersona.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD/control/valorEncapsulado.php";
+
 $encapsulamiento = new ValorEncapsulado; //usen esto para agarrar los campos
 
 $accion = $encapsulamiento->obtenerValor('accion');
@@ -251,6 +254,241 @@ switch ($accion){
         $controlEJ3 = new controlEJ3;
         $mensaje = $controlEJ3->moveImage();
         include_once __DIR__ . "/../TP/3/3/mostrarPeli.php";
+        break;
+    //*----------------------------------------TP4----------------------------------------*\\
+    case 'buscarAuto':  //*EJERCICIO 4 TP4
+        $patente = $encapsulamiento->obtenerValor('patente');
+        $mensaje = "";
+        $tipoAlerta = "d-none"; // default
+        $esconder = "";
+        if ($patente != 0){
+            $control = new ControlAuto();
+            $auto = $control->obtenerAuto($patente);
+            // Verificamos si existe el auto
+            if (!$auto) {
+                $mensaje = "Error: El auto con patente: ".$patente." no existe en la base de datos.";
+                $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
+                $esconder = "d-none";
+            } 
+            // Devuelve los datos del auto
+            else {
+                $datosAuto = [
+                    'patente'   => $patente,
+                    'marca'     => $auto->getMarca(),
+                    'modelo'    => $auto->getModelo(),
+                    'nombre'    => $auto->getObjDuenio()->getNombre() ?? '',
+                    'apellido'  => $auto->getObjDuenio()->getApellido() ?? ''
+                ];
+            }
+        } else {
+            $mensaje = "No se recibieron datos.";
+            $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
+            $esconder = "d-none";
+        }
+        include_once __DIR__ . "../../TP/4/4/z_accionBuscarAuto.php";
+        break;
+    case 'verAutos':  //*EJERCICIO 5 TP4
+        $dni = $encapsulamiento->obtenerValor('dni');
+        if (!$dni) {
+            die("DNI no recibido.");
+        }
+        $control = new ControlPersona();
+        $persona = $control->obtenerPersona($dni);
+        if (!$persona) {
+            die("Persona no encontrada.");
+        }
+        // Obtener autos asociados
+        $controlAuto = new ControlAuto();
+        $autos = $controlAuto->listarAutosPorDni($dni);
+        include_once __DIR__ . "../../TP/4/5/z_autosPersona.php";
+        break;
+    case 'nuevaPersona':    //*EJERCICIO 6 TP4
+        $mensaje = "";
+        $tipoAlerta = "danger";
+        $dni       = $encapsulamiento->obtenerValor('nroDni') ?? '';
+        $nombre    = $encapsulamiento->obtenerValor('nombre') ?? '';
+        $apellido  = $encapsulamiento->obtenerValor('apellido') ?? '';
+        $fechaNac  = $encapsulamiento->obtenerValor('fechaNac') ?? null;
+        $telefono  = $encapsulamiento->obtenerValor('telefono') ?? '';
+        $domicilio = $encapsulamiento->obtenerValor('domicilio') ?? '';
+        if ($dni) {
+            $control = new ControlPersona();
+            // Array con claves que espera ControlPersona
+            $nuevaPersona = [
+                'nroDni'    => $dni,
+                'nombre'    => $nombre,
+                'apellido'  => $apellido,
+                'fechaNac'  => $fechaNac,
+                'telefono'  => $telefono,
+                'domicilio' => $domicilio
+            ];
+            // Insertamos la persona
+            // Emojis apropositos, no me digan gpt
+            $resultado = $control->insertarPersona($nuevaPersona);
+            if ($resultado === 1) {
+                $mensaje = "✅ Persona cargada correctamente.";
+                $tipoAlerta = "success";
+            } elseif ($resultado === -1) {
+                $mensaje = "⚠️ Error: la persona ya existe en la base de datos.";
+                $tipoAlerta = "warning";
+            } else {
+                $mensaje = "❌ Error inesperado.";
+            }
+        } else {
+            $mensaje = "⚠️ No se recibieron datos.";
+        }
+        include_once __DIR__ . "../../TP/4/6/z_accionNuevaPersona.php";
+        break;
+    case 'nuevoAuto':   //*EJERCICIO 7 TP4
+        $mensaje = "";
+        $tipoAlerta = "danger";
+        $patente   = $encapsulamiento->obtenerValor('patente') ?? '';
+        $marca     = $encapsulamiento->obtenerValor('marca') ?? '';
+        $modelo    = $encapsulamiento->obtenerValor('modelo') ?? '';
+        $dniDuenio = $encapsulamiento->obtenerValor('dniDuenio') ?? '';
+        if ($patente != 0 && $marca != 0 && $modelo != 0 && $dniDuenio != 0) {
+            $controlPersona = new ControlPersona();
+            $duenio = $controlPersona->obtenerPersona($dniDuenio);
+            if ($duenio) {
+                $controlAuto = new ControlAuto();
+                $nuevoAuto = [
+                    'patente'   => $patente,
+                    'marca'     => $marca,
+                    'modelo'    => $modelo,
+                    'dniDuenio' => $dniDuenio
+                ];
+                $resultado = $controlAuto->insertarAuto($nuevoAuto);
+                if ($resultado === 1) {
+                    $mensaje = "✅ Auto cargado correctamente.";
+                    $tipoAlerta = "success";
+                } elseif ($resultado === -1) {
+                    $mensaje = "⚠️ Error: la patente ya existe en la base de datos.";
+                    $tipoAlerta = "warning";
+                } else {
+                    $mensaje = "❌ Error inesperado al insertar el auto.";
+                }
+            } else {
+                $mensaje = "⚠️ El dueño con DNI $dniDuenio no existe en la base de datos.";
+                $tipoAlerta = "danger";
+            }
+        } else {
+            $mensaje = "⚠️ No se recibieron datos.";
+        }
+        include_once __DIR__ . "../../TP/4/7/z_accionNuevoAuto.php";
+        break;
+    case 'cambioDuenio':    //*EJERCICIO 8 TP4
+        $nroDni = $encapsulamiento->obtenerValor('nroDni');
+        $patente = $encapsulamiento->obtenerValor('patente');  
+        $mensaje = "";
+        $tipoAlerta = "info"; // default
+        if ($nroDni != 0 && $patente != 0) {
+            $controlAuto = new ControlAuto();
+            $controlPersona = new ControlPersona();
+            // Verificamos si existe el auto
+            $auto = $controlAuto->obtenerAuto($patente);
+            if (!$auto) {
+                $mensaje = "Error: No existe un auto con esta patente (patente ingresada: ".strtoupper($patente).").";
+                $tipoAlerta = "danger";
+            } 
+            // Verificamos si existe la persona
+            elseif (!$controlPersona->obtenerPersona($nroDni)) {
+                $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
+                $tipoAlerta = "danger";
+            } 
+            // Verificamos si el auto ya pertenece a esa persona
+            elseif ($controlAuto->perteneceDuenio($patente, $nroDni)) {
+                $mensaje = "Error: El auto con patente ".strtoupper($patente)." ya está asociado a la persona con DNI ".$nroDni.".";
+                $tipoAlerta = "warning";
+            } 
+            // Realizamos el cambio de dueño
+            else {
+                $persona = $controlPersona->obtenerPersona($nroDni);
+                if ($controlAuto->cambiarDuenio($patente, $persona)) {
+                    $mensaje = "Cambio de dueño (DNI: ".$nroDni.") realizado con éxito para patente ".strtoupper($patente).".";
+                    $tipoAlerta = "success";
+                } else {
+                    $mensaje = "Error: No se pudo realizar el cambio de dueño para este auto.";
+                    $tipoAlerta = "danger";
+                }
+            }
+        } else {
+            $mensaje = "No se recibieron datos.";
+            $tipoAlerta = "danger";
+        }
+        include_once __DIR__ . "../../TP/4/8/z_accionCambioDuenio.php";
+        break;
+    case 'buscarPersona':   //*EJERCICIO 9 TP4
+        $nroDni = $encapsulamiento->obtenerValor('nroDni');
+        $mensaje = "";
+        $tipoAlerta = "d-none"; // default
+        $formulario = "";
+        if ($nroDni != 0) {
+            $control = new ControlPersona();
+            $persona = $control->obtenerPersona($nroDni);
+            // Verificamos si existe la persona
+            if (!$persona) {
+                $mensaje = "Error: La persona con DNI: ".$nroDni." no existe en la base de datos.";
+                $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
+                $formulario = "d-none";
+            } 
+            // Devuelve los datos de la persona
+            else {
+                $datosPersona = [
+                    'nroDni'    => $nroDni,
+                    'nombre'    => $persona->getNombre(),
+                    'apellido'  => $persona->getApellido(),
+                    'fechaNac'  => $persona->getFechaNac(),
+                    'telefono'  => $persona->getTelefono(),
+                    'domicilio' => $persona->getDomicilio()
+                ];
+            }
+        } else {
+            $mensaje = "No se recibieron datos.";
+            $tipoAlerta = "alert alert-danger fw-bold fs-5 text-center";
+            $formulario = "d-none";
+        }
+        include_once __DIR__ . "../../TP/4/9/z_accionBuscarPersona.php";
+        break;
+    case 'actualizarPersona':   //*EJERCICIO 9 TP4
+        $dni       = $encapsulamiento->obtenerValor('nroDni') ?? '';
+        $nombre    = $encapsulamiento->obtenerValor('nombre') ?? '';
+        $apellido  = $encapsulamiento->obtenerValor('apellido') ?? '';
+        $fechaNac  = $encapsulamiento->obtenerValor('fechaNac') ?? null;
+        $telefono  = $encapsulamiento->obtenerValor('telefono') ?? '';
+        $domicilio = $encapsulamiento->obtenerValor('domicilio') ?? '';
+        $mensaje = "";
+        $tipoAlerta = "info"; // default
+        if ($dni != 0 && $dni != ''){
+            $control = new ControlPersona();
+            // Array con claves que espera ControlPersona
+            $datosActualizadosPersona = [
+                'nroDni'    => $dni,
+                'nombre'    => $nombre,
+                'apellido'  => $apellido,
+                'fechaNac'  => $fechaNac,
+                'telefono'  => $telefono,
+                'domicilio' => $domicilio
+            ];
+            // Insertamos la persona
+            $resultado = $control->modificarPersona($datosActualizadosPersona);
+            if ($resultado === 1) {
+                $mensaje = "Persona actualizada correctamente.";
+                $tipoAlerta = "success";
+            } elseif ($resultado === -1) {
+                $mensaje = "Error: no se lograron modificar los datos de la persona o esta no existe en la base de datos.";
+                $tipoAlerta = "warning";
+            } elseif ($resultado === 0) {
+                $mensaje = "No se modificaron datos.";
+                $tipoAlerta = "info";
+            } else {
+                $mensaje = "Error inesperado.";
+            }
+        } else {
+            $mensaje = "No se recibieron datos.";
+            $tipoAlerta = "danger";
+        }
+        include_once __DIR__ . "../../TP/4/7/z_actualizarDatosPersona.php";
+        break;
     default:
         $mensaje = "no se han encontrado datos";
 }
