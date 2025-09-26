@@ -487,7 +487,7 @@ switch ($accion){
             $mensaje = "No se recibieron datos.";
             $tipoAlerta = "danger";
         }
-        include_once __DIR__ . "../../TP/4/7/z_actualizarDatosPersona.php";
+        include_once __DIR__ . "../../TP/4/9/z_actualizarDatosPersona.php";
         break;
     default:
         $mensaje = "no se han encontrado datos";
