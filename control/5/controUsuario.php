@@ -1,14 +1,13 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp5/usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/Usuario.php';
 
 class ControlUsuario {
 
     /**
-     * Creamos un nuevo usuario con los datos que recibimos
-     */
+    * Creamos un nuevo usuario con los datos que recibimos
+    */
     public function crearUsuario($datos) {
         $usuario = new Usuario();
-
         $usuario->setNombreUsuario($datos['nombreUsuario']);
         $usuario->setPassword($datos['password']);
         $usuario->setNombre($datos['nombre']);
@@ -17,33 +16,40 @@ class ControlUsuario {
         $usuario->setIdRol($datos['idRol']);
         $usuario->setActivo(1);
 
-        return $usuario->insertar();
+        $resultado = $usuario->insertar();
+        return $resultado;
     }
 
     /**
-     * Nos devuelve una lista de todos los usuarios
-     */
+    * Nos devuelve una lista de todos los usuarios
+    */
     public function listarUsuarios($condicion = "") {
         $usuario = new Usuario();
-        return $usuario->listar($condicion);
+        $lista = $usuario->listar($condicion);
+        return $lista;
     }
 
     /**
-     * Buscamos a un usuario por su id
-     */
+    * Buscamos a un usuario por su id
+    */
     public function buscarUsuario($idUsuario) {
         $usuario = new Usuario();
+        $resultado = null;
+
         if ($usuario->buscar($idUsuario)) {
-            return $usuario;
+            $resultado = $usuario;
         }
-        return null;
+
+        return $resultado;
     }
 
     /**
-     * Se modifica los datos de un usuario existente
-     */
+    * Se modifica los datos de un usuario existente
+    */
     public function modificarUsuario($datos) {
         $usuario = new Usuario();
+        $resultado = false;
+
         if ($usuario->buscar($datos['idUsuario'])) {
             $usuario->setNombreUsuario($datos['nombreUsuario']);
             $usuario->setPassword($datos['password']);
@@ -52,36 +58,42 @@ class ControlUsuario {
             $usuario->setEmail($datos['email']);
             $usuario->setIdRol($datos['idRol']);
             $usuario->setActivo($datos['activo']);
-            return $usuario->modificar();
+            $resultado = $usuario->modificar();
         }
-        return false;
+
+        return $resultado;
     }
 
     /**
-     * Se marca a un usuario como incactivo
-     */
+    * Se marca a un usuario como incactivo
+    */
     public function eliminarUsuario($idUsuario) {
         $usuario = new Usuario();
+        $resultado = false;
+
         if ($usuario->buscar($idUsuario)) {
-            return $usuario->borradoLogico();
+            $resultado = $usuario->borradoLogico();
         }
-        return false;
+
+        return $resultado;
     }
 
     /**
-     * Se hace la autenticacion del usuario por nombre y contraseña
-     */
+    * Se hace la autenticacion del usuario por nombre y contraseña
+    */
     public function autenticar($nombreUsuario, $password) {
         $usuario = new Usuario();
+        $resultado = null;
         $lista = $usuario->listar("nombreUsuario = '$nombreUsuario' AND activo = 1");
 
         if (count($lista) > 0) {
             $usuario = $lista[0];
             if ($usuario->getPassword() === $password) {
-                return $usuario;
+                $resultado = $usuario;
             }
         }
-        return null;
+
+        return $resultado;
     }
 }
 ?>
