@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/Usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp5/Usuario.php';
 
 class ControlUsuario {
 
