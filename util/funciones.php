@@ -15,6 +15,8 @@ spl_autoload_register(function ($clase){
     ROOT . '/control/',
     ROOT
   );
+  $modelo = ['conector', 'tp4', 'tp5'];
+
   //print_r($directories);
   foreach($directories as $i=>$directory){
     if(file_exists($directory . $clase . '.php')) {
@@ -30,37 +32,16 @@ spl_autoload_register(function ($clase){
         }
       }
     }
+    if ($i == 0){
+      $max = count($modelo);
+      for ($j=0; $j<$max; $j++){
+        if(file_exists($directory . $modelo[$j] . '/' . $clase . '.php')) {
+          require_once($directory . $modelo[$j] . '/' . $clase . '.php');
+          return;
+        }
+      }
+    }
   }
-
-      
-  // //print_r($directories);
-  // $bandera = false;
-  // $i = 0;
-  // $max = count($directories);
-  // while (!$bandera && $i < $max){
-  //   $directory = $directories[$i];
-
-  //   // loop agregado para mantener la estructura de las carpetas numéricas
-  //   if ($i==2){  // el índice 2 corresponde a las carpetas de control
-  //     $j = 1;
-  //     $jmax = 10; // número mágico
-  //     while (!$bandera || $j<$jmax){
-  //       if(file_exists($directory . $clase . '.php')) {
-  //         require_once($directory . $clase . '.php');
-  //         $bandera = true;
-  //       }
-  //     }
-  //     $j++;
-  //   }
-
-  //   if(file_exists($directory . $clase . '.php') && !$i==2) {
-  //     //echo "se incluyó ".$directory. $class_name . '.php';
-  //     require_once($directory . $clase . '.php');
-  //     $bandera = true;
-  //   }
-  //   $i++;
-  // }
-  // return;
 });
 
 function verEstructura($e){

@@ -20,9 +20,7 @@
     <main class="container my-5 d-flex justify-content-center">
         <div class="card my-5 p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cargar Nueva Persona</h3>
-            <form id="personaForm" action="/PWD/vista/action/action.php" method="post" novalidate>
-                <input type="text" hidden name="accion" value="nuevaPersona">
-
+            <form id="personaForm" action="../action/formAccion_Tp4Ej6.php" method="post" novalidate>
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
                     <input type="text" name="nroDni" id="nroDni" class="form-control" required>

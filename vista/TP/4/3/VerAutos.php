@@ -1,8 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlAuto.php';
-
-$control = new ControlAuto();
-$autos = $control->listarTodosLosAutos();
+// require_once __DIR__ . "../../../../configuracion.php";
+// $control = new ControlAuto();
+// $autos = $control->listarTodosLosAutos();
+include_once __DIR__ . "../../action/formAccion_Tp4Ej3.php";
 ?>
 
 <!DOCTYPE html>

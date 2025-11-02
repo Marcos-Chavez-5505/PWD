@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/conector/conector.php';
+require_once __DIR__ . "../../../configuracion.php";
 
 class Persona {
     private $NroDni;
@@ -20,7 +20,7 @@ class Persona {
         $this->Telefono = "";
         $this->Domicilio = "";
         $this->estadoPersona = 1; // activo
-        $this->objPdo = $objPdo ?? new BaseDatos();
+        $this->objPdo = $objPdo ?? new BDinfoautos();
         $this->colAutos = [];
     }
 

@@ -10,7 +10,7 @@ class Rol {
     public function __construct($objBaseDatos = null) {
         $this->idRol = null;
         $this->descripcionRol = "";
-        $this->objBaseDatos = $objBaseDatos ?? new BaseDatos();
+        $this->objBaseDatos = $objBaseDatos ?? new BDautenticacion();
     }
 
     // Getters y Setters
@@ -22,7 +22,7 @@ class Rol {
 
     // CRUD
     public function insertar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -39,7 +39,7 @@ class Rol {
     }
 
     public function modificar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -53,7 +53,7 @@ class Rol {
     }
 
     public function eliminar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -66,7 +66,7 @@ class Rol {
     }
 
     public function buscar($idRol) {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -83,7 +83,7 @@ class Rol {
 
     public function listar($condicion = "") {
         $lista = [];
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $sql = "SELECT * FROM rol";
         if ($condicion != "") {
             $sql .= " WHERE " . $condicion;

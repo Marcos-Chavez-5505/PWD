@@ -1,11 +1,11 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp4/persona.php';
+require_once __DIR__ . "../../../configuracion.php";
 
 class ControlPersona {
     private $objPdo;
 
     public function __construct() {
-        $this->objPdo = new BaseDatos();
+        $this->objPdo = new BDinfoautos();
     }
 
     // Devuelve todas las personas

@@ -18,9 +18,7 @@
             </div>
 
             <h3 class="text-center mb-4 <?= $formulario ?>">Información de la persona solicitada</h3>
-            <form id="personaUpdateForm" action="/PWD/vista/action/action.php" method="post" class="<?= $formulario ?>" novalidate>
-                <input type="text" hidden name="accion" value="actualizarPersona">
-
+            <form id="personaUpdateForm" action="../action/formAccion_Tp4Ej9b.php" method="post" class="<?= $formulario ?>" novalidate>
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
                     <input type="text" name="nroDni" id="nroDni" class="form-control" value="<?= $datosPersona['nroDni'] ?>" readonly> <!-- solución insegura para uso real -->

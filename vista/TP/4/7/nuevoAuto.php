@@ -1,9 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
-
-// Listamos todas las personas para elegir dueño
-$controlPersona = new ControlPersona();
-$personas = $controlPersona->listarPersonas();
+include_once __DIR__ . "../../action/formAccion_Tp4Ej5a.php";
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +38,7 @@ $personas = $controlPersona->listarPersonas();
                                 <a href="../../4/4/nuevaPersona.php" class="alert-link">Cargar nueva persona</a>
                             </div>
                         <?php else: ?>
-                            <form id="autoForm" action="/PWD/vista/action/action.php" method="POST" novalidate>
-                                <input type="text" hidden name="accion" value="nuevoAuto">
+                            <form id="autoForm" action="../action/formAccion_Tp4Ej7b.php" method="POST" novalidate>
                                 <div class="mb-3">
                                     <label for="patente" class="form-label">Patente</label>
                                     <input type="text" class="form-control" id="patente" name="patente" required>

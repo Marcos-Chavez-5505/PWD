@@ -1,7 +1,5 @@
 <?php
-
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/conector/conector.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/modelo/tp4/persona.php';
+require_once __DIR__ . "../../../configuracion.php";
 
 class Auto {
     private $patente;
@@ -17,7 +15,7 @@ class Auto {
         $this->modelo = "";
         $this->objDuenio = null;  // <-- inicializado como null
         $this->estadoAuto = true;
-        $this->objPdo = $objPdo ?? new BaseDatos();
+        $this->objPdo = $objPdo ?? new BDinfoautos();
     }
 
     // getters

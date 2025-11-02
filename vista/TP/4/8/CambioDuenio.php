@@ -20,9 +20,7 @@
     <main class="container py-5 my-5 d-flex justify-content-center">
         <div class="card p-4 shadow-sm w-100" style="max-width: 500px;">
             <h3 class="text-center mb-4">Cambiar Dueño del Auto</h3>
-            <form id="patenteForm" action="/PWD/vista/action/action.php" method="post" novalidate>
-                <input type="text" hidden name="accion" value="cambioDuenio">
-
+            <form id="patenteForm" action="../action/formAccion_Tp4Ej8.php" method="post" novalidate>
                 <div class="mb-3">
                     <label for="nroDni" class="form-label">DNI:</label>
                     <input type="text" name="nroDni" id="nroDni" class="form-control" required>

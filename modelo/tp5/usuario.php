@@ -22,7 +22,7 @@ class Usuario {
         $this->email = "";
         $this->activo = 1; // activo por defecto
         $this->idRol = null;
-        $this->objBaseDatos = $objBaseDatos ?? new BaseDatos(); // se crea si no existe
+        $this->objBaseDatos = $objBaseDatos ?? new BDautenticacion(); // se crea si no existe
     }
 
     // Getters y Setters
@@ -49,7 +49,7 @@ class Usuario {
     // Métodos CRUD usando 
 
     public function insertar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -73,7 +73,7 @@ class Usuario {
     }
 
     public function modificar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -96,7 +96,7 @@ class Usuario {
     }
 
     public function borradoLogico() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -110,7 +110,7 @@ class Usuario {
     }
 
     public function buscar($idUsuario) {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -137,7 +137,7 @@ class Usuario {
 
     public function listar($condicion = "") {
         $listaUsuarios = [];
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $sql = "SELECT * FROM usuario";
 
         if ($condicion != "") {

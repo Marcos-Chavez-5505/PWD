@@ -18,7 +18,7 @@ class UsuarioRol {
         $this->idRol = null;
         $this->objUsuario = null;
         $this->objRol = null;
-        $this->objBaseDatos = $objBaseDatos ?? new BaseDatos();
+        $this->objBaseDatos = $objBaseDatos ?? new BDautenticacion();
     }
 
     // Getters y Setters
@@ -36,7 +36,7 @@ class UsuarioRol {
 
     // CRUD
     public function insertar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -54,7 +54,7 @@ class UsuarioRol {
     }
 
     public function modificar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -70,7 +70,7 @@ class UsuarioRol {
     }
 
     public function eliminar() {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -83,7 +83,7 @@ class UsuarioRol {
     }
 
     public function buscar($idUsuarioRol) {
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $resultado = false;
 
         if ($baseDatos->Iniciar()) {
@@ -112,7 +112,7 @@ class UsuarioRol {
 
     public function listar($condicion = "") {
         $lista = [];
-        $baseDatos = new BaseDatos();
+        $baseDatos = new BDautenticacion();
         $sql = "SELECT * FROM usuariorol";
 
         if ($condicion != "") {

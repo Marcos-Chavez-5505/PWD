@@ -1,8 +1,10 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
+//   require_once __DIR__ . "../../../../../configuracion.php";
+include_once __DIR__ . "../../action/formAccion_Tp4Ej5a.php";
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/4/controlPersona.php';
 
-$control = new ControlPersona();
-$personas = $control->listarPersonas();
+// $control = new ControlPersona();
+// $personas = $control->listarPersonas();
 ?>
 
 <!DOCTYPE html>
@@ -48,9 +50,14 @@ $personas = $control->listarPersonas();
                                         <td><?= $p['Nombre'] ?></td>
                                         <td><?= $p['Apellido'] ?></td>
                                         <td>
-                                            <a href="../../../action/action.php?accion=verAutos&dni=<?= $p['NroDni'] ?>" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-car-front"></i> Ver Autos
-                                            </a>
+                                            <form action="../action/formAccion_Tp4Ej5b.php" method="POST" novalidate>
+                                                <input type="text" hidden name="dni" value="<?= $p['NroDni'] ?>">
+                                                <div class="text-center mt-4">
+                                                    <button type="submit" class="btn btn-success">
+                                                        <i class="bi bi-car-front"></i> Ver Autos
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -1,5 +1,5 @@
 <?php
-class BaseDatos extends PDO {
+class BDinfoautos extends PDO {
   
     private $engine;
     private $host;
@@ -16,7 +16,7 @@ class BaseDatos extends PDO {
     public function __construct(){
         $this->engine = 'mysql';
         $this->host = 'localhost';
-        $this->database = 'autenticacion_tp5';
+        $this->database = 'infoautos';
         $this->user = 'root';
         $this->pass = '';
         $this->debug = true;
