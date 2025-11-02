@@ -17,7 +17,7 @@ include_once '../../../estructura/header.php'
   <div class="card shadow p-4" >
     <h2 class="mb-4 text-center">Horas de cursada</h2>
 
-    <form name="formulario2" id="formulario2" method="GET" action="/PWD/vista/action/action.php">
+    <form name="formulario2" id="formulario2" method="GET" action="../action/formAccion_Tp1Ej2.php">
       <input type="text" hidden name="accion" value="horasCursadas">
 
       <div class="mb-3">

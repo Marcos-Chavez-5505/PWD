@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-center mb-4">Subir archivo .txt</h3>
 
-                            <form action="/PWD/vista/action/action.php" method="post" enctype="multipart/form-data">
+                            <form action="../action/formAccion_Tp3Ej2.php" method="post" enctype="multipart/form-data">
                                 <input hidden type="text" name="accion" value="subirTXT" >
                                 <div class="mb-3">
                                     <label for="archivoTXT" class="form-label">Seleccione un archivo .txt</label>

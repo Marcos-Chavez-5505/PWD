@@ -1,6 +1,6 @@
 <?php
 // controlEj2.php
-class ControlEj2 {
+class ControlTP2Ej2 {
     // Valida usuario y contraseña
     public function validarDatos($usuario, $clave) {
         $errores = [];

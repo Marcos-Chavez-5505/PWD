@@ -21,7 +21,7 @@
         <div class="login-container">
             <div class="login-box">
                 <h3 class="text-center mb-4">Member Login</h3>
-                <form id="loginForm" action="/PWD/vista/action/action.php" method="POST" novalidate>
+                <form id="loginForm" action="../action/formAccion_Tp2Ej3.php" method="POST" novalidate>
                     <input type="text" hidden name="accion" value="verificaPass">
                     
                     <!-- Usuario -->

@@ -12,11 +12,11 @@
   
   $PROYECTO = 'PWD';
   
-  define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . "/$PROYECTO/");
+  define('ROOT', $_SERVER['DOCUMENT_ROOT'] . "/$PROYECTO/");
   define('BASE_URL', "http://" . $_SERVER['HTTP_HOST'] . "/$PROYECTO/");
   
   define('FRONT_PAGE', BASE_URL . '/home/html/index.html');
   define('LOGIN_PAGE', BASE_URL . 'vista/login/login.php'); // podemos usarlo para TP5
   
-  include_once(ROOT_PATH . 'util/funciones.php');
+  include_once(ROOT . 'util/funciones.php');
 ?>

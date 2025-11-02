@@ -19,7 +19,7 @@
                     <h5 class="mb-0"><i class="bi bi-pencil-square"></i> Cinem@s</h5>
                 </div>
                 <div class="card-body">
-                    <form id="peliculaForm" action="/PWD/vista/action/action.php" method="POST" novalidate enctype="multipart/form-data">
+                    <form id="peliculaForm" action="../action/formAccion_Tp3Ej3.php" method="POST" novalidate enctype="multipart/form-data">
                         <input type="text" hidden name="accion" value="formPelicula">
 
                         <div class="row">

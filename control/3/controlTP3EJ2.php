@@ -1,6 +1,5 @@
 <?php
-
-class controlEJ2{
+class controlTP3EJ2{
     public function verifyFile(){
         $mensaje = "no se ha seleccionado ningun archivo";
         if($_FILES['archivoTXT']['error'] === 0){

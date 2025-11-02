@@ -14,7 +14,7 @@ include_once '../../../estructura/header.php'
 <main class="d-flex justify-content-center align-items-start vh-100 mt-5">
     <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
         <h3 class="mb-3 text-center">Formulario de Datos y Deportes</h3>
-        <form name="formulario6" id="formulario6" method="POST" action="/PWD/vista/action/action.php">
+        <form name="formulario6" id="formulario6" method="POST" action="../action/formAccion_Tp1Ej6.php">
             <input type="text" hidden name="accion" value="mostrarDatos6">
             
             <div class="mb-3">

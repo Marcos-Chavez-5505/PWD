@@ -1,6 +1,6 @@
 <?php
 
-class controlEJ3 {
+class controlTP3EJ3 {
     
     public function moveImage(){
         $ruta = null;

@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: application/json");
+header("Content-Type: application/json");   // necesario para devolver datos en formato JSON
 
 // Carpeta base donde están los TPs
 $baseDir = __DIR__ . "/../../vista/TP";
@@ -16,7 +16,7 @@ foreach (scandir($baseDir) as $tpFolder) {
 
         // Escanear ejercicios dentro del TP
         foreach (scandir($tpPath) as $ejFolder) {
-            if ($ejFolder === '.' || $ejFolder === '..') continue;
+            if ($ejFolder === '.' || $ejFolder === '..' || $ejFolder === "action") continue;
 
             $ejPath = $tpPath . "/" . $ejFolder;
             if (is_dir($ejPath)) {

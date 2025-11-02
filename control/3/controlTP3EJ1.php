@@ -1,7 +1,5 @@
 <?php
-
-require_once __DIR__ . "../../../vista/action/action.php";
-class ControlEJ1 {
+class controlTP3EJ1 {
 
     public function veryfyFile(){
 

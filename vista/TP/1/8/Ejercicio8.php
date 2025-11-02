@@ -14,7 +14,7 @@ include_once '../../../estructura/header.php'
 <main class="mt-5 mb-5 d-flex justify-content-center">
     <div class="card shadow p-4" style="max-width: 400px; width: 100%; margin: 60px;">
         <h2 class="mb-4 text-center">Calculadora de Entradas</h2>
-        <form name="form8" id="form8" method="post" action="/PWD/vista/action/action.php">
+        <form name="form8" id="form8" method="post" action="../action/formAccion_Tp1Ej8.php">
             <input type="text" hidden name="accion" value="precioBoleto">
             
             <!-- Edad -->
