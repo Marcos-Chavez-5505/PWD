@@ -1,14 +1,11 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/claseSession.php';
-$session = new Session();
+session_start();
 
-if (!$session->activa()) {
-    header("Location: /PWD/vista/login.php");
-    exit;
+if (!isset($_SESSION['usuario'])) {
+    header("Location: /PWD/vista/login.php?error=Debes iniciar sesión");
+    exit();
 }
 ?>
-
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -16,15 +13,12 @@ if (!$session->activa()) {
     <meta charset="UTF-8">
     <title>Página Segura</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/PWD/vista/css/header-footer.css">
-    <link rel="stylesheet" href="/PWD/home/fonts/css/all.min.css">
+    <link rel="stylesheet" href="/PWD/vista/css/tp5.css">
 </head>
 <body>
-<main class="container py-5 my-5 d-flex justify-content-center">
-    <div class="card p-4 shadow-sm w-100" style="max-width: 600px; max-height: 200px;">
-        <h3 class="text-center mb-4">Bienvenido, <?= $session->getUsuario(); ?></h3>
-        <p class="text-center">Esta página es solo accesible para usuarios logueados.</p>
+    <div class="tarjeta-pagina-segura">
+        <h1>Bienvenido, <?= htmlspecialchars($_SESSION['usuario']) ?></h1>
+        <p>Esta es una página segura, solo accesible para usuarios autenticados.</p>
     </div>
-</main>
 </body>
-</h
+</html>

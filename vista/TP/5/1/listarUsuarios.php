@@ -3,12 +3,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/5/ControlUsuario.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/claseSession.php';
 
-// $session = new Session();
-// if (!$session->activa()) {
-//     header("Location: /PWD/vista/login.php");
-//     exit;
-// }
-
 $controlUsuario = new ControlUsuario();
 $listaUsuarios = $controlUsuario->listarUsuarios();
 ?>
@@ -59,14 +53,14 @@ $listaUsuarios = $controlUsuario->listarUsuarios();
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <form action="/PWD/vista/accion/actualizarLogin.php" method="get" class="d-inline">
+                                    <form action="/PWD/vista/TP/5/accion/actualizarLogin.php" method="get" class="d-inline">
                                         <input type="hidden" name="idUsuario" value="<?= $usuario->getIdUsuario(); ?>">
                                         <button type="submit" class="btn btn-warning btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i> Actualizar
                                         </button>
                                     </form>
 
-                                    <form action="/PWD/vista/accion/eliminarLogin.php" method="post" class="d-inline" onsubmit="return confirmarEliminacion()">
+                                    <form action="/PWD/vista/TP/5/action/eliminarLogin.php" method="post" class="d-inline" onsubmit="return confirmarEliminacion()">
                                         <input type="hidden" name="idUsuario" value="<?= $usuario->getIdUsuario(); ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="fa-solid fa-trash"></i> Eliminar
@@ -81,12 +75,6 @@ $listaUsuarios = $controlUsuario->listarUsuarios();
         <?php else: ?>
             <div class="alert alert-info text-center">No hay usuarios registrados.</div>
         <?php endif; ?>
-
-        <div class="text-center mt-4">
-            <a href="/PWD/vista/home.php" class="btn btn-secondary">
-                <i class="fa-solid fa-house"></i> Volver al inicio
-            </a>
-        </div>
     </div>
 </main>
 

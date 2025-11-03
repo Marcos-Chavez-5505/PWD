@@ -1,0 +1,18 @@
+.tarjeta-pagina-segura {
+    background-color: #d4edda;
+    padding: 30px;
+    max-width: 400px;
+    margin: 100px auto;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.tarjeta-pagina-segura h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.tarjeta-pagina-segura p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
