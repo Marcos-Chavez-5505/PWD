@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/5/controlUsuario.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/configuracion.php';
 
 if (!isset($_POST['nombreUsuario'], $_POST['password'])) {
     header("Location: /PWD/vista/TP/5/2/login.php?error=Faltan datos");

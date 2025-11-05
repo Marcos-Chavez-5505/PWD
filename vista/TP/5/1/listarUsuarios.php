@@ -1,13 +1,12 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/5/ControlUsuario.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/control/claseSession.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/configuracion.php';
 
 $controlUsuario = new ControlUsuario();
 $listaUsuarios = $controlUsuario->listarUsuarios();
 ?>
 
 <!DOCTYPE html>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/PWD/vista/estructura/header.php'; ?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -53,7 +52,7 @@ $listaUsuarios = $controlUsuario->listarUsuarios();
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <form action="/PWD/vista/TP/5/accion/actualizarLogin.php" method="get" class="d-inline">
+                                    <form action="/PWD/vista/TP/5/action/actualizarLogin.php" method="get" class="d-inline">
                                         <input type="hidden" name="idUsuario" value="<?= $usuario->getIdUsuario(); ?>">
                                         <button type="submit" class="btn btn-warning btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i> Actualizar
